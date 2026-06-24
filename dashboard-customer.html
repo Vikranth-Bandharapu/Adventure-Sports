@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -211,12 +211,33 @@
         <div class="dash-page-title"><h1>My <span class="text-gradient">Profile</span></h1></div>
         <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:2rem;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
-            <div class="form-group"><label class="form-label">Full Name</label><input class="form-control" type="text" value="" class="dash-user-name" placeholder="Your full name" /></div>
-            <div class="form-group"><label class="form-label">Email Address</label><input class="form-control" type="email" value="" class="dash-user-email" placeholder="email@example.com" /></div>
-            <div class="form-group"><label class="form-label">Phone Number</label><input class="form-control" type="tel" placeholder="+91 XXXXX XXXXX" /></div>
-            <div class="form-group"><label class="form-label">City</label><input class="form-control" type="text" placeholder="Your city" /></div>
+
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input id="pf-name" class="form-control" type="text" placeholder="Your full name" />
+              <div id="pf-name-err" style="color:#f87171;font-size:0.78rem;margin-top:4px;display:none;">⚠ Full name is required (min 2 characters)</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input id="pf-email" class="form-control" type="email" placeholder="email@example.com" />
+              <div id="pf-email-err" style="color:#f87171;font-size:0.78rem;margin-top:4px;display:none;">⚠ Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input id="pf-phone" class="form-control" type="tel" placeholder="+91 XXXXX XXXXX" />
+              <div id="pf-phone-err" style="color:#f87171;font-size:0.78rem;margin-top:4px;display:none;">⚠ Enter a valid 10-digit phone number</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">City</label>
+              <input id="pf-city" class="form-control" type="text" placeholder="Your city" />
+              <div id="pf-city-err" style="color:#f87171;font-size:0.78rem;margin-top:4px;display:none;">⚠ City is required</div>
+            </div>
+
           </div>
-          <a href="404.html" class="btn btn-primary">Save Changes</a>
+          <button id="pfSaveBtn" class="btn btn-primary">Save Changes</button>
         </div>
       </div>
 
@@ -315,5 +336,69 @@
 </div>
 
 <script src="js/dashboard.js"></script>
+<script>
+  /* ── My Profile Form Validation ── */
+  const pfSaveBtn = document.getElementById('pfSaveBtn');
+  if (pfSaveBtn) {
+    pfSaveBtn.addEventListener('click', function () {
+      const name  = document.getElementById('pf-name');
+      const email = document.getElementById('pf-email');
+      const phone = document.getElementById('pf-phone');
+      const city  = document.getElementById('pf-city');
+
+      const nameErr  = document.getElementById('pf-name-err');
+      const emailErr = document.getElementById('pf-email-err');
+      const phoneErr = document.getElementById('pf-phone-err');
+      const cityErr  = document.getElementById('pf-city-err');
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^(\+91[\s-]?)?[6-9]\d{9}$/;
+
+      let valid = true;
+
+      // Reset all
+      [name, email, phone, city].forEach(f => {
+        f.style.borderColor = '';
+      });
+      [nameErr, emailErr, phoneErr, cityErr].forEach(e => {
+        e.style.display = 'none';
+      });
+
+      // Validate Name
+      if (!name.value.trim() || name.value.trim().length < 2) {
+        name.style.borderColor = '#f87171';
+        nameErr.style.display = 'block';
+        valid = false;
+      }
+
+      // Validate Email
+      if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
+        email.style.borderColor = '#f87171';
+        emailErr.style.display = 'block';
+        valid = false;
+      }
+
+      // Validate Phone
+      const rawPhone = phone.value.trim().replace(/\s|-/g, '');
+      if (!rawPhone || !phoneRegex.test(rawPhone)) {
+        phone.style.borderColor = '#f87171';
+        phoneErr.style.display = 'block';
+        valid = false;
+      }
+
+      // Validate City
+      if (!city.value.trim()) {
+        city.style.borderColor = '#f87171';
+        cityErr.style.display = 'block';
+        valid = false;
+      }
+
+      // If all valid → redirect
+      if (valid) {
+        window.location.href = '404.html';
+      }
+    });
+  }
+</script>
 </body>
 </html>
