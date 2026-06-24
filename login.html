@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Login to WildPeak Adventures — Access your adventure dashboard as admin or customer." />
+  <title>Login — WildPeak Adventures</title>
+  <link rel="icon" href="images/logo.webp" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/gaming.css" />
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- ══ Left Visual Panel ══ -->
+  <div class="auth-visual">
+    <div class="auth-visual-bg" style="background-image:url('images/hero_bg.jpg');"></div>
+    <div class="auth-visual-overlay"></div>
+
+    <div class="auth-visual-top">
+      <a href="index.html" class="navbar-brand" style="text-decoration:none;">
+        <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+      </a>
+    </div>
+
+    <div class="auth-visual-bottom">
+      <div class="auth-visual-quote">
+        <blockquote>"Adventure is not outside man; it is within."</blockquote>
+        <div class="auth-quote-author">
+          <div class="aq-avatar">G</div>
+          <div>
+            <div class="aq-name">George Eliot</div>
+            <div class="aq-title">Author & Philosopher</div>
+          </div>
+        </div>
+      </div>
+      <div class="auth-visual-stats">
+        <div class="avs-item">
+          <div class="avs-num">12K<em>+</em></div>
+          <div class="avs-label">Adventurers</div>
+        </div>
+        <div class="avs-item">
+          <div class="avs-num">150<em>+</em></div>
+          <div class="avs-label">Destinations</div>
+        </div>
+        <div class="avs-item">
+          <div class="avs-num">98<em>%</em></div>
+          <div class="avs-label">Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Right Form Panel ══ -->
+  <div class="auth-form-panel">
+
+    <!-- Success Banner (shown if coming from signup) -->
+    <div id="signupSuccessBanner" style="display:none;align-items:center;gap:0.75rem;background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.3);border-radius:0.75rem;padding:1rem;margin-bottom:1.5rem;">
+      <i class="fa-solid fa-circle-check" style="color:var(--clr-accent);font-size:1.2rem;"></i>
+      <div>
+        <div style="color:var(--clr-white);font-weight:600;font-size:0.9rem;">Account created successfully!</div>
+        <div style="color:var(--clr-text-muted);font-size:0.8rem;">Please log in to continue your adventure.</div>
+      </div>
+    </div>
+
+    <div class="auth-header">
+      <a href="index.html" class="auth-logo">
+        <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+      </a>
+      <h1 class="auth-title">Welcome <span class="text-gradient">Back!</span></h1>
+      <p class="auth-subtitle">New to WildPeak? <a href="signup.html">Create a free account</a></p>
+    </div>
+
+    <!-- Role Selector -->
+    <div style="margin-bottom:1.5rem;">
+      <p style="font-size:0.8rem;font-weight:600;color:var(--clr-text);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.75rem;">Login As</p>
+      <div class="role-selector">
+        <label class="role-option">
+          <input type="radio" name="role" id="roleAdmin" value="admin" />
+          <div class="role-label">
+            <i class="fa-solid fa-user-tie"></i>
+            <span>Admin</span>
+            <small>Dashboard access</small>
+          </div>
+        </label>
+        <label class="role-option">
+          <input type="radio" name="role" id="roleCustomer" value="customer" checked />
+          <div class="role-label">
+            <i class="fa-solid fa-person-hiking"></i>
+            <span>Customer</span>
+            <small>My adventures</small>
+          </div>
+        </label>
+      </div>
+      <div class="err-msg" id="roleErr" role="alert"></div>
+    </div>
+
+    <form id="loginForm" class="auth-form" novalidate>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email Address</label>
+        <div class="input-wrap" style="position:relative;">
+          <i class="fa-solid fa-envelope" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);pointer-events:none;"></i>
+          <input
+            type="email" id="email" name="email"
+            class="form-control" style="padding-left:2.75rem;"
+            placeholder="you@example.com"
+            autocomplete="email"
+          />
+        </div>
+        <div class="err-msg" id="emailErr" role="alert"></div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <div class="form-row-flex">
+          <label for="password" class="form-label">Password</label>
+          <a href="404.html" class="forgot-link" id="forgotPwdLink">Forgot password?</a>
+        </div>
+        <div class="input-wrap" style="position:relative;">
+          <i class="fa-solid fa-lock" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);pointer-events:none;"></i>
+          <input
+            type="password" id="password" name="password"
+            class="form-control" style="padding-left:2.75rem;padding-right:3rem;"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+          />
+          <button type="button" class="pwd-toggle" aria-label="Toggle password visibility">
+            <i class="fa-solid fa-eye-slash"></i>
+          </button>
+        </div>
+        <div class="err-msg" id="passwordErr" role="alert"></div>
+      </div>
+
+      <!-- Remember -->
+      <label class="check-wrap">
+        <input type="checkbox" id="remember" />
+        <div class="check-box"></div>
+        <span class="check-text">Keep me signed in for 30 days</span>
+      </label>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary btn-lg btn-full ripple" id="loginSubmitBtn">
+        <i class="fa-solid fa-right-to-bracket"></i> Login to Dashboard
+      </button>
+    </form>
+
+    <div class="auth-footer-text">
+      Don't have an account? <a href="signup.html">Sign up for free</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>

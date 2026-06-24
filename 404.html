@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Trail Not Found</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    overflow:hidden;
+    background:
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
+        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80');
+    background-size:cover;
+    background-position:center;
+    color:#fff;
+}
+
+.container{
+    max-width:800px;
+    padding:40px;
+}
+
+.error-code{
+    font-size:10rem;
+    font-weight:700;
+    line-height:1;
+    color:#03ff7d;
+    text-shadow:0 5px 20px rgba(0,0,0,0.4);
+    animation:float 3s ease-in-out infinite;
+}
+
+h1{
+    margin:20px 0;
+    font-size:2.5rem;
+}
+
+p{
+    font-size:1.1rem;
+    color:#f1f1f1;
+    margin-bottom:35px;
+    line-height:1.8;
+}
+
+.back-btn{
+    display:inline-block;
+    padding:14px 32px;
+    border:none;
+    border-radius:50px;
+    background:#03ff7d;
+    color:#111;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.back-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(255,183,3,0.4);
+}
+
+.mountain{
+    position:absolute;
+    bottom:-20px;
+    left:0;
+    width:100%;
+    opacity:0.2;
+}
+
+.cloud{
+    position:absolute;
+    color:white;
+    font-size:3rem;
+    opacity:0.3;
+    animation:moveClouds 25s linear infinite;
+}
+
+.cloud:nth-child(1){
+    top:10%;
+    left:-10%;
+}
+
+.cloud:nth-child(2){
+    top:25%;
+    left:-20%;
+    animation-duration:35s;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+}
+
+@keyframes moveClouds{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(130vw);
+    }
+}
+
+@media(max-width:768px){
+
+    .error-code{
+        font-size:7rem;
+    }
+
+    h1{
+        font-size:2rem;
+    }
+
+    p{
+        font-size:1rem;
+    }
+
+    .container{
+        padding:25px;
+    }
+}
+
+@media(max-width:480px){
+
+    .error-code{
+        font-size:5.5rem;
+    }
+
+    h1{
+        font-size:1.6rem;
+    }
+
+    .back-btn{
+        width:100%;
+        max-width:250px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="cloud">☁</div>
+<div class="cloud">☁</div>
+
+<div class="container">
+    <div class="error-code">404</div>
+
+    <h1>Oops! You've Lost the Trail</h1>
+
+    <p>
+        The page you're looking for seems to have disappeared into the wilderness.
+        Don't worry, every great adventure has a wrong turn. Let's get you back on track.
+    </p>
+
+    <button class="back-btn" onclick="history.back()">
+        ← Go Back
+    </button>
+</div>
+
+</body>
+</html>

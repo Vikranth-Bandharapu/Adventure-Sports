@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="WildPeak Adventures — Premium adventure sports tours for trekking, mountain climbing, camping, river rafting, paragliding and ziplining across India's most breathtaking destinations." />
+  <title>WildPeak Adventures — Explore Beyond Limits</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/logo.webp" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/loader.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/gaming.css" />
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="scrollProgress"></div>
+
+<!-- Page Loader -->
+<div id="pageLoader">
+  <div class="ldr-bg-grid"></div>
+  <div class="ldr-bg-radial"></div>
+  <div class="ldr-particles" id="ldrParticles"></div>
+
+  <!-- Corner HUD decorations -->
+  <div class="ldr-corner tl"></div>
+  <div class="ldr-corner tr"></div>
+  <div class="ldr-corner bl"></div>
+  <div class="ldr-corner br"></div>
+
+  <!-- Center -->
+  <div class="ldr-center">
+    <!-- Spinning ring + logo -->
+    <div class="ldr-logo-ring">
+      <div class="ldr-logo-inner">
+        <img src="images/logo.webp" alt="Stackly" class="ldr-logo-img" />
+      </div>
+    </div>
+
+    <!-- Tagline -->
+    <p class="ldr-tagline">Explore &nbsp;·&nbsp; Discover &nbsp;·&nbsp; Conquer</p>
+
+    <!-- Progress -->
+    <div class="ldr-progress-wrap">
+      <div class="ldr-progress-track">
+        <div class="ldr-progress-fill"></div>
+      </div>
+      <div class="ldr-status-row">
+        <span class="ldr-status-text" id="ldrStatus">Loading adventure map...</span>
+        <span class="ldr-pct" id="ldrPct">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mountain silhouette -->
+  <div class="ldr-mountains">
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,220 L0,160 L120,80 L200,130 L320,40 L420,110 L540,20 L660,100 L760,50 L860,120 L960,30 L1060,110 L1160,60 L1280,130 L1360,70 L1440,120 L1440,220 Z" fill="rgba(13,43,26,0.6)"/>
+      <path d="M0,220 L0,180 L100,130 L200,160 L300,100 L400,150 L520,80 L620,140 L720,90 L820,150 L920,70 L1020,140 L1140,95 L1240,150 L1340,100 L1440,140 L1440,220 Z" fill="rgba(26,74,46,0.5)"/>
+      <path d="M0,220 L0,200 L180,160 L360,190 L540,150 L720,185 L900,155 L1080,185 L1260,160 L1440,180 L1440,220 Z" fill="rgba(45,106,71,0.4)"/>
+    </svg>
+  </div>
+</div>
+
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+  <span id="lightboxClose" title="Close">&times;</span>
+  <img id="lightboxImg" src="" alt="Gallery Image" />
+</div>
+
+<!-- ══════════════════════════════════════════ NAVBAR ══ -->
+<nav class="navbar" id="navbar" aria-label="Main Navigation">
+  <div class="container">
+    <a href="index.html" class="navbar-brand" aria-label="WildPeak Adventures Home">
+      <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+    </a>
+
+    <div class="navbar-center" id="navCenter">
+      <ul class="nav-links" role="list">
+        <li><a href="index.html"        class="nav-link" id="navHome">Home</a></li>
+        <li><a href="adventures.html"   class="nav-link" id="navAdv">Adventures</a></li>
+        <li><a href="destinations.html" class="nav-link" id="navDest">Destinations</a></li>
+        <li><a href="contact.html"      class="nav-link" id="navContact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="navbar-right">
+      <a href="login.html"  class="btn btn-outline btn-sm"  id="navLogin">Login</a>
+      <a href="signup.html" class="btn btn-primary btn-sm ripple" id="navSignup">Sign Up</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════ HERO ══ -->
+<section class="hero" id="home" aria-label="Hero Section">
+  <img src="images/hero_bg.webp" alt="Mountain forest hero background" class="hero-bg-img" />
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-particles" aria-hidden="true"></div>
+
+  <div class="container hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Premium Adventure Tours Since 2010
+      </div>
+
+      <h1 class="hero-title">
+        Explore
+        <span class="line-2">Beyond Limits</span>
+      </h1>
+
+      <p class="hero-desc">
+        Discover breathtaking trails, untamed wilderness, and adventures that transform you forever. From Himalayan peaks to jungle rivers — your next great story starts here.
+      </p>
+
+      <div class="hero-cta">
+        <a href="404.html" class="btn btn-primary btn-lg ripple" id="heroStartBtn">
+          <i class="fa-solid fa-compass"></i> Start Adventure
+        </a>
+        <a href="404.html" class="btn btn-outline btn-lg" id="heroToursBtn">
+          <i class="fa-solid fa-binoculars"></i> Explore Tours
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span data-counter="5000" data-suffix="+">5000+</span></div>
+          <div class="hero-stat-label">Adventures</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span data-counter="150" data-suffix="+">150+</span></div>
+          <div class="hero-stat-label">Locations</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num"><span data-counter="98" data-suffix="%">98%</span></div>
+          <div class="hero-stat-label">Satisfaction</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Cards Visual -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-card-float hcf-1">
+        <div class="hcf-icon">🏔️</div>
+        <div class="hcf-label">Next Expedition</div>
+        <div class="hcf-value">Himalayas Trek</div>
+      </div>
+      <div class="hero-card-float hcf-2">
+        <div class="hcf-icon">⭐</div>
+        <div class="hcf-label">Avg. Rating</div>
+        <div class="hcf-value">4.9 / 5.0</div>
+      </div>
+      <div class="hero-card-float hcf-3">
+        <div class="hcf-icon">👥</div>
+        <div class="hcf-label">Happy Explorers</div>
+        <div class="hcf-value">12,000+</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span class="scroll-hint-text">Scroll to explore</span>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- ══════════════════════════════════════════ CATEGORIES ══ -->
+<section class="section" id="adventures" aria-label="Adventure Categories">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up">
+        <i class="fa-solid fa-mountain-sun"></i> What We Offer
+      </div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+        Choose Your <span class="text-gradient">Adventure</span>
+      </h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+        From high altitude treks to adrenaline-pumping river rapids — we have the perfect adventure for every soul.
+      </p>
+    </div>
+
+    <div class="categories-grid">
+      <div class="cat-card" data-aos="zoom-in" data-aos-delay="0">
+        <img src="images/trek_card.jpg" alt="Trekking adventure" class="cat-img" />
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon-wrap">🥾</div>
+          <h3 class="cat-title">Trekking</h3>
+          <p class="cat-desc">Conquer ancient mountain trails through dense forests and breathtaking passes.</p>
+          <a href="404.html" class="cat-arrow">Explore Treks <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="cat-card" data-aos="zoom-in" data-aos-delay="80">
+        <img src="images/climb_card.webp" alt="Mountain climbing" class="cat-img" />
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon-wrap">🧗</div>
+          <h3 class="cat-title">Mountain Climbing</h3>
+          <p class="cat-desc">Scale granite faces and reach summits that very few have ever touched.</p>
+          <a href="404.html" class="cat-arrow">Explore Climbs <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="cat-card" data-aos="zoom-in" data-aos-delay="160">
+        <img src="images/camp_card.webp" alt="Forest camping" class="cat-img" />
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon-wrap">⛺</div>
+          <h3 class="cat-title">Camping</h3>
+          <p class="cat-desc">Sleep under a canopy of stars in ancient forests far from city lights.</p>
+          <a href="404.html" class="cat-arrow">Explore Camps <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="cat-card" data-aos="zoom-in" data-aos-delay="0">
+        <img src="images/raft_card.webp" alt="River rafting" class="cat-img" />
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon-wrap">🚣</div>
+          <h3 class="cat-title">River Rafting</h3>
+          <p class="cat-desc">Ride wild rapids through stunning gorges on India's most powerful rivers.</p>
+          <a href="404.html" class="cat-arrow">Explore Rafting <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="cat-card" data-aos="zoom-in" data-aos-delay="80">
+        <img src="images/para_card.webp" alt="Paragliding" class="cat-img" />
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon-wrap">🪂</div>
+          <h3 class="cat-title">Paragliding</h3>
+          <p class="cat-desc">Soar above emerald valleys on thermal winds with professional pilots.</p>
+          <a href="404.html" class="cat-arrow">Explore Flights <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="cat-card" data-aos="zoom-in" data-aos-delay="160">
+        <img src="images/zip_card.webp" alt="Ziplining through forest" class="cat-img" />
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon-wrap">🌿</div>
+          <h3 class="cat-title">Ziplining</h3>
+          <p class="cat-desc">Fly through forest canopies at breathtaking speed on our certified ziplines.</p>
+          <a href="404.html" class="cat-arrow">Explore Ziplines <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- ══════════════════════════════════════════ WHY CHOOSE US ══ -->
+<section class="section section-alt" id="why-us" aria-label="Why Choose WildPeak">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up">
+        <i class="fa-solid fa-shield-heart"></i> Why WildPeak
+      </div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+        Built for <span class="text-gradient">True Adventurers</span>
+      </h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+        We don't just organize trips — we craft transformative experiences with safety, expertise, and passion.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
+        <div class="feature-num"><span data-counter="200" data-suffix="+">200+</span></div>
+        <h4 class="feature-title">Certified Guides</h4>
+        <p class="feature-desc">All our guides are wilderness-certified with first-aid training and years of field experience.</p>
+      </div>
+
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="feature-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div class="feature-num"><span data-counter="100" data-suffix="%">100%</span></div>
+        <h4 class="feature-title">Safety First</h4>
+        <p class="feature-desc">Rigorous safety protocols, premium equipment checks and emergency response systems on every trip.</p>
+      </div>
+
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="feature-icon"><i class="fa-solid fa-tags"></i></div>
+        <div class="feature-num">₹<span data-counter="999" data-suffix="">999</span></div>
+        <h4 class="feature-title">Affordable Plans</h4>
+        <p class="feature-desc">Premium adventures starting from just ₹999. Flexible payment options with no hidden fees.</p>
+      </div>
+
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="feature-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+        <div class="feature-num"><span data-counter="150" data-suffix="+">150+</span></div>
+        <h4 class="feature-title">Best Locations</h4>
+        <p class="feature-desc">Access to 150+ curated adventure destinations across India, from Himalayas to Western Ghats.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- ══════════════════════════════════════════ DESTINATIONS ══ -->
+<section class="section" id="destinations" aria-label="Popular Destinations">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up">
+        <i class="fa-solid fa-location-dot"></i> Top Destinations
+      </div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+        India's Most <span class="text-gradient">Epic Locations</span>
+      </h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+        Handpicked destinations chosen for their raw beauty, adventure potential and unforgettable experiences.
+      </p>
+    </div>
+
+    <div class="destinations-grid">
+      <div class="dest-card" data-aos="zoom-in" data-aos-delay="0">
+        <img src="images/himalayas.webp" alt="Himalayas" class="dest-img" />
+        <div class="dest-overlay"></div>
+        <div class="dest-badge"><span class="badge badge-green">⭐ Top Rated</span></div>
+        <div class="dest-body">
+          <div class="dest-region"><i class="fa-solid fa-location-dot"></i> Uttarakhand, India</div>
+          <h3 class="dest-name">The Himalayas</h3>
+          <div class="dest-meta">
+            <span><i class="fa-solid fa-person-hiking"></i> 12 Treks</span>
+            <span><i class="fa-solid fa-clock"></i> 5–21 Days</span>
+          </div>
+          <a href="404.html" class="dest-cta" id="destHim">
+            Explore <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="dest-card" data-aos="zoom-in" data-aos-delay="80">
+        <img src="images/western_ghats.webp" alt="Western Ghats" class="dest-img" />
+        <div class="dest-overlay"></div>
+        <div class="dest-badge"><span class="badge badge-brown">🌿 UNESCO</span></div>
+        <div class="dest-body">
+          <div class="dest-region"><i class="fa-solid fa-location-dot"></i> Kerala / Karnataka</div>
+          <h3 class="dest-name">Western Ghats</h3>
+          <div class="dest-meta">
+            <span><i class="fa-solid fa-campground"></i> 8 Camps</span>
+            <span><i class="fa-solid fa-clock"></i> 2–7 Days</span>
+          </div>
+          <a href="404.html" class="dest-cta" id="destWG">Explore <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="dest-card" data-aos="zoom-in" data-aos-delay="160">
+        <img src="images/kashmir.webp" alt="Kashmir" class="dest-img" />
+        <div class="dest-overlay"></div>
+        <div class="dest-badge"><span class="badge badge-green">❄️ Premium</span></div>
+        <div class="dest-body">
+          <div class="dest-region"><i class="fa-solid fa-location-dot"></i> Jammu & Kashmir</div>
+          <h3 class="dest-name">Kashmir Valley</h3>
+          <div class="dest-meta">
+            <span><i class="fa-solid fa-snowflake"></i> Winter Sports</span>
+            <span><i class="fa-solid fa-clock"></i> 3–10 Days</span>
+          </div>
+          <a href="404.html" class="dest-cta" id="destKash">Explore <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="dest-card" data-aos="zoom-in" data-aos-delay="0">
+        <img src="images/rishikesh.webp" alt="Rishikesh" class="dest-img" />
+        <div class="dest-overlay"></div>
+        <div class="dest-badge"><span class="badge badge-green">🏄 Thrill</span></div>
+        <div class="dest-body">
+          <div class="dest-region"><i class="fa-solid fa-location-dot"></i> Uttarakhand, India</div>
+          <h3 class="dest-name">Rishikesh</h3>
+          <div class="dest-meta">
+            <span><i class="fa-solid fa-water"></i> River Sports</span>
+            <span><i class="fa-solid fa-clock"></i> 2–5 Days</span>
+          </div>
+          <a href="404.html" class="dest-cta" id="destRish">Explore <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="dest-card" data-aos="zoom-in" data-aos-delay="80">
+        <div class="dest-img" style="background:url('images/gallery_forest.webp') center/cover no-repeat;"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-badge"><span class="badge badge-brown">☕ Serene</span></div>
+        <div class="dest-body">
+          <div class="dest-region"><i class="fa-solid fa-location-dot"></i> Karnataka, India</div>
+          <h3 class="dest-name">Coorg Hills</h3>
+          <div class="dest-meta">
+            <span><i class="fa-solid fa-tree"></i> Forest Trails</span>
+            <span><i class="fa-solid fa-clock"></i> 3–6 Days</span>
+          </div>
+          <a href="404.html" class="dest-cta" id="destCoorg">Explore <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="dest-card" data-aos="zoom-in" data-aos-delay="160">
+        <img src="images/meghalaya.webp" alt="Meghalaya" class="dest-img" />
+        <div class="dest-overlay"></div>
+        <div class="dest-badge"><span class="badge badge-green">🌧️ Mystic</span></div>
+        <div class="dest-body">
+          <div class="dest-region"><i class="fa-solid fa-location-dot"></i> Northeast India</div>
+          <h3 class="dest-name">Meghalaya</h3>
+          <div class="dest-meta">
+            <span><i class="fa-solid fa-bridge"></i> Root Bridges</span>
+            <span><i class="fa-solid fa-clock"></i> 4–8 Days</span>
+          </div>
+          <a href="404.html" class="dest-cta" id="destMeg">Explore <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem" data-aos="fade-up">
+      <a href="404.html" class="btn btn-accent-outline" id="viewAllDest">
+        <i class="fa-solid fa-earth-asia"></i> View All Destinations
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- ══════════════════════════════════════════ GALLERY ══ -->
+<section class="section section-alt" id="gallery" aria-label="Adventure Gallery">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up">
+        <i class="fa-solid fa-images"></i> Visual Stories
+      </div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+        Adventures in <span class="text-gradient">Every Frame</span>
+      </h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+        Real moments from real adventurers — let these images inspire your next journey.
+      </p>
+    </div>
+
+    <div class="gallery-grid" data-aos="fade-up" data-aos-delay="100">
+      <div class="gallery-item tall">
+        <img src="images/gallery_mtn.webp" alt="Mountain peaks above clouds" loading="lazy" />
+        <div class="gallery-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery_forest.webp" alt="Ancient forest path" loading="lazy" />
+        <div class="gallery-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="images/gallery_hiking.webp" alt="Hiker at mountain summit" loading="lazy" />
+        <div class="gallery-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/gallery_camping.webp" alt="Night camping under stars" loading="lazy" />
+        <div class="gallery-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+      <div class="gallery-item tall">
+        <img src="images/gallery_wildlife.webp" alt="Wildlife in jungle" loading="lazy" />
+        <div class="gallery-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/raft_card.webp" alt="River rafting action" loading="lazy" />
+        <div class="gallery-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/para_card.webp" alt="Paragliding over valley" loading="lazy" />
+        <div class="gallery-item-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem" data-aos="fade-up">
+      <a href="404.html" class="btn btn-accent-outline" id="viewGallery">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> View Full Gallery
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- ══════════════════════════════════════════ TESTIMONIALS ══ -->
+<section class="section" id="testimonials" aria-label="Customer Testimonials">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up">
+        <i class="fa-solid fa-star"></i> Testimonials
+      </div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+        Voices of <span class="text-gradient">Our Explorers</span>
+      </h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+        Don't just take our word for it — hear from thousands who've explored with WildPeak.
+      </p>
+    </div>
+
+    <div class="testimonials-wrap" data-aos="fade-up" data-aos-delay="100">
+      <div class="testimonials-slider" id="testimonialsSlider">
+        <!-- Card 1 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"The Himalayan trek was absolutely life-changing. Our guide Rajan knew every trail, every hidden viewpoint. WildPeak delivered way beyond expectations — this is the gold standard of adventure tourism."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div>
+              <div class="author-name">Aditya Sharma</div>
+              <div class="author-role">Software Engineer, Bangalore</div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"We did the Rishikesh rafting package and I can't stop talking about it! Every single detail was planned to perfection. The safety briefings gave me confidence and the rapids were pure exhilaration!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">P</div>
+            <div>
+              <div class="author-name">Priya Nair</div>
+              <div class="author-role">Marketing Manager, Mumbai</div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Paragliding over Bir Billing was a dream I thought would stay a dream. WildPeak made it not just real but absolutely safe and magical. The certified instructors are world-class. Highly recommend!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">R</div>
+            <div>
+              <div class="author-name">Rahul Mehta</div>
+              <div class="author-role">Doctor, Delhi</div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"The Kashmir family package was simply breathtaking. My kids still talk about the snow-covered meadows. WildPeak handled everything — transfers, accommodation, guides. Pure stress-free bliss."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div>
+              <div class="author-name">Sneha Kapoor</div>
+              <div class="author-role">Entrepreneur, Chennai</div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Meghalaya's living root bridges and cave explorations with WildPeak were surreal. The guides were incredibly knowledgeable and the photography opportunities were endless. Unforgettable experience!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">K</div>
+            <div>
+              <div class="author-name">Kiran Reddy</div>
+              <div class="author-role">Photographer, Hyderabad</div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 6 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Four of us did the Western Ghats camping package. The campfire nights, the wildlife sightings, the waterfalls — it felt like being in a nature documentary. Best trip of my decade, no question!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">V</div>
+            <div>
+              <div class="author-name">Vivek Singh</div>
+              <div class="author-role">Teacher, Pune</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonials-nav">
+      <button class="t-btn" id="tPrev" aria-label="Previous testimonial"><i class="fa-solid fa-chevron-left"></i></button>
+      <span class="t-dot active"></span>
+      <span class="t-dot"></span>
+      <span class="t-dot"></span>
+      <span class="t-dot"></span>
+      <button class="t-btn" id="tNext" aria-label="Next testimonial"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- ══════════════════════════════════════════ STATS ══ -->
+<section class="section stats-section" id="statistics" aria-label="Company Statistics">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item" data-aos="zoom-in" data-aos-delay="0">
+        <span class="stat-icon"><i class="fa-solid fa-compass"></i></span>
+        <div class="stat-number"><span data-counter="5000" data-suffix="">5000</span><span class="suffix">+</span></div>
+        <div class="stat-label">Adventures Completed</div>
+      </div>
+      <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+        <span class="stat-icon"><i class="fa-solid fa-map-location-dot"></i></span>
+        <div class="stat-number"><span data-counter="150" data-suffix="">150</span><span class="suffix">+</span></div>
+        <div class="stat-label">Locations Covered</div>
+      </div>
+      <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+        <span class="stat-icon"><i class="fa-solid fa-users"></i></span>
+        <div class="stat-number"><span data-counter="12000" data-suffix="">12000</span><span class="suffix">+</span></div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+      <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+        <span class="stat-icon"><i class="fa-solid fa-star"></i></span>
+        <div class="stat-number"><span data-counter="98" data-suffix="">98</span><span class="suffix">%</span></div>
+        <div class="stat-label">Satisfaction Rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- ══════════════════════════════════════════ EVENTS ══ -->
+<section class="section section-alt" id="events" aria-label="Upcoming Events">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up">
+        <i class="fa-solid fa-calendar-days"></i> Upcoming Events
+      </div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+        Latest <span class="text-gradient">Adventures</span>
+      </h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+        Book your spot on our upcoming expeditions — limited seats available for each departure.
+      </p>
+    </div>
+
+    <div class="events-grid">
+      <div class="event-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="event-date-band">
+          <div class="event-day">15</div>
+          <div class="event-month-year">
+            <div class="event-month">July</div>
+            <div class="event-year">2026</div>
+          </div>
+        </div>
+        <div class="event-body">
+          <div class="event-tag"><i class="fa-solid fa-mountain"></i> Trek</div>
+          <h3 class="event-name">Kedarkantha Winter Trek</h3>
+          <div class="event-info">
+            <div class="event-info-item"><i class="fa-solid fa-location-dot"></i> Uttarakhand, India</div>
+            <div class="event-info-item"><i class="fa-solid fa-clock"></i> 6 Days / 5 Nights</div>
+            <div class="event-info-item"><i class="fa-solid fa-users"></i> 12 Slots Remaining</div>
+          </div>
+          <div class="event-price">
+            <div>
+              <div class="price-from">Starting from</div>
+              <div class="price-val">₹8,999 <span>/ person</span></div>
+            </div>
+            <a href="404.html" class="btn btn-primary btn-sm" id="bookKed">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="event-date-band">
+          <div class="event-day">22</div>
+          <div class="event-month-year">
+            <div class="event-month">July</div>
+            <div class="event-year">2026</div>
+          </div>
+        </div>
+        <div class="event-body">
+          <div class="event-tag"><i class="fa-solid fa-water"></i> Rafting</div>
+          <h3 class="event-name">Ganga Rishikesh Rafting Exp.</h3>
+          <div class="event-info">
+            <div class="event-info-item"><i class="fa-solid fa-location-dot"></i> Rishikesh, Uttarakhand</div>
+            <div class="event-info-item"><i class="fa-solid fa-clock"></i> 3 Days / 2 Nights</div>
+            <div class="event-info-item"><i class="fa-solid fa-users"></i> 8 Slots Remaining</div>
+          </div>
+          <div class="event-price">
+            <div>
+              <div class="price-from">Starting from</div>
+              <div class="price-val">₹4,499 <span>/ person</span></div>
+            </div>
+            <a href="404.html" class="btn btn-primary btn-sm" id="bookRaft">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="event-date-band">
+          <div class="event-day">05</div>
+          <div class="event-month-year">
+            <div class="event-month">August</div>
+            <div class="event-year">2026</div>
+          </div>
+        </div>
+        <div class="event-body">
+          <div class="event-tag"><i class="fa-solid fa-wind"></i> Flying</div>
+          <h3 class="event-name">Bir Billing Paragliding Camp</h3>
+          <div class="event-info">
+            <div class="event-info-item"><i class="fa-solid fa-location-dot"></i> Bir Billing, Himachal</div>
+            <div class="event-info-item"><i class="fa-solid fa-clock"></i> 4 Days / 3 Nights</div>
+            <div class="event-info-item"><i class="fa-solid fa-users"></i> 5 Slots Remaining</div>
+          </div>
+          <div class="event-price">
+            <div>
+              <div class="price-from">Starting from</div>
+              <div class="price-val">₹6,999 <span>/ person</span></div>
+            </div>
+            <a href="404.html" class="btn btn-primary btn-sm" id="bookPara">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem" data-aos="fade-up">
+      <a href="404.html" class="btn btn-accent-outline" id="viewAllEvents">
+        <i class="fa-solid fa-calendar-check"></i> View All Events
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- ══════════════════════════════════════════ NEWSLETTER ══ -->
+<section class="section newsletter-section" id="newsletter" aria-label="Newsletter Signup">
+  <div class="container">
+    <div class="newsletter-inner">
+      <div class="newsletter-text" data-aos="fade-right">
+        <div class="section-badge">
+          <i class="fa-solid fa-envelope-open-text"></i> Stay Connected
+        </div>
+        <h2 class="section-title">Never Miss an <span class="text-gradient">Adventure</span></h2>
+        <p>Join 12,000+ explorers who receive exclusive trip updates, early-bird offers and insider adventure tips every week.</p>
+      </div>
+
+      <div class="newsletter-form-wrap" data-aos="fade-left">
+        <form id="newsletterForm" novalidate>
+          <div class="newsletter-input-group">
+            <i class="fa-solid fa-envelope" style="color:var(--clr-accent);margin-left:0.75rem;align-self:center;flex-shrink:0;"></i>
+            <input
+              type="email"
+              id="nlEmail"
+              name="email"
+              placeholder="Enter your email address"
+              autocomplete="email"
+              aria-label="Email address"
+            />
+            <button type="submit" class="btn btn-primary ripple" id="nlSubmitBtn">
+              Subscribe <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </div>
+          <div class="err-msg" id="nlEmailErr" role="alert"></div>
+        </form>
+
+        <div class="newsletter-perks">
+          <div class="newsletter-perk"><i class="fa-solid fa-check"></i> No spam ever</div>
+          <div class="newsletter-perk"><i class="fa-solid fa-check"></i> Unsubscribe anytime</div>
+          <div class="newsletter-perk"><i class="fa-solid fa-check"></i> Weekly adventure drops</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ FOOTER ══ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="navbar-brand" style="margin-bottom:1rem;display:inline-flex;">
+          <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+        </a>
+        <p class="footer-brand-desc">We craft transformative adventure experiences across India's most spectacular landscapes. Safety, passion, and authenticity in every journey.</p>
+        <div class="social-links">
+          <a href="404.html" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="404.html" class="social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Quick Links</h5>
+        <div class="footer-links">
+          <a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a>
+          <a href="adventures.html"><i class="fa-solid fa-chevron-right"></i> Adventures</a>
+          <a href="destinations.html"><i class="fa-solid fa-chevron-right"></i> Destinations</a>
+          <a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact Us</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> About Us</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Blog</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Adventures</h5>
+        <div class="footer-links">
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Trekking</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Mountain Climbing</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Camping</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> River Rafting</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Paragliding</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Ziplining</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Contact Us</h5>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>42 Forest Trail, Green Valley, Hyderabad 249201</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 98765 43210</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Stackly@wildpeakadventures.in</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon–Sat: 9AM – 7PM IST</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 <strong style="color:var(--clr-accent)"> Stackly WildPeak Adventures</strong>. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+        <a href="404.html">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top -->
+<button id="scrollTop" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="js/main.js"></script>
+<script src="js/home.js"></script>
+
+</body>
+</html>

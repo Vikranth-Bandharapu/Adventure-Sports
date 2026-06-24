@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create your WildPeak Adventures account and start your adventure journey today." />
+  <title>Sign Up — WildPeak Adventures</title>
+  <link rel="icon" href="images/logo.webp" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/gaming.css" />
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- ══ Left Visual Panel ══ -->
+  <div class="auth-visual">
+    <div class="auth-visual-bg" style="background-image:url('images/gallery_hiking.jpg');"></div>
+    <div class="auth-visual-overlay"></div>
+
+    <div class="auth-visual-top">
+      <a href="index.html" class="navbar-brand" style="text-decoration:none;">
+        <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+      </a>
+    </div>
+
+    <div class="auth-visual-bottom">
+      <div class="auth-visual-quote">
+        <blockquote>"The mountains are calling and I must go."</blockquote>
+        <div class="auth-quote-author">
+          <div class="aq-avatar">J</div>
+          <div>
+            <div class="aq-name">John Muir</div>
+            <div class="aq-title">Naturalist & Explorer</div>
+          </div>
+        </div>
+      </div>
+      <div class="auth-visual-stats">
+        <div class="avs-item">
+          <div class="avs-num">5K<em>+</em></div>
+          <div class="avs-label">Adventures</div>
+        </div>
+        <div class="avs-item">
+          <div class="avs-num">200<em>+</em></div>
+          <div class="avs-label">Guides</div>
+        </div>
+        <div class="avs-item">
+          <div class="avs-num">Free</div>
+          <div class="avs-label">Membership</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Right Form Panel ══ -->
+  <div class="auth-form-panel">
+
+    <div class="auth-header">
+      <a href="index.html" class="auth-logo">
+        <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+      </a>
+      <h1 class="auth-title">Join the <span class="text-gradient">Adventure</span></h1>
+      <p class="auth-subtitle">Already an explorer? <a href="login.html">Sign in to your account</a></p>
+    </div>
+
+    <form id="signupForm" class="auth-form" novalidate>
+
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="fullName" class="form-label">Full Name</label>
+        <div style="position:relative;">
+          <i class="fa-solid fa-user" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);pointer-events:none;"></i>
+          <input
+            type="text" id="fullName" name="fullName"
+            class="form-control" style="padding-left:2.75rem;"
+            placeholder="Your full name"
+            autocomplete="name"
+          />
+        </div>
+        <div class="err-msg" id="fullNameErr" role="alert"></div>
+      </div>
+
+      <!-- Email & Phone (2-col) -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <div style="position:relative;">
+            <i class="fa-solid fa-envelope" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);pointer-events:none;"></i>
+            <input
+              type="email" id="email" name="email"
+              class="form-control" style="padding-left:2.75rem;"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+          </div>
+          <div class="err-msg" id="emailErr" role="alert"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone" class="form-label">Phone Number</label>
+          <div style="position:relative;">
+            <i class="fa-solid fa-phone" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);pointer-events:none;"></i>
+            <input
+              type="tel" id="phone" name="phone"
+              class="form-control" style="padding-left:2.75rem;"
+              placeholder="+91 XXXXX XXXXX"
+              autocomplete="tel"
+            />
+          </div>
+          <div class="err-msg" id="phoneErr" role="alert"></div>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-wrap" style="position:relative;">
+          <i class="fa-solid fa-lock" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);pointer-events:none;"></i>
+          <input
+            type="password" id="password" name="password"
+            class="form-control" style="padding-left:2.75rem;padding-right:3rem;"
+            placeholder="Min 8 chars, uppercase & number"
+            autocomplete="new-password"
+          />
+          <button type="button" class="pwd-toggle" aria-label="Toggle password visibility">
+            <i class="fa-solid fa-eye-slash"></i>
+          </button>
+        </div>
+        <!-- Strength Bars -->
+        <div class="pwd-strength" id="pwdStrength">
+          <div class="pwd-bar"></div>
+          <div class="pwd-bar"></div>
+          <div class="pwd-bar"></div>
+          <div class="pwd-bar"></div>
+        </div>
+        <div class="err-msg" id="passwordErr" role="alert"></div>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <div class="input-wrap" style="position:relative;">
+          <i class="fa-solid fa-lock-open" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);pointer-events:none;"></i>
+          <input
+            type="password" id="confirmPassword" name="confirmPassword"
+            class="form-control" style="padding-left:2.75rem;padding-right:3rem;"
+            placeholder="Re-enter your password"
+            autocomplete="new-password"
+          />
+          <button type="button" class="pwd-toggle" aria-label="Toggle confirm password visibility">
+            <i class="fa-solid fa-eye-slash"></i>
+          </button>
+        </div>
+        <div class="err-msg" id="confirmPasswordErr" role="alert"></div>
+      </div>
+
+      <!-- Terms -->
+      <div class="form-group">
+        <label class="check-wrap">
+          <input type="checkbox" id="terms" name="terms" />
+          <div class="check-box"></div>
+          <span class="check-text">I agree to WildPeak's <a href="404.html">Terms of Service</a> and <a href="404.html">Privacy Policy</a>. I confirm I am 18+ years old.</span>
+        </label>
+        <div class="err-msg" id="termsErr" role="alert"></div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary btn-lg btn-full ripple" id="signupSubmitBtn">
+        <i class="fa-solid fa-user-plus"></i> Create My Account
+      </button>
+    </form>
+
+    <div class="auth-footer-text">
+      Already have an account? <a href="login.html">Sign in here</a>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>

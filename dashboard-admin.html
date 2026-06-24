@@ -1,0 +1,375 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — WildPeak Adventures</title>
+  <link rel="icon" href="images/logo.webp" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/gaming.css" />
+  <style>
+    /* ── Overflow fix ── */
+    .dashboard-main { overflow-x: hidden; }
+    .kpi-grid { overflow: visible; }
+    .kpi-grid .kpi-card { min-width: 0; overflow: hidden; }
+    .dashboard-content { overflow-x: hidden; }
+    /* ── Gaming admin enhancements ── */
+    body { overflow-x: hidden; }
+    .dash-page-title h1 { letter-spacing: -0.02em; }
+    /* ── Gaming sidebar logo sticky ── */
+    .sidebar { overflow-y: auto; overflow-x: hidden; }
+    .sidebar-brand { position: sticky; top:0; z-index:10; background: rgba(3,8,4,0.98); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(57,255,20,0.1); }
+    /* ── Gaming dashboard background ── */
+    .dashboard-content { background: rgba(3,8,4,0.3); }
+    /* ── Gaming KPI fix for all viewports ── */
+    @media (max-width: 1300px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 860px)  { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+    /* ── Admin corner tag ── */
+    .sidebar-user-role { display: flex; align-items: center; gap: 0.25rem; font-size: 0.7rem; }
+  </style>
+</head>
+<body>
+
+<div class="dashboard-page">
+
+  <!-- ════════ SIDEBAR ════════ -->
+  <aside class="sidebar" id="sidebar" aria-label="Admin Sidebar">
+    <a href="index.html" class="sidebar-brand">
+      <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+    </a>
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <div class="sidebar-user">
+      <div class="sidebar-user-avatar dash-user-avatar-letter">A</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name dash-user-email">admin@wildpeak.in</div>
+        <div class="sidebar-user-role"><i class="fa-solid fa-shield-halved"></i> Administrator</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Admin Navigation">
+      <div class="sidebar-section-label">Main</div>
+
+      <a href="#" class="sidebar-link active" data-section="sec-overview" id="sideOverview">
+        <i class="fa-solid fa-gauge-high"></i>
+        <span class="sidebar-link-text">Dashboard</span>
+      </a>
+      <a href="#" class="sidebar-link" data-section="sec-users" id="sideUsers">
+        <i class="fa-solid fa-users"></i>
+        <span class="sidebar-link-text">Users</span>
+      </a>
+      <a href="#" class="sidebar-link" data-section="sec-bookings" id="sideBookings">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span class="sidebar-link-text">Bookings</span>
+      </a>
+      <a href="#" class="sidebar-link" data-section="sec-packages" id="sidePackages">
+        <i class="fa-solid fa-suitcase-rolling"></i>
+        <span class="sidebar-link-text">Adventure Packages</span>
+      </a>
+
+      <div class="sidebar-section-label">Communication</div>
+      <a href="#" class="sidebar-link" data-section="sec-messages" id="sideMessages">
+        <i class="fa-solid fa-envelope"></i>
+        <span class="sidebar-link-text">Messages</span>
+      </a>
+
+      <div class="sidebar-section-label">System</div>
+      <a href="#" class="sidebar-link" data-section="sec-settings" id="sideSettings">
+        <i class="fa-solid fa-gear"></i>
+        <span class="sidebar-link-text">Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="#" class="sidebar-link logout-link logout-btn" id="adminLogout">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span class="sidebar-link-text">Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ════════ MAIN CONTENT ════════ -->
+  <main class="dashboard-main" id="dashMain">
+
+    <!-- Topbar -->
+    <header class="dashboard-topbar">
+      <div class="topbar-left">
+        <button class="sidebar-mobile-toggle" id="mobileSidebarToggle" aria-label="Open sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="topbar-greeting">
+          Welcome back, <strong class="dash-user-email">Admin</strong> 👋
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-date">
+          <i class="fa-regular fa-calendar"></i>
+          <span id="topbarDate"></span>
+        </div>
+        <div class="topbar-notification" id="notifBtn" title="Notifications" role="button" tabindex="0" aria-label="View notifications">
+          <i class="fa-solid fa-bell"></i>
+          <div class="notif-badge">3</div>
+        </div>
+        <div style="width:40px;height:40px;background:var(--grad-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#060d08;font-size:0.95rem;" class="dash-user-avatar-letter">A</div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+
+      <!-- Page Title -->
+      <div class="dash-page-title">
+        <h1 id="dashPageTitle">Dashboard <span class="text-gradient">Overview</span></h1>
+        <p>Welcome to your admin control center. Here's what's happening today.</p>
+      </div>
+
+      <!-- ── SECTION: Overview ── -->
+      <div class="dash-section" id="sec-overview">
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card" style="--kpi-color:var(--grad-accent);--kpi-icon-bg:rgba(74,222,128,0.12);--kpi-icon-color:var(--clr-accent);">
+            <div class="kpi-header">
+              <div class="kpi-icon"><i class="fa-solid fa-users"></i></div>
+              <div class="kpi-trend up"><i class="fa-solid fa-arrow-trend-up"></i> +12%</div>
+            </div>
+            <div class="kpi-value" data-counter="1248">0</div>
+            <div class="kpi-label">Total Users</div>
+          </div>
+
+          <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#2d7a4f,#3d9b65);--kpi-icon-bg:rgba(45,122,79,0.15);--kpi-icon-color:#3d9b65;">
+            <div class="kpi-header">
+              <div class="kpi-icon"><i class="fa-solid fa-calendar-check"></i></div>
+              <div class="kpi-trend up"><i class="fa-solid fa-arrow-trend-up"></i> +8%</div>
+            </div>
+            <div class="kpi-value" data-counter="342">0</div>
+            <div class="kpi-label">Total Bookings</div>
+          </div>
+
+          <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#b07a52,#d4956a);--kpi-icon-bg:rgba(139,94,60,0.15);--kpi-icon-color:#b07a52;">
+            <div class="kpi-header">
+              <div class="kpi-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+              <div class="kpi-trend up"><i class="fa-solid fa-arrow-trend-up"></i> +22%</div>
+            </div>
+            <div class="kpi-value">₹<span data-counter="284">0</span>K</div>
+            <div class="kpi-label">Revenue This Month</div>
+          </div>
+
+          <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#6b7280,#9ca3af);--kpi-icon-bg:rgba(107,114,128,0.15);--kpi-icon-color:#9ca3af;">
+            <div class="kpi-header">
+              <div class="kpi-icon"><i class="fa-solid fa-suitcase-rolling"></i></div>
+              <div class="kpi-trend down"><i class="fa-solid fa-arrow-trend-down"></i> -2</div>
+            </div>
+            <div class="kpi-value" data-counter="47">0</div>
+            <div class="kpi-label">Active Packages</div>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <div>
+                <div class="chart-card-title">Booking Statistics</div>
+                <div class="chart-card-subtitle">Monthly bookings & revenue overview</div>
+              </div>
+              <div class="chart-period-btns">
+                <button class="chart-period-btn active">2026</button>
+                <button class="chart-period-btn">2025</button>
+                <button class="chart-period-btn">All</button>
+              </div>
+            </div>
+            <div class="chart-wrap" style="height:280px;">
+              <canvas id="bookingChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <div>
+                <div class="chart-card-title">User Statistics</div>
+                <div class="chart-card-subtitle">Adventure category popularity</div>
+              </div>
+            </div>
+            <div class="chart-wrap" style="height:280px;">
+              <canvas id="userChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Bookings Table -->
+        <div class="dash-table-card">
+          <div class="dash-table-header">
+            <div class="dash-table-title">Recent Bookings</div>
+            <a href="404.html" class="btn btn-accent-outline btn-sm" onclick="return false;">View All</a>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Customer</th>
+                  <th>Package</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code style="color:var(--clr-accent);font-size:0.8rem;">#WP-2026-0891</code></td>
+                  <td><strong>Aditya Sharma</strong><br><small style="color:var(--clr-text-muted);">aditya@gmail.com</small></td>
+                  <td>Himalayan Trek — 6D</td>
+                  <td>15 Jul 2026</td>
+                  <td style="color:var(--clr-accent);font-weight:600;">₹8,999</td>
+                  <td><span class="status-badge status-confirmed"><span class="status-dot"></span>Confirmed</span></td>
+                </tr>
+                <tr>
+                  <td><code style="color:var(--clr-accent);font-size:0.8rem;">#WP-2026-0890</code></td>
+                  <td><strong>Priya Nair</strong><br><small style="color:var(--clr-text-muted);">priya@outlook.com</small></td>
+                  <td>Rishikesh Rafting — 3D</td>
+                  <td>22 Jul 2026</td>
+                  <td style="color:var(--clr-accent);font-weight:600;">₹4,499</td>
+                  <td><span class="status-badge status-pending"><span class="status-dot"></span>Pending</span></td>
+                </tr>
+                <tr>
+                  <td><code style="color:var(--clr-accent);font-size:0.8rem;">#WP-2026-0889</code></td>
+                  <td><strong>Rahul Mehta</strong><br><small style="color:var(--clr-text-muted);">rahul@yahoo.com</small></td>
+                  <td>Bir Billing Paragliding</td>
+                  <td>5 Aug 2026</td>
+                  <td style="color:var(--clr-accent);font-weight:600;">₹6,999</td>
+                  <td><span class="status-badge status-confirmed"><span class="status-dot"></span>Confirmed</span></td>
+                </tr>
+                <tr>
+                  <td><code style="color:var(--clr-accent);font-size:0.8rem;">#WP-2026-0888</code></td>
+                  <td><strong>Sneha Kapoor</strong><br><small style="color:var(--clr-text-muted);">sneha@gmail.com</small></td>
+                  <td>Kashmir Meadows Tour</td>
+                  <td>10 Aug 2026</td>
+                  <td style="color:var(--clr-accent);font-weight:600;">₹14,999</td>
+                  <td><span class="status-badge status-cancelled"><span class="status-dot"></span>Cancelled</span></td>
+                </tr>
+                <tr>
+                  <td><code style="color:var(--clr-accent);font-size:0.8rem;">#WP-2026-0887</code></td>
+                  <td><strong>Vivek Singh</strong><br><small style="color:var(--clr-text-muted);">vivek@company.in</small></td>
+                  <td>Western Ghats Camping</td>
+                  <td>18 Aug 2026</td>
+                  <td style="color:var(--clr-accent);font-weight:600;">₹5,799</td>
+                  <td><span class="status-badge status-confirmed"><span class="status-dot"></span>Confirmed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="dash-table-card">
+          <div class="dash-table-header">
+            <div class="dash-table-title">Recent Users</div>
+            <a href="404.html" class="btn btn-accent-outline btn-sm" onclick="return false;">View All</a>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Phone</th>
+                  <th>Registered</th>
+                  <th>Bookings</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Aditya Sharma</strong><br><small style="color:var(--clr-text-muted);">aditya@gmail.com</small></td>
+                  <td>+91 98100 12345</td>
+                  <td>10 Jun 2026</td>
+                  <td><strong style="color:var(--clr-accent);">3</strong></td>
+                  <td><span class="status-badge status-confirmed"><span class="status-dot"></span>Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Priya Nair</strong><br><small style="color:var(--clr-text-muted);">priya@outlook.com</small></td>
+                  <td>+91 99877 56789</td>
+                  <td>15 Jun 2026</td>
+                  <td><strong style="color:var(--clr-accent);">1</strong></td>
+                  <td><span class="status-badge status-confirmed"><span class="status-dot"></span>Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Rahul Mehta</strong><br><small style="color:var(--clr-text-muted);">rahul@yahoo.com</small></td>
+                  <td>+91 91234 67890</td>
+                  <td>18 Jun 2026</td>
+                  <td><strong style="color:var(--clr-accent);">2</strong></td>
+                  <td><span class="status-badge status-confirmed"><span class="status-dot"></span>Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Kiran Reddy</strong><br><small style="color:var(--clr-text-muted);">kiran@photo.com</small></td>
+                  <td>+91 87654 32109</td>
+                  <td>20 Jun 2026</td>
+                  <td><strong style="color:var(--clr-accent);">1</strong></td>
+                  <td><span class="status-badge status-pending"><span class="status-dot"></span>Pending</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div><!-- /sec-overview -->
+
+      <!-- ── SECTION: Users ── -->
+      <div class="dash-section" id="sec-users" style="display:none;">
+        <div style="padding:3rem;text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);">
+          <div style="font-size:3rem;margin-bottom:1rem;">👥</div>
+          <h3>Users Management</h3>
+          <p style="margin-top:0.5rem;">Full user management panel with search, filter, edit and deactivate capabilities. Showing all registered adventure seekers.</p>
+        </div>
+      </div>
+
+      <!-- ── SECTION: Bookings ── -->
+      <div class="dash-section" id="sec-bookings" style="display:none;">
+        <div style="padding:3rem;text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);">
+          <div style="font-size:3rem;margin-bottom:1rem;">📋</div>
+          <h3>Bookings Management</h3>
+          <p style="margin-top:0.5rem;">View, confirm, reschedule or cancel all adventure bookings. Filter by date, status, or package type.</p>
+        </div>
+      </div>
+
+      <!-- ── SECTION: Packages ── -->
+      <div class="dash-section" id="sec-packages" style="display:none;">
+        <div style="padding:3rem;text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);">
+          <div style="font-size:3rem;margin-bottom:1rem;">🏕️</div>
+          <h3>Adventure Packages</h3>
+          <p style="margin-top:0.5rem;">Create, edit, and manage all adventure packages. Set pricing, availability, inclusions and publish to website.</p>
+        </div>
+      </div>
+
+      <!-- ── SECTION: Messages ── -->
+      <div class="dash-section" id="sec-messages" style="display:none;">
+        <div style="padding:3rem;text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);">
+          <div style="font-size:3rem;margin-bottom:1rem;">✉️</div>
+          <h3>Messages (3 Unread)</h3>
+          <p style="margin-top:0.5rem;">View and reply to customer enquiries, group booking requests and feedback from the contact form.</p>
+        </div>
+      </div>
+
+      <!-- ── SECTION: Settings ── -->
+      <div class="dash-section" id="sec-settings" style="display:none;">
+        <div style="padding:3rem;text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);">
+          <div style="font-size:3rem;margin-bottom:1rem;">⚙️</div>
+          <h3>System Settings</h3>
+          <p style="margin-top:0.5rem;">Configure website settings, payment gateways, email templates, notification preferences and more.</p>
+        </div>
+      </div>
+
+    </div><!-- /dashboard-content -->
+  </main>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

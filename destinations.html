@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore India's top adventure destinations — Himalayas, Western Ghats, Kashmir, Rishikesh, Meghalaya and more with WildPeak Adventures." />
+  <title>Destinations — WildPeak Adventures</title>
+  <link rel="icon" href="images/logo.webp" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/gaming.css" />
+  <style>
+    body { overflow-x: hidden; }
+    .page-hero { position:relative; height:55vh; min-height:400px; display:flex; align-items:center; overflow:hidden; margin-top:72px; }
+    .page-hero-bg { position:absolute; inset:0; background-image:url('images/himalayas.jpg'); background-size:cover; background-position:center; }
+    .page-hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(6,13,8,0.8),rgba(13,43,26,0.55),rgba(6,13,8,0.9)); }
+    .page-hero-content { position:relative; z-index:2; }
+    .breadcrumb { display:flex; align-items:center; gap:.5rem; font-size:.8rem; color:rgba(255,255,255,.6); margin-bottom:1.25rem; text-transform:uppercase; letter-spacing:.08em; }
+    .breadcrumb a { color:var(--clr-accent); }
+    .page-hero h1 { font-size:clamp(2rem,5vw,3.5rem); margin-bottom:1rem; }
+    .page-hero p { font-size:1.1rem; color:rgba(255,255,255,.75); max-width:540px; }
+    .section { padding:5rem 0; }
+    .section-alt { background:rgba(10,25,14,.5); }
+    /* Filter Tabs */
+    .filter-tabs { display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+    .filter-tab { padding:8px 22px; border-radius:999px; font-size:.85rem; font-weight:600; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); color:var(--clr-text-muted); cursor:pointer; transition:all .3s; }
+    .filter-tab:hover { border-color:rgba(74,222,128,.3); color:var(--clr-white); }
+    .filter-tab.active { background:rgba(74,222,128,.12); border-color:rgba(74,222,128,.4); color:var(--clr-accent); box-shadow:0 0 12px rgba(74,222,128,.15); }
+    /* Dest Cards */
+    .dest-cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+    .dest-card-full { border-radius:1.25rem; overflow:hidden; position:relative; background:var(--glass-bg); border:1px solid var(--glass-border); transition:all .4s ease; }
+    .dest-card-full.hidden { display:none; }
+    .dest-card-full:hover { transform:translateY(-8px); box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 25px rgba(57,255,20,.1); border-color:rgba(74,222,128,.25); }
+    .dest-card-img-wrap { position:relative; height:240px; overflow:hidden; }
+    .dest-card-img { width:100%; height:100%; object-fit:cover; transition:transform .6s; }
+    .dest-card-full:hover .dest-card-img { transform:scale(1.08); }
+    .dest-card-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(6,13,8,.9),rgba(6,13,8,.1) 60%,transparent); }
+    .dest-card-badge { position:absolute; top:1rem; right:1rem; }
+    .dest-card-body { padding:1.5rem; }
+    .dest-region { font-size:.78rem; color:var(--clr-accent); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.5rem; }
+    .dest-name { font-family:var(--font-head); font-size:1.3rem; font-weight:700; margin-bottom:.75rem; }
+    .dest-short-desc { font-size:.88rem; color:var(--clr-text-muted); line-height:1.65; margin-bottom:1rem; }
+    .dest-mini-meta { display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:1.25rem; }
+    .dest-mini-tag { font-size:.75rem; color:var(--clr-text-muted); display:flex; align-items:center; gap:.35rem; }
+    .dest-mini-tag i { color:var(--clr-accent); }
+    /* Feature Dest */
+    .feature-dest { display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:1.5rem; overflow:hidden; background:var(--glass-bg); border:1px solid var(--glass-border); margin-bottom:2.5rem; transition:all .4s; }
+    .feature-dest:hover { border-color:rgba(74,222,128,.2); box-shadow:0 15px 40px rgba(0,0,0,.4); }
+    .feature-dest.reverse { direction:rtl; }
+    .feature-dest.reverse > * { direction:ltr; }
+    .fd-img-wrap { height:380px; overflow:hidden; position:relative; }
+    .fd-img { width:100%; height:100%; object-fit:cover; transition:transform .6s; }
+    .feature-dest:hover .fd-img { transform:scale(1.05); }
+    .fd-body { padding:3rem 2.5rem; display:flex; flex-direction:column; justify-content:center; }
+    .fd-tag { display:inline-flex; align-items:center; gap:.4rem; padding:4px 14px; background:rgba(74,222,128,.1); border:1px solid rgba(74,222,128,.25); border-radius:999px; font-size:.75rem; font-weight:700; color:var(--clr-accent); margin-bottom:1.25rem; }
+    .fd-title { font-family:var(--font-head); font-size:2rem; font-weight:700; margin-bottom:.5rem; }
+    .fd-subtitle { font-size:1rem; color:var(--clr-accent); margin-bottom:1rem; }
+    .fd-desc { font-size:.9rem; color:var(--clr-text-muted); line-height:1.75; margin-bottom:1.5rem; }
+    .fd-activities { display:flex; flex-direction:column; gap:.6rem; margin-bottom:2rem; }
+    .fd-act { display:flex; align-items:center; gap:.75rem; font-size:.88rem; }
+    .fd-act i { color:var(--clr-accent); width:16px; }
+    /* Pkg Cards */
+    .pkg-cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3rem; }
+    .pkg-mini-card { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:1.25rem; overflow:hidden; transition:all .4s; }
+    .pkg-mini-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg),0 0 20px rgba(57,255,20,.08); border-color:rgba(74,222,128,.25); }
+    .pkg-mini-img-wrap { overflow:hidden; height:180px; }
+    .pkg-mini-img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+    .pkg-mini-card:hover .pkg-mini-img { transform:scale(1.07); }
+    .pkg-mini-body { padding:1.5rem; }
+    .pkg-mini-name { font-family:var(--font-head); font-size:1.1rem; font-weight:700; margin-bottom:.4rem; }
+    .pkg-mini-info { font-size:.8rem; color:var(--clr-text-muted); margin-bottom:.75rem; }
+    .pkg-mini-rating { display:flex; align-items:center; gap:.4rem; font-size:.85rem; margin-bottom:1rem; }
+    .stars-gold { color:#fbbf24; }
+    .pkg-mini-footer { display:flex; align-items:center; justify-content:space-between; padding-top:.75rem; border-top:1px solid rgba(255,255,255,.06); }
+    .pkg-mini-price { font-family:var(--font-head); font-size:1.3rem; font-weight:700; color:var(--clr-accent); }
+    /* Gallery Masonry */
+    .gallery-masonry { columns:3; gap:1.25rem; margin-top:3rem; }
+    .gm-item { break-inside:avoid; margin-bottom:1.25rem; border-radius:1rem; overflow:hidden; position:relative; cursor:pointer; }
+    .gm-item img { width:100%; display:block; transition:transform .5s; }
+    .gm-item:hover img { transform:scale(1.05); }
+    .gm-overlay { position:absolute; inset:0; background:rgba(6,13,8,.5); opacity:0; display:flex; align-items:center; justify-content:center; font-size:2rem; color:white; transition:opacity .3s; }
+    .gm-item:hover .gm-overlay { opacity:1; }
+    /* CTA */
+    .dest-cta-section { background:linear-gradient(135deg,var(--clr-forest-deep),#0d2b1a,var(--clr-forest-dark)); padding:5rem 0; text-align:center; position:relative; overflow:hidden; }
+    .dest-cta-section::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(74,222,128,.04) 39px,rgba(74,222,128,.04) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(74,222,128,.04) 39px,rgba(74,222,128,.04) 40px); }
+    /* Lightbox */
+    #lightbox { position:fixed; inset:0; background:rgba(0,0,0,.92); z-index:9999; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .3s; }
+    #lightbox.open { opacity:1; pointer-events:all; }
+    #lightboxImg { max-width:90vw; max-height:85vh; border-radius:1rem; }
+    #lightboxClose { position:absolute; top:1.5rem; right:2rem; font-size:2.5rem; color:white; cursor:pointer; line-height:1; }
+    @media(max-width:1024px){ .dest-cards-grid{grid-template-columns:repeat(2,1fr);} .feature-dest{grid-template-columns:1fr;} .fd-img-wrap{height:260px;} .pkg-cards-grid{grid-template-columns:1fr 1fr;} .gallery-masonry{columns:2;} }
+    @media(max-width:640px) { .dest-cards-grid{grid-template-columns:1fr;} .pkg-cards-grid{grid-template-columns:1fr;} .gallery-masonry{columns:1;} }
+  </style>
+</head>
+<body>
+
+</div><div class="loader-progress"><div class="loader-fill"></div></div><p class="loader-text">Mapping destinations...</p></div>
+<div id="lightbox"><span id="lightboxClose">&times;</span><img id="lightboxImg" src="" alt="Gallery" /></div>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand"><img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" /></a>
+    <div class="navbar-center" id="navCenter">
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="adventures.html" class="nav-link">Adventures</a></li>
+        <li><a href="destinations.html" class="nav-link active">Destinations</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+    <div class="navbar-right"><a href="login.html" class="btn btn-outline btn-sm">Login</a><a href="signup.html" class="btn btn-primary btn-sm ripple">Sign Up</a></div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Destinations</span></div>
+    <h1>Discover <span class="text-gradient">Breathtaking</span> Destinations</h1>
+    <p>From Himalayan heights to tropical jungle depths — India's best adventure destinations await your footsteps.</p>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<section class="section" id="all-destinations">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up"><i class="fa-solid fa-earth-asia"></i> All Destinations</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Find Your <span class="text-gradient">Perfect Location</span></h2>
+    </div>
+    <div class="filter-tabs" data-aos="fade-up" data-aos-delay="100">
+      <button class="filter-tab active" data-filter="all">🌍 All</button>
+      <button class="filter-tab" data-filter="mountains">🏔️ Mountains</button>
+      <button class="filter-tab" data-filter="forests">🌿 Forests</button>
+      <button class="filter-tab" data-filter="rivers">🚣 Rivers</button>
+      <button class="filter-tab" data-filter="wildlife">🦁 Wildlife</button>
+    </div>
+    <div class="dest-cards-grid" id="destGrid">
+      <div class="dest-card-full" data-category="mountains">
+        <div class="dest-card-img-wrap"><img src="images/himalayas.webp" alt="Himalayas" class="dest-card-img" /><div class="dest-card-overlay"></div><div class="dest-card-badge"><span class="badge badge-green">⭐ Top Rated</span></div></div>
+        <div class="dest-card-body"><div class="dest-region"><i class="fa-solid fa-location-dot"></i> Uttarakhand, India</div><div class="dest-name">The Himalayas</div><div class="dest-short-desc">The roof of the world. Home to legendary trekking routes, ancient glaciers and dramatic landscapes.</div><div class="dest-mini-meta"><div class="dest-mini-tag"><i class="fa-solid fa-person-hiking"></i> 12 Treks</div><div class="dest-mini-tag"><i class="fa-solid fa-clock"></i> 5–21 Days</div></div><a href="404.html" class="btn btn-accent-outline btn-sm">Explore <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
+      <div class="dest-card-full" data-category="forests wildlife">
+        <div class="dest-card-img-wrap"><img src="images/western_ghats.webp" alt="Western Ghats" class="dest-card-img" /><div class="dest-card-overlay"></div><div class="dest-card-badge"><span class="badge badge-brown">🌿 UNESCO</span></div></div>
+        <div class="dest-card-body"><div class="dest-region"><i class="fa-solid fa-location-dot"></i> Kerala / Karnataka</div><div class="dest-name">Western Ghats</div><div class="dest-short-desc">A biodiversity hotspot with ancient rainforests, waterfalls and rich wildlife corridors.</div><div class="dest-mini-meta"><div class="dest-mini-tag"><i class="fa-solid fa-campground"></i> 8 Camps</div><div class="dest-mini-tag"><i class="fa-solid fa-clock"></i> 2–7 Days</div></div><a href="404.html" class="btn btn-accent-outline btn-sm">Explore <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
+      <div class="dest-card-full" data-category="mountains">
+        <div class="dest-card-img-wrap"><img src="images/kashmir.webp" alt="Kashmir" class="dest-card-img" /><div class="dest-card-overlay"></div><div class="dest-card-badge"><span class="badge badge-green">❄️ Premium</span></div></div>
+        <div class="dest-card-body"><div class="dest-region"><i class="fa-solid fa-location-dot"></i> Jammu &amp; Kashmir</div><div class="dest-name">Kashmir Valley</div><div class="dest-short-desc">Heaven on Earth — snow-draped meadows, crystal lakes, alpine flowers and stunning Himalayan adventure.</div><div class="dest-mini-meta"><div class="dest-mini-tag"><i class="fa-solid fa-snowflake"></i> Winter Sports</div><div class="dest-mini-tag"><i class="fa-solid fa-clock"></i> 3–10 Days</div></div><a href="404.html" class="btn btn-accent-outline btn-sm">Explore <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
+      <div class="dest-card-full" data-category="rivers">
+        <div class="dest-card-img-wrap"><img src="images/rishikesh.webp" alt="Rishikesh" class="dest-card-img" /><div class="dest-card-overlay"></div><div class="dest-card-badge"><span class="badge badge-green">🏄 Thrill</span></div></div>
+        <div class="dest-card-body"><div class="dest-region"><i class="fa-solid fa-location-dot"></i> Uttarakhand, India</div><div class="dest-name">Rishikesh</div><div class="dest-short-desc">India's adventure capital — rafting, bungee, yoga and camping all in one place on the holy Ganges.</div><div class="dest-mini-meta"><div class="dest-mini-tag"><i class="fa-solid fa-water"></i> River Sports</div><div class="dest-mini-tag"><i class="fa-solid fa-clock"></i> 2–5 Days</div></div><a href="404.html" class="btn btn-accent-outline btn-sm">Explore <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
+      <div class="dest-card-full" data-category="forests wildlife">
+        <div class="dest-card-img-wrap"><img src="images/meghalaya.webp" alt="Meghalaya" class="dest-card-img" /><div class="dest-card-overlay"></div><div class="dest-card-badge"><span class="badge badge-green">🌧️ Mystic</span></div></div>
+        <div class="dest-card-body"><div class="dest-region"><i class="fa-solid fa-location-dot"></i> Northeast India</div><div class="dest-name">Meghalaya</div><div class="dest-short-desc">The Abode of Clouds — living root bridges, limestone caves and surreal monsoon landscapes.</div><div class="dest-mini-meta"><div class="dest-mini-tag"><i class="fa-solid fa-bridge"></i> Root Bridges</div><div class="dest-mini-tag"><i class="fa-solid fa-clock"></i> 4–8 Days</div></div><a href="404.html" class="btn btn-accent-outline btn-sm">Explore <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
+      <div class="dest-card-full" data-category="forests">
+        <div class="dest-card-img-wrap"><img src="images/gallery_wildlife.webp" alt="Coorg" class="dest-card-img" /><div class="dest-card-overlay"></div><div class="dest-card-badge"><span class="badge badge-brown">☕ Serene</span></div></div>
+        <div class="dest-card-body"><div class="dest-region"><i class="fa-solid fa-location-dot"></i> Karnataka, India</div><div class="dest-name">Coorg Hills</div><div class="dest-short-desc">Scotland of India — misty highlands, coffee estates, spice gardens and eco-adventure trails.</div><div class="dest-mini-meta"><div class="dest-mini-tag"><i class="fa-solid fa-tree"></i> Forest Trails</div><div class="dest-mini-tag"><i class="fa-solid fa-clock"></i> 3–6 Days</div></div><a href="404.html" class="btn btn-accent-outline btn-sm">Explore <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<section class="section section-alt" id="featured-dest">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up"><i class="fa-solid fa-star"></i> In Depth</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Iconic <span class="text-gradient">Destinations</span> Explored</h2>
+    </div>
+    <div class="feature-dest" data-aos="fade-up">
+      <div class="fd-img-wrap"><img src="images/himalayas.webp" alt="Himalayas" class="fd-img" /></div>
+      <div class="fd-body">
+        <div class="fd-tag"><i class="fa-solid fa-mountain"></i> Mountains</div>
+        <div class="fd-title">The Himalayas</div>
+        <div class="fd-subtitle">The Roof of the World</div>
+        <p class="fd-desc">The Himalayas form the world's highest mountain range, hosting some of the most iconic trekking routes on earth. From the spiritual trails of Kedarnath to the dramatic ridgelines of Roopkund, every path here tells an ancient story.</p>
+        <div class="fd-activities">
+          <div class="fd-act"><i class="fa-solid fa-check-circle"></i> Kedarkantha &amp; Roopkund — signature WildPeak treks</div>
+          <div class="fd-act"><i class="fa-solid fa-check-circle"></i> High-altitude base camp expeditions (4500m+)</div>
+          <div class="fd-act"><i class="fa-solid fa-check-circle"></i> Valley of Flowers UNESCO World Heritage trail</div>
+        </div>
+        <a href="404.html" class="btn btn-primary ripple" id="himBtn">Explore Himalayas <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="feature-dest reverse" data-aos="fade-up" data-aos-delay="80">
+      <div class="fd-img-wrap"><img src="images/western_ghats.webp" alt="Western Ghats" class="fd-img" /></div>
+      <div class="fd-body">
+        <div class="fd-tag"><i class="fa-solid fa-tree"></i> Forests</div>
+        <div class="fd-title">Western Ghats</div>
+        <div class="fd-subtitle">A UNESCO Biodiversity Hotspot</div>
+        <p class="fd-desc">One of the world's eight "hottest biodiversity hotspots", the Western Ghats host over 5,000 flowering plant species, 139 mammal species and countless endemic birds. Trek through ancient shola forests and spot leopards in their natural habitat.</p>
+        <div class="fd-activities">
+          <div class="fd-act"><i class="fa-solid fa-check-circle"></i> Night safari in Nagarhole &amp; Bandipur forests</div>
+          <div class="fd-act"><i class="fa-solid fa-check-circle"></i> Kumara Parvatha summit trek (1712m)</div>
+          <div class="fd-act"><i class="fa-solid fa-check-circle"></i> Athirappilly waterfall trek &amp; river crossing</div>
+        </div>
+        <a href="404.html" class="btn btn-primary ripple" id="wgBtn">Explore Western Ghats <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="feature-dest" data-aos="fade-up" data-aos-delay="160">
+      <div class="fd-img-wrap"><img src="images/rishikesh.webp" alt="Rishikesh" class="fd-img" /></div>
+      <div class="fd-body">
+        <div class="fd-tag"><i class="fa-solid fa-water"></i> Rivers</div>
+        <div class="fd-title">Rishikesh</div>
+        <div class="fd-subtitle">India's Adventure Capital</div>
+        <p class="fd-desc">Nestled where the Ganges descends to the plains, Rishikesh is the undisputed adventure capital of India. White water rafting, bungee jumping from India's highest platform, forest camping and morning yoga on the Ganges banks.</p>
+        <div class="fd-activities">
+          <div class="fd-act"><i class="fa-solid fa-check-circle"></i> 16km–36km grade rafting expeditions on Ganga</div>
+          <div class="fd-act"><i class="fa-solid fa-check-circle"></i> Bungee jumping at Mohan Chatti (83m platform)</div>
+          <div class="fd-act"><i class="fa-solid fa-check-circle"></i> Himalayan forest camping &amp; bonfire nights</div>
+        </div>
+        <a href="404.html" class="btn btn-primary ripple" id="rishBtn">Explore Rishikesh <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<section class="section" id="dest-packages">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up"><i class="fa-solid fa-suitcase-rolling"></i> Top Packages</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Most Booked <span class="text-gradient">Packages</span></h2>
+    </div>
+    <div class="pkg-cards-grid">
+      <div class="pkg-mini-card" data-aos="zoom-in" data-aos-delay="0">
+        <div class="pkg-mini-img-wrap"><img src="images/himalayas.webp" alt="Himalayan Base Camp" class="pkg-mini-img" /></div>
+        <div class="pkg-mini-body">
+          <div class="pkg-mini-name">Himalayan Base Camp Trek</div>
+          <div class="pkg-mini-info"><i class="fa-solid fa-clock" style="color:var(--clr-accent);margin-right:4px;"></i> 10 Days · Uttarakhand</div>
+          <div class="pkg-mini-rating"><span class="stars-gold">★★★★★</span> <span style="font-size:.8rem;color:var(--clr-text-muted);">4.9 (231)</span></div>
+          <div class="pkg-mini-footer"><div class="pkg-mini-price">₹18,999</div><a href="404.html" class="btn btn-primary btn-sm ripple" id="pHim">Book</a></div>
+        </div>
+      </div>
+      <div class="pkg-mini-card" data-aos="zoom-in" data-aos-delay="80">
+        <div class="pkg-mini-img-wrap"><img src="images/kashmir.webp" alt="Kashmir Meadows" class="pkg-mini-img" /></div>
+        <div class="pkg-mini-body">
+          <div class="pkg-mini-name">Kashmir Meadows Tour</div>
+          <div class="pkg-mini-info"><i class="fa-solid fa-clock" style="color:var(--clr-accent);margin-right:4px;"></i> 7 Days · J&amp;K</div>
+          <div class="pkg-mini-rating"><span class="stars-gold">★★★★★</span> <span style="font-size:.8rem;color:var(--clr-text-muted);">4.8 (189)</span></div>
+          <div class="pkg-mini-footer"><div class="pkg-mini-price">₹14,999</div><a href="404.html" class="btn btn-primary btn-sm ripple" id="pKash">Book</a></div>
+        </div>
+      </div>
+      <div class="pkg-mini-card" data-aos="zoom-in" data-aos-delay="160">
+        <div class="pkg-mini-img-wrap"><img src="images/rishikesh.webp" alt="Rishikesh" class="pkg-mini-img" /></div>
+        <div class="pkg-mini-body">
+          <div class="pkg-mini-name">Rishikesh Adventure Week</div>
+          <div class="pkg-mini-info"><i class="fa-solid fa-clock" style="color:var(--clr-accent);margin-right:4px;"></i> 5 Days · Rishikesh</div>
+          <div class="pkg-mini-rating"><span class="stars-gold">★★★★★</span> <span style="font-size:.8rem;color:var(--clr-text-muted);">5.0 (312)</span></div>
+          <div class="pkg-mini-footer"><div class="pkg-mini-price">₹9,999</div><a href="404.html" class="btn btn-primary btn-sm ripple" id="pRish">Book</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<section class="section section-alt" id="dest-gallery">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up"><i class="fa-solid fa-images"></i> Visual Stories</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Captured <span class="text-gradient">Moments</span></h2>
+    </div>
+    <div class="gallery-masonry" data-aos="fade-up" data-aos-delay="100">
+      <div class="gm-item"><img src="images/gallery_mtn.webp" alt="Mountains" /><div class="gm-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div>
+      <div class="gm-item"><img src="images/gallery_forest.webp" alt="Forest" /><div class="gm-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div>
+      <div class="gm-item"><img src="images/gallery_wildlife.webp" alt="Wildlife" /><div class="gm-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div>
+      <div class="gm-item"><img src="images/gallery_hiking.webp" alt="Hiking" /><div class="gm-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div>
+      <div class="gm-item"><img src="images/gallery_camping.webp" alt="Camping" /><div class="gm-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div>
+      <div class="gm-item"><img src="images/raft_card.webp" alt="Rafting" /><div class="gm-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<section class="dest-cta-section" id="destCta">
+  <div class="container" style="position:relative;z-index:2;text-align:center;">
+    <div class="section-badge" style="display:inline-flex;margin-bottom:1.5rem;" data-aos="fade-up"><i class="fa-solid fa-map-location-dot"></i> Custom Itinerary</div>
+    <h2 class="section-title" style="max-width:580px;margin-inline:auto;" data-aos="fade-up" data-aos-delay="100">Can't Find Your <span class="text-gradient">Dream Destination?</span></h2>
+    <p style="color:var(--clr-text-muted);max-width:460px;margin:1rem auto 2.5rem;" data-aos="fade-up" data-aos-delay="200">Our travel experts will craft a completely custom itinerary tailored to your pace, interests and budget.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" data-aos="fade-up" data-aos-delay="300">
+      <a href="404.html" class="btn btn-primary btn-lg ripple" id="contactBtn"><i class="fa-solid fa-headset"></i> Contact Our Experts</a>
+      <a href="404.html" class="btn btn-outline btn-lg" id="advBtn"><i class="fa-solid fa-compass"></i> Browse Adventures</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="navbar-brand" style="margin-bottom:1rem;display:inline-flex;">
+          <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+        </a>
+        <p class="footer-brand-desc">We craft transformative adventure experiences across India's most spectacular landscapes. Safety, passion, and authenticity in every journey.</p>
+        <div class="social-links">
+          <a href="404.html" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="404.html" class="social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Quick Links</h5>
+        <div class="footer-links">
+          <a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a>
+          <a href="adventures.html"><i class="fa-solid fa-chevron-right"></i> Adventures</a>
+          <a href="destinations.html"><i class="fa-solid fa-chevron-right"></i> Destinations</a>
+          <a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact Us</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> About Us</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Blog</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Adventures</h5>
+        <div class="footer-links">
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Trekking</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Mountain Climbing</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Camping</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> River Rafting</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Paragliding</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Ziplining</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Contact Us</h5>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>42 Forest Trail, Green Valley, Hyderabad 249201</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 98765 43210</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Stackly@wildpeakadventures.in</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon-Sat: 9AM - 7PM IST</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 <strong style="color:var(--clr-accent)"> Stackly WildPeak Adventures</strong>. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+        <a href="404.html">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<button id="scrollTop"><i class="fa-solid fa-chevron-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.querySelectorAll('.filter-tab').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const f = this.dataset.filter;
+      document.querySelectorAll('.dest-card-full').forEach(card => {
+        const cats = card.dataset.category || '';
+        card.classList.toggle('hidden', f !== 'all' && !cats.includes(f));
+      });
+    });
+  });
+  const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightboxImg'), lbClose = document.getElementById('lightboxClose');
+  document.querySelectorAll('.gm-item').forEach(item => {
+    item.addEventListener('click', () => { lbImg.src = item.querySelector('img').src; lb.classList.add('open'); document.body.style.overflow='hidden'; });
+  });
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow=''; }
+  lbClose.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if(e.target===lb) closeLb(); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLb(); });
+</script>
+</body>
+</html>

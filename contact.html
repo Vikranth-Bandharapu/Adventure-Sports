@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact WildPeak Adventures — Get in touch for custom trip planning, group bookings, or general inquiries. We're here to help plan your perfect adventure." />
+  <title>Contact Us — WildPeak Adventures</title>
+  <link rel="icon" href="images/logo.webp" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/gaming.css" />
+  <style>
+    body { overflow-x: hidden; }
+    .page-hero { position:relative; height:50vh; min-height:360px; display:flex; align-items:center; overflow:hidden; margin-top:72px; background:linear-gradient(135deg,#060d08,#0d2b1a,#1a4a2e); }
+    .page-hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(74,222,128,.04) 39px,rgba(74,222,128,.04) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(74,222,128,.04) 39px,rgba(74,222,128,.04) 40px); }
+    .page-hero-content { position:relative; z-index:2; }
+    .breadcrumb { display:flex; align-items:center; gap:.5rem; font-size:.8rem; color:rgba(255,255,255,.6); margin-bottom:1.25rem; text-transform:uppercase; letter-spacing:.08em; }
+    .breadcrumb a { color:var(--clr-accent); }
+    .page-hero h1 { font-size:clamp(2rem,5vw,3.5rem); margin-bottom:1rem; }
+    .page-hero p { font-size:1.1rem; color:rgba(255,255,255,.75); max-width:540px; }
+    /* Floating glow orbs */
+    .orb { position:absolute; border-radius:50%; pointer-events:none; animation:orbFloat 8s ease-in-out infinite; }
+    .orb-1 { width:300px; height:300px; background:radial-gradient(circle,rgba(74,222,128,.1),transparent 70%); top:-100px; right:10%; animation-duration:7s; }
+    .orb-2 { width:200px; height:200px; background:radial-gradient(circle,rgba(45,122,79,.12),transparent 70%); bottom:-50px; left:5%; animation-duration:9s; animation-delay:2s; }
+    @keyframes orbFloat { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-20px) scale(1.05);} }
+    .section { padding:5rem 0; }
+    .section-alt { background:rgba(10,25,14,.5); }
+    /* Info Cards */
+    .contact-info-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
+    .contact-info-card { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:1.25rem; padding:2rem 1.5rem; text-align:center; transition:all .4s; position:relative; overflow:hidden; }
+    .contact-info-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--grad-accent); opacity:0; transition:opacity .3s; }
+    .contact-info-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg),0 0 20px rgba(57,255,20,.08); border-color:rgba(74,222,128,.25); }
+    .contact-info-card:hover::before { opacity:1; }
+    .ci-icon { width:64px; height:64px; background:linear-gradient(135deg,rgba(45,122,79,.2),rgba(74,222,128,.1)); border:1px solid rgba(74,222,128,.2); border-radius:1rem; display:flex; align-items:center; justify-content:center; font-size:1.5rem; color:var(--clr-accent); margin:0 auto 1.25rem; }
+    .ci-title { font-family:var(--font-head); font-size:1.1rem; font-weight:700; margin-bottom:.5rem; }
+    .ci-value { font-size:.95rem; color:var(--clr-white); font-weight:600; margin-bottom:.35rem; }
+    .ci-sub { font-size:.8rem; color:var(--clr-text-muted); }
+    /* Contact Form Section */
+    .contact-form-section { padding:5rem 0; }
+    .contact-form-grid { display:grid; grid-template-columns:1fr 420px; gap:4rem; align-items:start; }
+    .contact-form-wrap { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:1.5rem; padding:2.5rem; }
+    .form-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+    .contact-info-panel { position:sticky; top:100px; }
+    .cip-quote { background:linear-gradient(135deg,rgba(45,122,79,.15),rgba(74,222,128,.05)); border:1px solid rgba(74,222,128,.15); border-radius:1.25rem; padding:2rem; margin-bottom:1.5rem; }
+    .cip-quote blockquote { font-family:var(--font-head); font-size:1.15rem; font-style:italic; color:var(--clr-white); line-height:1.7; margin-bottom:1rem; }
+    .cip-reasons { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:1.25rem; padding:1.75rem; }
+    .cip-reason { display:flex; align-items:flex-start; gap:.75rem; margin-bottom:1.25rem; }
+    .cip-reason:last-child { margin-bottom:0; }
+    .cip-reason-icon { width:36px; height:36px; background:rgba(74,222,128,.1); border:1px solid rgba(74,222,128,.2); border-radius:.65rem; display:flex; align-items:center; justify-content:center; color:var(--clr-accent); font-size:.9rem; flex-shrink:0; }
+    .cip-reason-title { font-weight:700; font-size:.9rem; color:var(--clr-white); margin-bottom:.2rem; }
+    .cip-reason-desc { font-size:.8rem; color:var(--clr-text-muted); line-height:1.5; }
+    /* Map Section */
+    .map-section { padding:0; }
+    .map-container { position:relative; height:420px; background:linear-gradient(135deg,#060d08,#0d1f0f); overflow:hidden; }
+    .map-grid { position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 49px,rgba(74,222,128,.06) 49px,rgba(74,222,128,.06) 50px),repeating-linear-gradient(90deg,transparent,transparent 49px,rgba(74,222,128,.06) 49px,rgba(74,222,128,.06) 50px); }
+    .map-dots { position:absolute; inset:0; }
+    .map-pin { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; }
+    .map-pin-icon { font-size:3rem; filter:drop-shadow(0 0 20px rgba(74,222,128,.6)); animation:pinBounce 2s ease-in-out infinite; }
+    @keyframes pinBounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);} }
+    .map-pin-label { background:var(--glass-bg); backdrop-filter:blur(16px); border:1px solid rgba(74,222,128,.25); border-radius:.75rem; padding:.75rem 1.25rem; margin-top:.5rem; font-size:.85rem; color:var(--clr-white); font-weight:600; box-shadow:0 4px 20px rgba(0,0,0,.4); white-space:nowrap; }
+    .map-label { position:absolute; font-size:.75rem; color:rgba(74,222,128,.35); pointer-events:none; }
+    .map-overlay { position:absolute; top:1.5rem; left:1.5rem; background:var(--glass-bg); backdrop-filter:blur(20px); border:1px solid rgba(74,222,128,.2); border-radius:1rem; padding:1.25rem 1.5rem; }
+    .map-overlay-title { font-weight:700; color:var(--clr-white); margin-bottom:.25rem; }
+    .map-overlay-addr { font-size:.8rem; color:var(--clr-text-muted); }
+    /* FAQ */
+    .faq-section { padding:5rem 0; }
+    .faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:3rem; }
+    .faq-item { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:1rem; overflow:hidden; transition:border-color .3s; }
+    .faq-item.open { border-color:rgba(74,222,128,.25); }
+    .faq-header { display:flex; align-items:center; justify-content:space-between; padding:1.25rem 1.5rem; cursor:pointer; gap:1rem; }
+    .faq-header:hover { background:rgba(255,255,255,.03); }
+    .faq-question { font-weight:600; font-size:.95rem; color:var(--clr-white); flex:1; }
+    .faq-chevron { color:var(--clr-text-muted); transition:transform .35s,color .25s; font-size:.8rem; }
+    .faq-item.open .faq-chevron { transform:rotate(180deg); color:var(--clr-accent); }
+    .faq-body { max-height:0; overflow:hidden; transition:max-height .45s ease,padding .3s; padding:0 1.5rem; }
+    .faq-item.open .faq-body { max-height:200px; padding:0 1.5rem 1.25rem; }
+    .faq-body p { font-size:.88rem; color:var(--clr-text-muted); line-height:1.75; }
+    /* CTA */
+    .contact-cta { background:linear-gradient(135deg,var(--clr-forest-deep),#0d2b1a,var(--clr-forest-dark)); padding:5rem 0; text-align:center; position:relative; overflow:hidden; }
+    .contact-cta::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(74,222,128,.04) 39px,rgba(74,222,128,.04) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(74,222,128,.04) 39px,rgba(74,222,128,.04) 40px); }
+    /* Select dropdown */
+    select.form-control { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234ade80' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1rem center; padding-right:2.5rem; }
+    select.form-control option { background:#0d1f0f; color:white; }
+    @media(max-width:1024px){ .contact-info-grid{grid-template-columns:1fr 1fr;} .contact-form-grid{grid-template-columns:1fr;} .contact-info-panel{position:static;} .faq-grid{grid-template-columns:1fr;} }
+    @media(max-width:640px) { .contact-info-grid{grid-template-columns:1fr;} .form-row-2{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+
+</div><div class="loader-progress"><div class="loader-fill"></div></div><p class="loader-text">Connecting you...</p></div>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand"><img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" /></a>
+    <div class="navbar-center" id="navCenter">
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="adventures.html" class="nav-link">Adventures</a></li>
+        <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+      </ul>
+    </div>
+    <div class="navbar-right"><a href="login.html" class="btn btn-outline btn-sm">Login</a><a href="signup.html" class="btn btn-primary btn-sm ripple">Sign Up</a></div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Contact</span></div>
+    <h1>Get in <span class="text-gradient">Touch</span></h1>
+    <p>Whether you have questions, want to plan a custom trip, or just want to say hello — we are always here for you.</p>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- CONTACT INFO CARDS -->
+<section class="section" id="contact-info">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up"><i class="fa-solid fa-address-card"></i> Reach Us</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Multiple Ways to <span class="text-gradient">Connect</span></h2>
+    </div>
+    <div class="contact-info-grid">
+      <div class="contact-info-card" data-aos="zoom-in" data-aos-delay="0">
+        <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
+        <div class="ci-title">Call Us</div>
+        <div class="ci-value">+91 98765 43210</div>
+        <div class="ci-sub">Mon–Sat: 9 AM – 7 PM IST</div>
+      </div>
+      <div class="contact-info-card" data-aos="zoom-in" data-aos-delay="80">
+        <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div class="ci-title">Email Us</div>
+        <div class="ci-value">hello@wildpeakadventures.in</div>
+        <div class="ci-sub">Response within 2 hours</div>
+      </div>
+      <div class="contact-info-card" data-aos="zoom-in" data-aos-delay="160">
+        <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="ci-title">Visit Us</div>
+        <div class="ci-value">42 Forest Trail, Green Valley</div>
+        <div class="ci-sub">Uttarakhand 249201, India</div>
+      </div>
+      <div class="contact-info-card" data-aos="zoom-in" data-aos-delay="0">
+        <div class="ci-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="ci-title">WhatsApp</div>
+        <div class="ci-value">+91 98765 43210</div>
+        <div class="ci-sub">Available 24/7 on WhatsApp</div>
+      </div>
+      <div class="contact-info-card" data-aos="zoom-in" data-aos-delay="80">
+        <div class="ci-icon"><i class="fa-solid fa-clock"></i></div>
+        <div class="ci-title">Office Hours</div>
+        <div class="ci-value">Mon–Sat: 9AM – 7PM</div>
+        <div class="ci-sub">Sunday: 10AM – 4PM IST</div>
+      </div>
+      <div class="contact-info-card" data-aos="zoom-in" data-aos-delay="160">
+        <div class="ci-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div class="ci-title">Response Time</div>
+        <div class="ci-value">&lt; 2 Hours</div>
+        <div class="ci-sub">Email, calls and WhatsApp</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- CONTACT FORM -->
+<section class="contact-form-section section-alt" id="contact-form">
+  <div class="container">
+    <div class="contact-form-grid">
+      <!-- Form -->
+      <div data-aos="fade-right">
+        <div class="section-badge" style="margin-bottom:1.25rem;"><i class="fa-solid fa-paper-plane"></i> Send Message</div>
+        <h2 class="section-title" style="margin-bottom:0.5rem;">Drop Us a <span class="text-gradient">Message</span></h2>
+        <p style="color:var(--clr-text-muted);margin-bottom:2rem;">Fill in the form below and our team will get back to you within 2 hours during business hours.</p>
+
+        <div class="contact-form-wrap">
+          <form id="contactForm" novalidate>
+            <!-- Name -->
+            <div class="form-group" style="margin-bottom:1.25rem;">
+              <label for="contactName" class="form-label">Full Name <span style="color:#f87171;">*</span></label>
+              <div style="position:relative;">
+                <i class="fa-solid fa-user" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);pointer-events:none;"></i>
+                <input type="text" id="contactName" class="form-control" style="padding-left:2.75rem;" placeholder="Your full name" />
+              </div>
+              <div class="err-msg" id="contactNameErr" role="alert"></div>
+            </div>
+            <!-- Email & Phone -->
+            <div class="form-row-2" style="margin-bottom:1.25rem;">
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">Email Address <span style="color:#f87171;">*</span></label>
+                <div style="position:relative;">
+                  <i class="fa-solid fa-envelope" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);pointer-events:none;"></i>
+                  <input type="email" id="contactEmail" class="form-control" style="padding-left:2.75rem;" placeholder="you@example.com" />
+                </div>
+                <div class="err-msg" id="contactEmailErr" role="alert"></div>
+              </div>
+              <div class="form-group">
+                <label for="contactPhone" class="form-label">Phone Number <span style="color:#f87171;">*</span></label>
+                <div style="position:relative;">
+                  <i class="fa-solid fa-phone" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);pointer-events:none;"></i>
+                  <input type="tel" id="contactPhone" class="form-control" style="padding-left:2.75rem;" placeholder="+91 XXXXX XXXXX" />
+                </div>
+                <div class="err-msg" id="contactPhoneErr" role="alert"></div>
+              </div>
+            </div>
+            <!-- Subject -->
+            <div class="form-group" style="margin-bottom:1.25rem;">
+              <label for="contactSubject" class="form-label">Subject <span style="color:#f87171;">*</span></label>
+              <select id="contactSubject" class="form-control">
+                <option value="">-- Select a subject --</option>
+                <option value="general">General Inquiry</option>
+                <option value="trip">Trip Planning</option>
+                <option value="group">Group Booking</option>
+                <option value="complaint">Complaint / Feedback</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="err-msg" id="contactSubjectErr" role="alert"></div>
+            </div>
+            <!-- Message -->
+            <div class="form-group" style="margin-bottom:1.5rem;">
+              <label for="contactMessage" class="form-label">Message <span style="color:#f87171;">*</span></label>
+              <textarea id="contactMessage" class="form-control" rows="5" placeholder="Tell us about your adventure idea, preferred dates, group size..."></textarea>
+              <div class="err-msg" id="contactMessageErr" role="alert"></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg ripple" style="width:100%;" id="contactSubmitBtn">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Info Panel -->
+      <div class="contact-info-panel" data-aos="fade-left">
+        <div class="cip-quote">
+          <blockquote>"Not all those who wander are lost — but all who adventure with WildPeak find themselves."</blockquote>
+          <div style="display:flex;align-items:center;gap:.75rem;">
+            <div style="width:40px;height:40px;background:var(--grad-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#060d08;">R</div>
+            <div><div style="font-weight:600;font-size:.85rem;">Rahul Gupta</div><div style="font-size:.75rem;color:var(--clr-text-muted);">Lead Guide & Co-Founder</div></div>
+          </div>
+        </div>
+        <div class="cip-reasons">
+          <h4 style="margin-bottom:1.25rem;font-size:1rem;">Why Contact Us?</h4>
+          <div class="cip-reason">
+            <div class="cip-reason-icon"><i class="fa-solid fa-route"></i></div>
+            <div><div class="cip-reason-title">Custom Itineraries</div><div class="cip-reason-desc">We design completely personalized trip plans based on your fitness level, dates and budget.</div></div>
+          </div>
+          <div class="cip-reason">
+            <div class="cip-reason-icon"><i class="fa-solid fa-users-gear"></i></div>
+            <div><div class="cip-reason-title">Group Bookings</div><div class="cip-reason-desc">Corporate team outings, college groups, family packages — we handle everything for 5 to 500 people.</div></div>
+          </div>
+          <div class="cip-reason">
+            <div class="cip-reason-icon"><i class="fa-solid fa-headset"></i></div>
+            <div><div class="cip-reason-title">Expert Guidance</div><div class="cip-reason-desc">Our team of experienced adventure professionals will answer every question you have before booking.</div></div>
+          </div>
+          <div class="cip-reason">
+            <div class="cip-reason-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+            <div><div class="cip-reason-title">Best Price Guarantee</div><div class="cip-reason-desc">Contact us directly for exclusive offers, seasonal discounts and special corporate rates.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section" id="map">
+  <div class="container" style="padding-bottom:0;">
+    <div class="section-header" style="margin-bottom:1.5rem;">
+      <div class="section-badge" data-aos="fade-up"><i class="fa-solid fa-map-location-dot"></i> Find Us</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Find Our <span class="text-gradient">Base Camp</span></h2>
+    </div>
+  </div>
+  <!-- Real Google Map -->
+  <div style="position:relative; width:100%; height:460px; overflow:hidden; border-top:1px solid rgba(74,222,128,0.15); border-bottom:1px solid rgba(74,222,128,0.15);">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55869.40271849576!2d78.23953!3d30.08674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3909273dc62259ef%3A0x5e3f0f6484ab9c68!2sRishikesh%2C%20Uttarakhand!5e0!3m2!1sen!2sin!4v1719000000000"
+      width="100%"
+      height="460"
+      style="border:0; filter:invert(90%) hue-rotate(140deg) saturate(0.8) brightness(0.85); display:block;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="WildPeak Adventures Location — Rishikesh, Uttarakhand"
+    ></iframe>
+    <!-- Address overlay card -->
+    <div style="position:absolute;top:1.5rem;left:1.5rem;z-index:10;background:rgba(6,13,8,0.92);backdrop-filter:blur(20px);border:1px solid rgba(74,222,128,0.25);border-radius:1rem;padding:1.25rem 1.5rem;max-width:260px;box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+      <div style="font-weight:700;color:#fff;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;"><i class="fa-solid fa-location-dot" style="color:#4ade80;"></i> WildPeak Base Camp</div>
+      <div style="font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.6;">42 Forest Trail, Green Valley<br>Rishikesh, Uttarakhand 249201<br>India</div>
+      <a href="404.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.85rem;font-size:0.78rem;color:#4ade80;font-weight:600;text-decoration:none;">
+        <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- FAQ -->
+<section class="faq-section section-alt" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up"><i class="fa-solid fa-circle-question"></i> FAQs</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Frequently Asked <span class="text-gradient">Questions</span></h2>
+    </div>
+    <div class="faq-grid" data-aos="fade-up" data-aos-delay="100">
+      <div class="faq-item">
+        <div class="faq-header"><div class="faq-question">What is the best time to visit the Himalayas?</div><i class="fa-solid fa-chevron-down faq-chevron"></i></div>
+        <div class="faq-body"><p>The best time is May–June and September–October when skies are clear and trails are accessible. Winter treks (Dec–Feb) are also beautiful but require more preparation and cold-weather gear.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header"><div class="faq-question">Are the trips suitable for beginners?</div><i class="fa-solid fa-chevron-down faq-chevron"></i></div>
+        <div class="faq-body"><p>Absolutely! We have packages for every level — from easy day hikes and relaxed camping to extreme high-altitude climbs. Our team will suggest the right adventure based on your fitness and experience level.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header"><div class="faq-question">What should I pack for a trek?</div><i class="fa-solid fa-chevron-down faq-chevron"></i></div>
+        <div class="faq-body"><p>We provide a detailed packing list for each trip after booking. Generally: layered clothing, trekking shoes, rain gear, sunscreen, water bottle, snacks and a first aid kit. All technical gear is provided by us.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header"><div class="faq-question">Do you offer group discounts?</div><i class="fa-solid fa-chevron-down faq-chevron"></i></div>
+        <div class="faq-body"><p>Yes! Groups of 8 or more get 10–25% off depending on group size, destination and season. Corporate groups and educational institutions get additional benefits including customized itineraries.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header"><div class="faq-question">What is your cancellation policy?</div><i class="fa-solid fa-chevron-down faq-chevron"></i></div>
+        <div class="faq-body"><p>Full refund if cancelled 30+ days before departure. 50% refund for 15–29 days. No refund for cancellations under 14 days. In case of weather/emergency, we offer full rescheduling at no extra cost.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header"><div class="faq-question">Is travel insurance included?</div><i class="fa-solid fa-chevron-down faq-chevron"></i></div>
+        <div class="faq-body"><p>Basic adventure travel insurance is included in all packages covering emergency evacuation and medical expenses. We recommend purchasing additional personal travel insurance for extra peace of mind.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header"><div class="faq-question">How do I book a custom itinerary?</div><i class="fa-solid fa-chevron-down faq-chevron"></i></div>
+        <div class="faq-body"><p>Fill the contact form on this page with your preferred dates, destination, group size and any special requirements. Our experts will send you a custom proposal within 4 hours during business hours.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header"><div class="faq-question">What safety measures do you follow?</div><i class="fa-solid fa-chevron-down faq-chevron"></i></div>
+        <div class="faq-body"><p>All guides are WFA/NIMAS certified. We carry satellite phones, GPS beacons, oxygen cylinders and complete medical kits on every expedition. Pre-trip acclimatization and daily safety briefings are mandatory for all participants.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- CTA -->
+<section class="contact-cta" id="contactCta">
+  <div class="container" style="position:relative;z-index:2;text-align:center;">
+    <div class="section-badge" style="display:inline-flex;margin-bottom:1.5rem;" data-aos="fade-up"><i class="fa-solid fa-rocket"></i> Your Journey</div>
+    <h2 class="section-title" style="max-width:560px;margin-inline:auto;" data-aos="fade-up" data-aos-delay="100">Your Adventure <span class="text-gradient">Awaits</span></h2>
+    <p style="color:var(--clr-text-muted);max-width:440px;margin:1rem auto 2.5rem;" data-aos="fade-up" data-aos-delay="200">Stop dreaming, start exploring. Let WildPeak be your guide to India's most breathtaking adventures.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" data-aos="fade-up" data-aos-delay="300">
+      <a href="404.html" class="btn btn-primary btn-lg ripple" id="ctaAdvBtn"><i class="fa-solid fa-compass"></i> Browse Adventures</a>
+      <a href="404.html" class="btn btn-outline btn-lg" id="ctaDestBtn"><i class="fa-solid fa-map-location-dot"></i> View Destinations</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="navbar-brand" style="margin-bottom:1rem;display:inline-flex;">
+          <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+        </a>
+        <p class="footer-brand-desc">We craft transformative adventure experiences across India's most spectacular landscapes. Safety, passion, and authenticity in every journey.</p>
+        <div class="social-links">
+          <a href="404.html" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="404.html" class="social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Quick Links</h5>
+        <div class="footer-links">
+          <a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a>
+          <a href="adventures.html"><i class="fa-solid fa-chevron-right"></i> Adventures</a>
+          <a href="destinations.html"><i class="fa-solid fa-chevron-right"></i> Destinations</a>
+          <a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact Us</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> About Us</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Blog</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Adventures</h5>
+        <div class="footer-links">
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Trekking</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Mountain Climbing</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Camping</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> River Rafting</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Paragliding</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Ziplining</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Contact Us</h5>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>42 Forest Trail, Green Valley, Hyderabad 249201</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 98765 43210</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Stackly@wildpeakadventures.in</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon-Sat: 9AM - 7PM IST</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 <strong style="color:var(--clr-accent)"> Stackly WildPeak Adventures</strong>. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+        <a href="404.html">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<button id="scrollTop"><i class="fa-solid fa-chevron-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="js/main.js"></script>
+<script>
+  /* FAQ Accordion */
+  document.querySelectorAll('.faq-header').forEach(h => {
+    h.addEventListener('click', () => {
+      const item = h.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  /* Contact Form Validation */
+  const cf = document.getElementById('contactForm');
+  function showErr(id, msg) { const e=document.getElementById(id+'Err'); if(e){e.innerHTML=`<i class="fa-solid fa-circle-exclamation"></i> ${msg}`;} document.getElementById(id)?.classList.add('is-error'); }
+  function clearErr(id) { const e=document.getElementById(id+'Err'); if(e) e.innerHTML=''; document.getElementById(id)?.classList.remove('is-error'); }
+  if(cf) {
+    cf.addEventListener('submit', e => {
+      e.preventDefault(); let valid=true;
+      const name=document.getElementById('contactName').value.trim();
+      const email=document.getElementById('contactEmail').value.trim();
+      const phone=document.getElementById('contactPhone').value.trim();
+      const subject=document.getElementById('contactSubject').value;
+      const msg=document.getElementById('contactMessage').value.trim();
+      if(!name||name.length<2){showErr('contactName','Please enter your full name (min 2 chars).');valid=false;}else clearErr('contactName');
+      if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showErr('contactEmail','Please enter a valid email address.');valid=false;}else clearErr('contactEmail');
+      if(!phone||!/^(\+91)?[6-9]\d{9}$/.test(phone.replace(/\s/g,''))){showErr('contactPhone','Enter a valid 10-digit Indian mobile number.');valid=false;}else clearErr('contactPhone');
+      if(!subject){showErr('contactSubject','Please select a subject.');valid=false;}else clearErr('contactSubject');
+      if(!msg||msg.length<10){showErr('contactMessage','Please enter a message of at least 10 characters.');valid=false;}else clearErr('contactMessage');
+      if(valid) window.location.href='404.html';
+    });
+    ['contactName','contactEmail','contactPhone','contactMessage'].forEach(id=>{
+      document.getElementById(id)?.addEventListener('input',()=>clearErr(id));
+    });
+    document.getElementById('contactSubject')?.addEventListener('change',()=>clearErr('contactSubject'));
+  }
+
+  /* Map dots */
+  const dotsEl = document.getElementById('mapDots');
+  if(dotsEl) {
+    for(let i=0;i<30;i++) {
+      const d=document.createElement('div');
+      d.style.cssText=`position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(74,222,128,${0.1+Math.random()*.2});left:${Math.random()*100}%;top:${Math.random()*100}%;`;
+      dotsEl.appendChild(d);
+    }
+  }
+</script>
+</body>
+</html>

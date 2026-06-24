@@ -1,0 +1,662 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore all adventure sports packages at WildPeak Adventures — Trekking, Climbing, Camping, Rafting, Paragliding, and Ziplining across India." />
+  <title>Adventures — WildPeak Adventures</title>
+  <link rel="icon" href="images/logo.webp" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/gaming.css" />
+  <style>
+    /* ── Page Hero ── */
+    .page-hero {
+      position:relative; height:55vh; min-height:400px;
+      display:flex; align-items:center;
+      overflow:hidden; margin-top:72px;
+    }
+    .page-hero-bg {
+      position:absolute; inset:0;
+      background-image: url('images/trek_card.jpg');
+      background-size:cover; background-position:center;
+      transform:scale(1.05);
+      transition:transform 6s ease;
+    }
+    .page-hero-bg.loaded { transform:scale(1); }
+    .page-hero-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(135deg, rgba(6,13,8,0.75) 0%, rgba(13,43,26,0.6) 50%, rgba(6,13,8,0.85) 100%);
+    }
+    .page-hero-content { position:relative; z-index:2; }
+    .breadcrumb {
+      display:flex; align-items:center; gap:0.5rem;
+      font-size:0.8rem; color:rgba(255,255,255,0.6);
+      margin-bottom:1.25rem;
+      text-transform:uppercase; letter-spacing:0.08em;
+    }
+    .breadcrumb a { color:var(--clr-accent); }
+    .breadcrumb span { color:rgba(255,255,255,0.35); }
+    .page-hero h1 { font-size:clamp(2rem,5vw,3.5rem); margin-bottom:1rem; }
+    .page-hero p  { font-size:1.1rem; color:rgba(255,255,255,0.75); max-width:540px; }
+    .hero-cta { display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+
+    /* ── Sections ── */
+    .section { padding:5rem 0; }
+    .section-alt { background:rgba(10,25,14,0.5); }
+
+    /* ── Adventure Category Cards ── */
+    .adv-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:1.75rem;
+      margin-top:3rem;
+    }
+    .adv-category-card {
+      position:relative; border-radius:1.25rem; overflow:hidden;
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      transition:all 0.4s var(--ease);
+      cursor:pointer;
+    }
+    .adv-category-card:hover { transform:translateY(-8px); box-shadow:0 20px 50px rgba(0,0,0,0.5), 0 0 25px rgba(57,255,20,0.1); border-color:rgba(74,222,128,0.25); }
+    .adv-category-img { width:100%; height:220px; object-fit:cover; display:block; transition:transform 0.6s ease; }
+    .adv-category-card:hover .adv-category-img { transform:scale(1.08); }
+    .adv-img-overlay {
+      position:absolute; inset:0; height:220px;
+      background:linear-gradient(to top, rgba(6,13,8,0.85), rgba(6,13,8,0.2));
+    }
+    .adv-category-body { padding:1.5rem; }
+    .adv-icon-title { display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem; }
+    .adv-cat-icon { font-size:1.75rem; filter:drop-shadow(0 0 8px rgba(74,222,128,0.4)); }
+    .adv-cat-name { font-family:var(--font-head); font-size:1.2rem; font-weight:700; color:var(--clr-white); }
+    .adv-cat-desc { font-size:0.9rem; color:var(--clr-text-muted); line-height:1.65; margin-bottom:1rem; }
+    .adv-cat-meta { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.25rem; }
+    .adv-meta-tag {
+      display:inline-flex; align-items:center; gap:0.35rem;
+      font-size:0.75rem; padding:3px 10px; border-radius:999px;
+      background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+      color:var(--clr-text-muted);
+    }
+    .adv-meta-tag.difficulty-easy   { background:rgba(74,222,128,0.1); border-color:rgba(74,222,128,0.25); color:var(--clr-accent); }
+    .adv-meta-tag.difficulty-mod    { background:rgba(251,191,36,0.1); border-color:rgba(251,191,36,0.25); color:#fbbf24; }
+    .adv-meta-tag.difficulty-hard   { background:rgba(249,115,22,0.1); border-color:rgba(249,115,22,0.25); color:#f97316; }
+    .adv-meta-tag.difficulty-extreme{ background:rgba(248,113,113,0.1); border-color:rgba(248,113,113,0.25); color:#f87171; }
+
+    /* ── Featured Packages ── */
+    .packages-list { display:flex; flex-direction:column; gap:2rem; margin-top:3rem; }
+    .package-card {
+      display:grid; grid-template-columns:320px 1fr; gap:0;
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:1.5rem; overflow:hidden;
+      transition:all 0.4s ease;
+    }
+    .package-card:hover { border-color:rgba(74,222,128,0.2); box-shadow:0 15px 40px rgba(0,0,0,0.4), 0 0 20px rgba(57,255,20,0.08); }
+    .package-img-wrap { position:relative; height:280px; overflow:hidden; }
+    .package-img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s; }
+    .package-card:hover .package-img { transform:scale(1.06); }
+    .package-img-overlay { position:absolute; inset:0; background:linear-gradient(to right, rgba(6,13,8,0.3), rgba(6,13,8,0)); }
+    .package-badge {
+      position:absolute; top:1rem; left:1rem;
+      padding:4px 14px; border-radius:999px; font-size:0.75rem; font-weight:700;
+      background:var(--grad-accent); color:#060d08;
+      box-shadow:0 4px 12px rgba(74,222,128,0.4);
+    }
+    .package-body { padding:2rem; display:flex; flex-direction:column; justify-content:space-between; }
+    .package-title { font-family:var(--font-head); font-size:1.5rem; font-weight:700; margin-bottom:0.5rem; }
+    .package-subtitle { color:var(--clr-text-muted); font-size:0.9rem; margin-bottom:1.25rem; }
+    .package-highlights { display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1.5rem; }
+    .pkg-hl { display:flex; align-items:center; gap:0.6rem; font-size:0.88rem; color:var(--clr-text); }
+    .pkg-hl i { color:var(--clr-accent); width:14px; flex-shrink:0; }
+    .package-footer { display:flex; align-items:center; justify-content:space-between; padding-top:1.25rem; border-top:1px solid rgba(255,255,255,0.06); flex-wrap:wrap; gap:1rem; }
+    .package-price-from { font-size:0.75rem; color:var(--clr-text-muted); text-transform:uppercase; }
+    .package-price { font-family:var(--font-head); font-size:1.75rem; font-weight:700; color:var(--clr-accent); }
+    .package-price span { font-size:0.85rem; color:var(--clr-text-muted); }
+
+    /* ── Accordion ── */
+    .accordion { display:flex; flex-direction:column; gap:0.75rem; margin-top:3rem; }
+    .accordion-item {
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:1rem; overflow:hidden; transition:border-color 0.3s;
+    }
+    .accordion-item.open { border-color:rgba(74,222,128,0.25); }
+    .accordion-header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1.25rem 1.5rem; cursor:pointer; gap:1rem;
+      user-select:none;
+    }
+    .accordion-header:hover { background:rgba(255,255,255,0.03); }
+    .accordion-icon-wrap { width:44px; height:44px; border-radius:0.75rem; background:rgba(74,222,128,0.1); display:flex; align-items:center; justify-content:center; color:var(--clr-accent); font-size:1.1rem; flex-shrink:0; }
+    .accordion-title { font-weight:600; font-size:1rem; color:var(--clr-white); flex:1; }
+    .accordion-chevron { color:var(--clr-text-muted); transition:transform 0.35s; font-size:0.85rem; }
+    .accordion-item.open .accordion-chevron { transform:rotate(180deg); color:var(--clr-accent); }
+    .accordion-body { max-height:0; overflow:hidden; transition:max-height 0.45s ease, padding 0.3s; padding:0 1.5rem; }
+    .accordion-item.open .accordion-body { max-height:300px; padding:0 1.5rem 1.5rem; }
+    .accordion-body p { font-size:0.9rem; color:var(--clr-text-muted); line-height:1.75; }
+
+    /* ── Pricing ── */
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3rem; }
+    .pricing-card {
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:1.5rem; padding:2.5rem 2rem; text-align:center;
+      position:relative; overflow:hidden;
+      transition:all 0.4s ease;
+    }
+    .pricing-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+    .pricing-card.popular {
+      border-color:rgba(74,222,128,0.4);
+      background:linear-gradient(135deg, rgba(45,122,79,0.12), rgba(74,222,128,0.06));
+      box-shadow:0 0 30px rgba(74,222,128,0.12), 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .popular-tag {
+      position:absolute; top:-1px; left:50%; transform:translateX(-50%);
+      background:var(--grad-accent); color:#060d08; font-size:0.7rem; font-weight:700;
+      padding:4px 18px; border-radius:0 0 12px 12px;
+      letter-spacing:0.08em; text-transform:uppercase;
+    }
+    .pricing-tier { font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--clr-accent); font-weight:700; margin-bottom:0.5rem; }
+    .pricing-price { font-family:var(--font-head); font-size:3rem; font-weight:900; color:var(--clr-white); line-height:1; margin-bottom:0.25rem; }
+    .pricing-per { font-size:0.85rem; color:var(--clr-text-muted); margin-bottom:2rem; }
+    .pricing-features { display:flex; flex-direction:column; gap:0.75rem; margin-bottom:2.5rem; text-align:left; }
+    .pf-item { display:flex; align-items:center; gap:0.65rem; font-size:0.88rem; }
+    .pf-item.has  { color:var(--clr-text); }
+    .pf-item.none { color:rgba(255,255,255,0.3); text-decoration:line-through; }
+    .pf-item.has i  { color:var(--clr-accent); }
+    .pf-item.none i { color:rgba(255,255,255,0.2); }
+
+    /* ── Booking CTA ── */
+    .booking-cta-section {
+      background:linear-gradient(135deg, var(--clr-forest-deep), #0d2b1a, var(--clr-forest-dark));
+      padding:5rem 0; text-align:center; position:relative; overflow:hidden;
+    }
+    .booking-cta-section::before {
+      content:''; position:absolute; inset:0;
+      background:var(--grid-pattern,linear-gradient(rgba(74,222,128,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,0.03) 1px,transparent 1px));
+      background-size:40px 40px;
+    }
+    .booking-cta-section .container { position:relative; z-index:2; }
+
+    /* ── Responsive ── */
+    @media(max-width:1024px) { .adv-grid { grid-template-columns:repeat(2,1fr); } .pricing-grid { grid-template-columns:1fr; } .package-card { grid-template-columns:1fr; } .package-img-wrap { height:240px; } }
+    @media(max-width:640px)  { .adv-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+</div>
+
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">
+      <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+    </a>
+    <div class="navbar-center" id="navCenter">
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="adventures.html" class="nav-link active">Adventures</a></li>
+        <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+    <div class="navbar-right">
+      <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+      <a href="signup.html" class="btn btn-primary btn-sm ripple">Sign Up</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg" id="heroBg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Adventures</span></div>
+    <h1><span class="text-gradient">Dare to</span> Adventure</h1>
+    <p>Your gateway to India's most thrilling outdoor experiences. Every journey redefined, every summit conquered.</p>
+    <div class="hero-cta">
+      <a href="404.html" class="btn btn-primary btn-lg ripple" id="viewPackagesBtn"><i class="fa-solid fa-compass"></i> View Packages</a>
+      <a href="404.html" class="btn btn-outline btn-lg" id="customTripBtn"><i class="fa-solid fa-route"></i> Book Custom Trip</a>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- ADVENTURE CATEGORIES -->
+<section class="section" id="categories">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up"><i class="fa-solid fa-mountain-sun"></i> All Categories</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Choose Your <span class="text-gradient">Challenge</span></h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">From serene forest trails to heart-pounding cliff faces — we have every level of adventure waiting for you.</p>
+    </div>
+    <div class="adv-grid">
+
+      <div class="adv-category-card" data-aos="zoom-in" data-aos-delay="0">
+        <img src="images/trek_card.jpg" alt="Trekking" class="adv-category-img" />
+        <div class="adv-img-overlay"></div>
+        <div class="adv-category-body">
+          <div class="adv-icon-title"><span class="adv-cat-icon">🥾</span><span class="adv-cat-name">Trekking</span></div>
+          <p class="adv-cat-desc">Conquer ancient mountain trails through dense forests, high-altitude passes and breathtaking meadows.</p>
+          <div class="adv-cat-meta">
+            <span class="adv-meta-tag difficulty-easy"><i class="fa-solid fa-signal"></i> Easy to Hard</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-clock"></i> 1–21 Days</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-indian-rupee-sign"></i> From ₹2,999</span>
+          </div>
+          <a href="404.html" class="btn btn-accent-outline btn-sm">Explore Treks <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="adv-category-card" data-aos="zoom-in" data-aos-delay="80">
+        <img src="images/climb_card.webp" alt="Mountain Climbing" class="adv-category-img" />
+        <div class="adv-img-overlay"></div>
+        <div class="adv-category-body">
+          <div class="adv-icon-title"><span class="adv-cat-icon">🧗</span><span class="adv-cat-name">Mountain Climbing</span></div>
+          <p class="adv-cat-desc">Scale granite rock faces and reach summits that only the boldest climbers have touched.</p>
+          <div class="adv-cat-meta">
+            <span class="adv-meta-tag difficulty-extreme"><i class="fa-solid fa-signal"></i> Extreme</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-clock"></i> 5–30 Days</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-indian-rupee-sign"></i> From ₹12,999</span>
+          </div>
+          <a href="404.html" class="btn btn-accent-outline btn-sm">Explore Climbs <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="adv-category-card" data-aos="zoom-in" data-aos-delay="160">
+        <img src="images/camp_card.webp" alt="Camping" class="adv-category-img" />
+        <div class="adv-img-overlay"></div>
+        <div class="adv-category-body">
+          <div class="adv-icon-title"><span class="adv-cat-icon">⛺</span><span class="adv-cat-name">Camping</span></div>
+          <p class="adv-cat-desc">Sleep under a canopy of stars in ancient forests far from city lights and digital noise.</p>
+          <div class="adv-cat-meta">
+            <span class="adv-meta-tag difficulty-easy"><i class="fa-solid fa-signal"></i> Easy</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-clock"></i> 1–7 Days</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-indian-rupee-sign"></i> From ₹1,999</span>
+          </div>
+          <a href="404.html" class="btn btn-accent-outline btn-sm">Explore Camps <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="adv-category-card" data-aos="zoom-in" data-aos-delay="0">
+        <img src="images/raft_card.webp" alt="River Rafting" class="adv-category-img" />
+        <div class="adv-img-overlay"></div>
+        <div class="adv-category-body">
+          <div class="adv-icon-title"><span class="adv-cat-icon">🚣</span><span class="adv-cat-name">River Rafting</span></div>
+          <p class="adv-cat-desc">Ride wild rapids through stunning gorges on India's most powerful and exhilarating rivers.</p>
+          <div class="adv-cat-meta">
+            <span class="adv-meta-tag difficulty-hard"><i class="fa-solid fa-signal"></i> Moderate-Hard</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-clock"></i> 1–5 Days</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-indian-rupee-sign"></i> From ₹3,499</span>
+          </div>
+          <a href="404.html" class="btn btn-accent-outline btn-sm">Explore Rafting <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="adv-category-card" data-aos="zoom-in" data-aos-delay="80">
+        <img src="images/para_card.webp" alt="Paragliding" class="adv-category-img" />
+        <div class="adv-img-overlay"></div>
+        <div class="adv-category-body">
+          <div class="adv-icon-title"><span class="adv-cat-icon">🪂</span><span class="adv-cat-name">Paragliding</span></div>
+          <p class="adv-cat-desc">Soar above emerald valleys on thermal winds with certified tandem pilots at your side.</p>
+          <div class="adv-cat-meta">
+            <span class="adv-meta-tag difficulty-mod"><i class="fa-solid fa-signal"></i> Moderate</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-clock"></i> 1–4 Days</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-indian-rupee-sign"></i> From ₹4,999</span>
+          </div>
+          <a href="404.html" class="btn btn-accent-outline btn-sm">Explore Flights <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="adv-category-card" data-aos="zoom-in" data-aos-delay="160">
+        <img src="images/zip_card.webp" alt="Ziplining" class="adv-category-img" />
+        <div class="adv-img-overlay"></div>
+        <div class="adv-category-body">
+          <div class="adv-icon-title"><span class="adv-cat-icon">🌿</span><span class="adv-cat-name">Ziplining</span></div>
+          <p class="adv-cat-desc">Fly through jungle canopies at breathtaking speed on India's longest certified ziplines.</p>
+          <div class="adv-cat-meta">
+            <span class="adv-meta-tag difficulty-easy"><i class="fa-solid fa-signal"></i> Easy</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-clock"></i> Half Day</span>
+            <span class="adv-meta-tag"><i class="fa-solid fa-indian-rupee-sign"></i> From ₹999</span>
+          </div>
+          <a href="404.html" class="btn btn-accent-outline btn-sm">Explore Ziplines <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- FEATURED PACKAGES -->
+<section class="section section-alt" id="packages">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up"><i class="fa-solid fa-suitcase-rolling"></i> Featured Packages</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Our <span class="text-gradient">Bestselling</span> Packages</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Carefully crafted itineraries combining multiple adventure activities for maximum thrill and value.</p>
+    </div>
+    <div class="packages-list">
+
+      <div class="package-card" data-aos="fade-up">
+        <div class="package-img-wrap">
+          <img src="images/himalayas.webp" alt="Himalayan Discovery" class="package-img" />
+          <div class="package-img-overlay"></div>
+          <div class="package-badge">⭐ Most Popular</div>
+        </div>
+        <div class="package-body">
+          <div>
+            <div class="package-title">Himalayan Discovery</div>
+            <div class="package-subtitle">12-day complete Himalayan adventure with trekking, camping and summit attempt</div>
+            <div class="package-highlights">
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> Kedarkantha & Roopkund trail coverage</div>
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> Professional certified Himalayan guides</div>
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> All meals, tents & safety equipment included</div>
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> Altitude sickness management protocol</div>
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> Transport from Dehradun both ways</div>
+            </div>
+          </div>
+          <div class="package-footer">
+            <div><div class="package-price-from">Starting from</div><div class="package-price">₹24,999 <span>/ person</span></div></div>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+              <a href="404.html" class="btn btn-outline btn-sm" id="pkg1Info">See Details</a>
+              <a href="404.html" class="btn btn-primary ripple btn-sm" id="pkg1Book">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="package-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="package-img-wrap">
+          <img src="images/rishikesh.webp" alt="Rishikesh Rush" class="package-img" />
+          <div class="package-img-overlay"></div>
+          <div class="package-badge" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#060d08;">🔥 Hot Deal</div>
+        </div>
+        <div class="package-body">
+          <div>
+            <div class="package-title">Rishikesh Rush</div>
+            <div class="package-subtitle">5-day multi-sport adrenaline trip — rafting, bungee, camping and yoga on the Ganges</div>
+            <div class="package-highlights">
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> Grade 3–4 rapids on River Ganga</div>
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> Campfire & riverside camping nights</div>
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> Optional bungee jumping at Mohan Chatti</div>
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> Morning yoga and meditation sessions</div>
+            </div>
+          </div>
+          <div class="package-footer">
+            <div><div class="package-price-from">Starting from</div><div class="package-price">₹8,499 <span>/ person</span></div></div>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+              <a href="404.html" class="btn btn-outline btn-sm" id="pkg2Info">See Details</a>
+              <a href="404.html" class="btn btn-primary ripple btn-sm" id="pkg2Book">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="package-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="package-img-wrap">
+          <img src="images/gallery_forest.webp" alt="Coorg Forest Escape" class="package-img" />
+          <div class="package-img-overlay"></div>
+          <div class="package-badge" style="background:linear-gradient(135deg,#6b7280,#9ca3af);color:#fff;">💎 Best Value</div>
+        </div>
+        <div class="package-body">
+          <div>
+            <div class="package-title">Coorg Forest Escape</div>
+            <div class="package-subtitle">4-day immersive forest adventure with ziplining, waterfall trek and wildlife safari</div>
+            <div class="package-highlights">
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> 1km jungle zipline through coffee estates</div>
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> Waterfall trek to Abbey Falls</div>
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> Wildlife safari in Nagarhole National Park</div>
+              <div class="pkg-hl"><i class="fa-solid fa-check-circle"></i> Eco-camp stay with bonfire nights</div>
+            </div>
+          </div>
+          <div class="package-footer">
+            <div><div class="package-price-from">Starting from</div><div class="package-price">₹6,999 <span>/ person</span></div></div>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+              <a href="404.html" class="btn btn-outline btn-sm" id="pkg3Info">See Details</a>
+              <a href="404.html" class="btn btn-primary ripple btn-sm" id="pkg3Book">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- SAFETY ACCORDION -->
+<section class="section" id="safety">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up"><i class="fa-solid fa-shield-heart"></i> Safety First</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Our <span class="text-gradient">Safety Promise</span></h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Your safety is our highest priority. Here's how we ensure every adventure is as safe as it is thrilling.</p>
+    </div>
+    <div class="accordion" data-aos="fade-up" data-aos-delay="100">
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-icon-wrap"><i class="fa-solid fa-helmet-safety"></i></div>
+          <div class="accordion-title">Premium Equipment Standards</div>
+          <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+        </div>
+        <div class="accordion-body">
+          <p>All our gear is sourced from industry-leading brands (Black Diamond, Mammut, Petzl) and undergoes rigorous inspections before every trip. Helmets, harnesses, ropes, and life jackets meet or exceed international safety certifications. Equipment is replaced on a scheduled cycle — never at the end of its safe lifespan.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-icon-wrap"><i class="fa-solid fa-kit-medical"></i></div>
+          <div class="accordion-title">Emergency Response Protocols</div>
+          <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+        </div>
+        <div class="accordion-body">
+          <p>Every expedition carries a complete medical kit with oxygen cylinders for high-altitude trips. Our teams are trained in Wilderness First Aid (WFA) and have GPS emergency beacons on every route. Evacuation protocols with helicopter access are pre-planned for all Himalayan treks above 4000m.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-icon-wrap"><i class="fa-solid fa-user-shield"></i></div>
+          <div class="accordion-title">Guide Certifications & Training</div>
+          <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+        </div>
+        <div class="accordion-body">
+          <p>All WildPeak guides hold certifications from recognized bodies (IMF, WMSA, NIMAS). They complete annual recertification and undergo 200+ hours of training in navigation, first aid, weather reading, and group management. Each guide has a minimum 3 years of field experience before leading solo expeditions.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-icon-wrap"><i class="fa-solid fa-file-shield"></i></div>
+          <div class="accordion-title">Insurance & Liability Coverage</div>
+          <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+        </div>
+        <div class="accordion-body">
+          <p>All participants are covered by comprehensive adventure travel insurance including emergency evacuation, medical expenses, and trip cancellation. Our liability coverage is up to ₹50 lakhs per incident. We recommend participants carry personal travel insurance as an additional layer of protection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- PRICING -->
+<section class="section section-alt" id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-aos="fade-up"><i class="fa-solid fa-tags"></i> Pricing</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Choose Your <span class="text-gradient">Plan</span></h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Transparent pricing with no hidden fees. Every plan includes our safety guarantee.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="pricing-tier">Explorer</div>
+        <div class="pricing-price">₹2,999</div>
+        <div class="pricing-per">per person / day</div>
+        <div class="pricing-features">
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Standard equipment</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Group guide (1:10)</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Basic meals included</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Safety gear & first aid</div>
+          <div class="pf-item none"><i class="fa-solid fa-times"></i> Private guide</div>
+          <div class="pf-item none"><i class="fa-solid fa-times"></i> Helicopter standby</div>
+          <div class="pf-item none"><i class="fa-solid fa-times"></i> Premium accommodation</div>
+        </div>
+        <a href="404.html" class="btn btn-outline btn-full" id="planExplorer">Get Started</a>
+      </div>
+
+      <div class="pricing-card popular" data-aos="fade-up" data-aos-delay="100">
+        <div class="popular-tag">★ Most Popular</div>
+        <div class="pricing-tier">Adventurer</div>
+        <div class="pricing-price">₹4,999</div>
+        <div class="pricing-per">per person / day</div>
+        <div class="pricing-features">
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Premium equipment</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Small group guide (1:6)</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> All meals + snacks</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Safety gear & oxygen</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Semi-private guide option</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Premium camp setup</div>
+          <div class="pf-item none"><i class="fa-solid fa-times"></i> Helicopter standby</div>
+        </div>
+        <a href="404.html" class="btn btn-primary btn-full ripple" id="planAdventurer">Book Now</a>
+      </div>
+
+      <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="pricing-tier">Elite</div>
+        <div class="pricing-price">₹8,999</div>
+        <div class="pricing-per">per person / day</div>
+        <div class="pricing-features">
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Elite grade equipment</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Private 1:1 guide</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Gourmet meals + chef</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Full safety suite</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Helicopter standby</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Luxury tent setup</div>
+          <div class="pf-item has"><i class="fa-solid fa-check"></i> Photography service</div>
+        </div>
+        <a href="404.html" class="btn btn-accent-outline btn-full" id="planElite">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr-green" />
+
+<!-- BOOKING CTA -->
+<section class="booking-cta-section" id="bookingCta">
+  <div class="container" style="text-align:center;">
+    <div class="section-badge" style="display:inline-flex;margin-bottom:1.5rem;" data-aos="fade-up"><i class="fa-solid fa-rocket"></i> Ready to Go</div>
+    <h2 class="section-title" style="max-width:600px;margin-inline:auto;" data-aos="fade-up" data-aos-delay="100">
+      Ready to Begin Your <span class="text-gradient">Journey?</span>
+    </h2>
+    <p style="color:var(--clr-text-muted);max-width:480px;margin:1rem auto 2.5rem;" data-aos="fade-up" data-aos-delay="200">
+      Join 12,000+ adventurers who have already transformed their lives through the power of nature and challenge.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" data-aos="fade-up" data-aos-delay="300">
+      <a href="404.html" class="btn btn-primary btn-lg ripple" id="startBookingBtn"><i class="fa-solid fa-calendar-plus"></i> Start Booking</a>
+      <a href="contact.html" class="btn btn-outline btn-lg" id="talkExpertBtn"><i class="fa-solid fa-headset"></i> Talk to Expert</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="navbar-brand" style="margin-bottom:1rem;display:inline-flex;">
+          <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+        </a>
+        <p class="footer-brand-desc">We craft transformative adventure experiences across India's most spectacular landscapes. Safety, passion, and authenticity in every journey.</p>
+        <div class="social-links">
+          <a href="404.html" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="404.html" class="social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Quick Links</h5>
+        <div class="footer-links">
+          <a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a>
+          <a href="adventures.html"><i class="fa-solid fa-chevron-right"></i> Adventures</a>
+          <a href="destinations.html"><i class="fa-solid fa-chevron-right"></i> Destinations</a>
+          <a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact Us</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> About Us</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Blog</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Adventures</h5>
+        <div class="footer-links">
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Trekking</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Mountain Climbing</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Camping</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> River Rafting</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Paragliding</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Ziplining</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Contact Us</h5>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>42 Forest Trail, Green Valley, Hyderabad 249201</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 98765 43210</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Stackly@wildpeakadventures.in</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon-Sat: 9AM - 7PM IST</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 <strong style="color:var(--clr-accent)"> Stackly WildPeak Adventures</strong>. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+        <a href="404.html">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="scrollTop" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // Accordion
+  document.querySelectorAll('.accordion-header').forEach(h => {
+    h.addEventListener('click', () => {
+      const item = h.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+  // Hero bg lazy load
+  const heroBg = document.getElementById('heroBg');
+  if (heroBg) {
+    const img = new Image();
+    img.onload = () => { heroBg.style.backgroundImage = `url('images/trek_card.jpg')`; heroBg.classList.add('loaded'); };
+    img.src = 'images/trek_card.jpg';
+  }
+</script>
+</body>
+</html>

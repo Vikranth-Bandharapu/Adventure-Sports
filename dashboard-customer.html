@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard — WildPeak Adventures</title>
+  <link rel="icon" href="images/logo.webp" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/gaming.css" />
+  <style>
+    body { overflow-x: hidden; }
+    .dashboard-main { overflow-x: hidden; }
+    .kpi-grid .kpi-card { min-width: 0; overflow: hidden; }
+    .sidebar-brand { position: sticky; top:0; z-index:10; background: rgba(3,8,4,0.98); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(57,255,20,0.1); }
+    .dashboard-content { overflow-x: hidden; background: rgba(3,8,4,0.3); }
+    @media (max-width: 1300px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+
+<div class="dashboard-page">
+
+  <!-- ════════ SIDEBAR ════════ -->
+  <aside class="sidebar" id="sidebar" aria-label="Customer Sidebar">
+    <a href="index.html" class="sidebar-brand">
+      <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+    </a>
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <div class="sidebar-user">
+      <div class="sidebar-user-avatar dash-user-avatar-letter">E</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name dash-user-email">explorer@wildpeak.in</div>
+        <div class="sidebar-user-role" style="color:var(--clr-accent-dim);"><i class="fa-solid fa-person-hiking"></i> Explorer</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Customer Navigation">
+      <div class="sidebar-section-label">My Account</div>
+
+      <a href="#" class="sidebar-link active" data-section="sec-overview">
+        <i class="fa-solid fa-house"></i>
+        <span class="sidebar-link-text">Dashboard</span>
+      </a>
+      <a href="#" class="sidebar-link" data-section="sec-profile">
+        <i class="fa-solid fa-circle-user"></i>
+        <span class="sidebar-link-text">My Profile</span>
+      </a>
+      <a href="#" class="sidebar-link" data-section="sec-adventures">
+        <i class="fa-solid fa-compass"></i>
+        <span class="sidebar-link-text">My Adventures</span>
+      </a>
+      <a href="#" class="sidebar-link" data-section="sec-bookings">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span class="sidebar-link-text">Booking History</span>
+      </a>
+      <a href="#" class="sidebar-link" data-section="sec-wishlist">
+        <i class="fa-solid fa-heart"></i>
+        <span class="sidebar-link-text">Wishlist</span>
+      </a>
+
+      <div class="sidebar-section-label">Account</div>
+      <a href="#" class="sidebar-link" data-section="sec-notifications">
+        <i class="fa-solid fa-bell"></i>
+        <span class="sidebar-link-text">Notifications</span>
+      </a>
+      <a href="#" class="sidebar-link" data-section="sec-settings">
+        <i class="fa-solid fa-gear"></i>
+        <span class="sidebar-link-text">Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="#" class="sidebar-link logout-link logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span class="sidebar-link-text">Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ════════ MAIN CONTENT ════════ -->
+  <main class="dashboard-main" id="dashMain">
+
+    <!-- Topbar -->
+    <header class="dashboard-topbar">
+      <div class="topbar-left">
+        <button class="sidebar-mobile-toggle" id="mobileSidebarToggle" aria-label="Open sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="topbar-greeting">
+          Hey, <strong class="dash-user-name">Explorer</strong> 🌿 Ready for your next adventure?
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-date">
+          <i class="fa-regular fa-calendar"></i>
+          <span id="topbarDate"></span>
+        </div>
+        <a href="404.html" class="btn btn-primary btn-sm ripple">
+          <i class="fa-solid fa-plus"></i> Book Adventure
+        </a>
+        <div style="width:40px;height:40px;background:var(--grad-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#060d08;font-size:0.95rem;" class="dash-user-avatar-letter">E</div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="dashboard-content">
+
+      <!-- ── SECTION: Overview ── -->
+      <div class="dash-section" id="sec-overview">
+
+        <!-- Profile Card -->
+        <div class="profile-card">
+          <div class="profile-avatar-large dash-user-avatar-letter" style="font-size:2.5rem;">E</div>
+          <div class="profile-info">
+            <h2>Welcome, <span class="text-gradient dash-user-name">Explorer</span>!</h2>
+            <p class="dash-user-email" style="color:var(--clr-accent);">explorer@wildpeak.in</p>
+            <div class="profile-info-meta">
+              <div class="pmeta-item"><i class="fa-solid fa-calendar-days"></i> Member since Jun 2026</div>
+              <div class="pmeta-item"><i class="fa-solid fa-compass"></i> 3 Adventures Completed</div>
+              <div class="pmeta-item"><i class="fa-solid fa-star"></i> 4.9 Avg Rating Given</div>
+              <div class="pmeta-item"><i class="fa-solid fa-heart"></i> 5 Wishlisted</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="kpi-grid" style="margin-bottom:2rem;">
+          <div class="kpi-card" style="--kpi-color:var(--grad-accent);">
+            <div class="kpi-header">
+              <div class="kpi-icon" style="background:rgba(74,222,128,0.12);"><i class="fa-solid fa-compass" style="color:var(--clr-accent);"></i></div>
+              <div class="kpi-trend up"><i class="fa-solid fa-arrow-trend-up"></i> +1</div>
+            </div>
+            <div class="kpi-value" data-counter="3">0</div>
+            <div class="kpi-label">Trips Completed</div>
+          </div>
+          <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#2d7a4f,#3d9b65);">
+            <div class="kpi-header">
+              <div class="kpi-icon" style="background:rgba(45,122,79,0.15);"><i class="fa-solid fa-calendar-check" style="color:#3d9b65;"></i></div>
+            </div>
+            <div class="kpi-value" data-counter="1">0</div>
+            <div class="kpi-label">Upcoming Trips</div>
+          </div>
+          <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#b07a52,#d4956a);">
+            <div class="kpi-header">
+              <div class="kpi-icon" style="background:rgba(139,94,60,0.15);"><i class="fa-solid fa-heart" style="color:#b07a52;"></i></div>
+            </div>
+            <div class="kpi-value" data-counter="5">0</div>
+            <div class="kpi-label">Wishlist Items</div>
+          </div>
+          <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#6b7280,#9ca3af);">
+            <div class="kpi-header">
+              <div class="kpi-icon" style="background:rgba(107,114,128,0.15);"><i class="fa-solid fa-star" style="color:#fbbf24;"></i></div>
+            </div>
+            <div class="kpi-value" data-counter="4" data-float="true" data-suffix=".9">0</div>
+            <div class="kpi-label">Avg Rating Given</div>
+          </div>
+        </div>
+
+        <!-- My Adventures (upcoming) -->
+        <h3 style="margin-bottom:1.25rem;font-size:var(--fs-xl);">My <span class="text-gradient">Adventures</span></h3>
+        <div class="adventure-cards-grid" style="margin-bottom:2rem;">
+          <div class="adv-mini-card">
+            <span class="adv-mini-icon">🏔️</span>
+            <div class="adv-mini-title">Himalayan Trek</div>
+            <div class="adv-mini-date"><i class="fa-regular fa-calendar" style="color:var(--clr-accent);"></i> 15 Jul 2026 — 6 Days</div>
+            <div class="adv-mini-status">
+              <span class="status-badge status-confirmed"><span class="status-dot"></span>Confirmed</span>
+              <a href="404.html" class="btn btn-ghost btn-sm">Details</a>
+            </div>
+          </div>
+          <div class="adv-mini-card">
+            <span class="adv-mini-icon">🚣</span>
+            <div class="adv-mini-title">Rishikesh Rafting</div>
+            <div class="adv-mini-date"><i class="fa-regular fa-calendar" style="color:var(--clr-accent);"></i> Completed · Mar 2026</div>
+            <div class="adv-mini-status">
+              <span class="status-badge status-confirmed"><span class="status-dot"></span>Completed</span>
+              <a href="404.html" class="btn btn-ghost btn-sm">Review</a>
+            </div>
+          </div>
+          <div class="adv-mini-card">
+            <span class="adv-mini-icon">🪂</span>
+            <div class="adv-mini-title">Bir Billing Paragliding</div>
+            <div class="adv-mini-date"><i class="fa-regular fa-calendar" style="color:var(--clr-accent);"></i> Completed · Jan 2026</div>
+            <div class="adv-mini-status">
+              <span class="status-badge status-confirmed"><span class="status-dot"></span>Completed</span>
+              <a href="404.html" class="btn btn-ghost btn-sm">Review</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Explore More CTA -->
+        <div style="background:linear-gradient(135deg,var(--clr-forest-deep),var(--clr-forest-dark));border:1px solid rgba(74,222,128,0.15);border-radius:var(--r-xl);padding:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;">
+          <div>
+            <h3 style="font-size:var(--fs-2xl);margin-bottom:0.5rem;">Ready for your next <span class="text-gradient">adventure?</span></h3>
+            <p>Browse 150+ destinations and packages tailored for every type of explorer.</p>
+          </div>
+          <a href="404.html" class="btn btn-primary ripple">
+            <i class="fa-solid fa-compass"></i> Explore Adventures
+          </a>
+        </div>
+      </div>
+
+      <!-- ── SECTION: Profile ── -->
+      <div class="dash-section" id="sec-profile" style="display:none;">
+        <div class="dash-page-title"><h1>My <span class="text-gradient">Profile</span></h1></div>
+        <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:2rem;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+            <div class="form-group"><label class="form-label">Full Name</label><input class="form-control" type="text" value="" class="dash-user-name" placeholder="Your full name" /></div>
+            <div class="form-group"><label class="form-label">Email Address</label><input class="form-control" type="email" value="" class="dash-user-email" placeholder="email@example.com" /></div>
+            <div class="form-group"><label class="form-label">Phone Number</label><input class="form-control" type="tel" placeholder="+91 XXXXX XXXXX" /></div>
+            <div class="form-group"><label class="form-label">City</label><input class="form-control" type="text" placeholder="Your city" /></div>
+          </div>
+          <a href="404.html" class="btn btn-primary">Save Changes</a>
+        </div>
+      </div>
+
+      <!-- ── SECTION: My Adventures ── -->
+      <div class="dash-section" id="sec-adventures" style="display:none;">
+        <div class="dash-page-title"><h1>My <span class="text-gradient">Adventures</span></h1></div>
+        <div class="adventure-cards-grid">
+          <div class="adv-mini-card">
+            <span class="adv-mini-icon">🏔️</span>
+            <div class="adv-mini-title">Himalayan Trek — 6D</div>
+            <div class="adv-mini-date">15 Jul 2026 · Uttarakhand</div>
+            <div class="adv-mini-status"><span class="status-badge status-confirmed"><span class="status-dot"></span>Upcoming</span><a href="404.html" class="btn btn-ghost btn-sm">View</a></div>
+          </div>
+          <div class="adv-mini-card">
+            <span class="adv-mini-icon">🚣</span>
+            <div class="adv-mini-title">Rishikesh Rafting</div>
+            <div class="adv-mini-date">Mar 2026 · Rishikesh</div>
+            <div class="adv-mini-status"><span class="status-badge status-confirmed"><span class="status-dot"></span>Done ★★★★★</span><a href="404.html" class="btn btn-ghost btn-sm">Review</a></div>
+          </div>
+          <div class="adv-mini-card">
+            <span class="adv-mini-icon">🪂</span>
+            <div class="adv-mini-title">Paragliding Bir Billing</div>
+            <div class="adv-mini-date">Jan 2026 · Himachal</div>
+            <div class="adv-mini-status"><span class="status-badge status-confirmed"><span class="status-dot"></span>Done ★★★★★</span><a href="404.html" class="btn btn-ghost btn-sm">Review</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION: Bookings ── -->
+      <div class="dash-section" id="sec-bookings" style="display:none;">
+        <div class="dash-page-title"><h1>Booking <span class="text-gradient">History</span></h1></div>
+        <div class="dash-table-card">
+          <div class="dash-table-header"><div class="dash-table-title">All Bookings</div></div>
+          <div style="overflow-x:auto;">
+            <table class="dash-table">
+              <thead><tr><th>Booking ID</th><th>Package</th><th>Date</th><th>Paid</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.8rem;">#WP-2026-0891</code></td><td>Himalayan Trek 6D</td><td>15 Jul 2026</td><td style="color:var(--clr-accent);font-weight:600;">₹8,999</td><td><span class="status-badge status-confirmed"><span class="status-dot"></span>Confirmed</span></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.8rem;">#WP-2026-0345</code></td><td>Rishikesh Rafting 3D</td><td>Mar 2026</td><td style="color:var(--clr-accent);font-weight:600;">₹4,499</td><td><span class="status-badge status-confirmed"><span class="status-dot"></span>Completed</span></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.8rem;">#WP-2026-0112</code></td><td>Paragliding Bir Billing</td><td>Jan 2026</td><td style="color:var(--clr-accent);font-weight:600;">₹6,999</td><td><span class="status-badge status-confirmed"><span class="status-dot"></span>Completed</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION: Wishlist ── -->
+      <div class="dash-section" id="sec-wishlist" style="display:none;">
+        <div class="dash-page-title"><h1>My <span class="text-gradient">Wishlist</span></h1></div>
+        <div class="adventure-cards-grid">
+          <div class="adv-mini-card"><span class="adv-mini-icon">🏕️</span><div class="adv-mini-title">Meghalaya Root Bridge Trek</div><div class="adv-mini-date">4–8 Days · Northeast India</div><div class="adv-mini-status"><span class="badge badge-green">From ₹11,999</span><a href="404.html" class="btn btn-primary btn-sm">Book</a></div></div>
+          <div class="adv-mini-card"><span class="adv-mini-icon">❄️</span><div class="adv-mini-title">Kashmir Winter Sports</div><div class="adv-mini-date">5 Days · J&amp;K</div><div class="adv-mini-status"><span class="badge badge-green">From ₹16,999</span><a href="404.html" class="btn btn-primary btn-sm">Book</a></div></div>
+          <div class="adv-mini-card"><span class="adv-mini-icon">🌿</span><div class="adv-mini-title">Western Ghats Camping</div><div class="adv-mini-date">3 Days · Kerala</div><div class="adv-mini-status"><span class="badge badge-green">From ₹5,999</span><a href="404.html" class="btn btn-primary btn-sm">Book</a></div></div>
+        </div>
+      </div>
+
+      <!-- ── SECTION: Notifications ── -->
+      <div class="dash-section" id="sec-notifications" style="display:none;">
+        <div class="dash-page-title"><h1><span class="text-gradient">Notifications</span></h1></div>
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:40px;height:40px;background:var(--grad-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">✅</div>
+            <div><div style="font-weight:600;color:var(--clr-white);margin-bottom:0.25rem;">Booking Confirmed!</div><div style="font-size:var(--fs-sm);color:var(--clr-text-muted);">Your Himalayan Trek (15 Jul 2026) has been confirmed. Check your email for full itinerary details.</div><div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:0.5rem;">2 hours ago</div></div>
+          </div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:40px;height:40px;background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">🎉</div>
+            <div><div style="font-weight:600;color:var(--clr-white);margin-bottom:0.25rem;">Special Offer — 20% Off!</div><div style="font-size:var(--fs-sm);color:var(--clr-text-muted);">As a loyal explorer, enjoy 20% off your next booking. Use code WILD20 at checkout. Valid till 30 Jul 2026.</div><div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:0.5rem;">1 day ago</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION: Settings ── -->
+      <div class="dash-section" id="sec-settings" style="display:none;">
+        <div class="dash-page-title"><h1>Account <span class="text-gradient">Settings</span></h1></div>
+        <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:2rem;">
+          <p style="margin-bottom:1.5rem;">Manage your account preferences, notification settings and privacy options.</p>
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
+              <div><strong style="color:var(--clr-white);">Email Notifications</strong><p style="font-size:var(--fs-sm);margin:0;">Receive booking updates and offers via email</p></div>
+              <div style="width:44px;height:24px;background:var(--grad-accent);border-radius:var(--r-full);position:relative;cursor:pointer;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;"></div></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
+              <div><strong style="color:var(--clr-white);">SMS Alerts</strong><p style="font-size:var(--fs-sm);margin:0;">Get SMS reminders for upcoming trips</p></div>
+              <div style="width:44px;height:24px;background:rgba(255,255,255,0.1);border-radius:var(--r-full);position:relative;cursor:pointer;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;left:2px;top:2px;"></div></div>
+            </div>
+          </div>
+          <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.06);">
+            <a href="404.html" class="btn btn-accent-outline btn-sm" style="margin-right:0.75rem;">Change Password</a>
+            <a href="404.html" class="btn btn-sm" style="background:rgba(248,113,113,0.1);color:#f87171;border:1px solid rgba(248,113,113,0.3);">Delete Account</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dashboard-content -->
+  </main>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
