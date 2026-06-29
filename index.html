@@ -20,6 +20,24 @@
   <link rel="stylesheet" href="css/loader.css" />
   <link rel="stylesheet" href="css/home.css" />
   <link rel="stylesheet" href="css/gaming.css" />
+  <style>
+    /* ── Testimonials 2x2 Grid: force correct layout ── */
+    .testimonials-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 1.5rem !important;
+    }
+    .testimonial-card {
+      display: grid !important;
+      grid-template-rows: auto 1fr auto !important;
+      min-height: 260px;
+    }
+    @media (max-width: 767px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
 </head>
 <body>
 

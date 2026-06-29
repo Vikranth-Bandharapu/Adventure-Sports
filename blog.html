@@ -19,6 +19,63 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/loader.css" />
   <link rel="stylesheet" href="css/blog.css" />
+  <style>
+    /* ── Blog Hero: Force center alignment ── */
+    section.page-hero.blog-hero {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    /* Main container inside hero */
+    section.page-hero.blog-hero > .container {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      width: 100% !important;
+      z-index: 2 !important;
+    }
+    /* Inner text wrapper (the div with data-aos) */
+    section.page-hero.blog-hero > .container > div:first-child {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      width: 100% !important;
+    }
+    /* Title and subtitle */
+    section.page-hero.blog-hero .page-hero-title {
+      text-align: center !important;
+      width: 100% !important;
+    }
+    section.page-hero.blog-hero .page-hero-subtitle {
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    /* Badge */
+    section.page-hero.blog-hero .section-badge {
+      align-self: center !important;
+      display: inline-flex !important;
+    }
+    /* Breadcrumb */
+    section.page-hero.blog-hero .blog-breadcrumb {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    /* Stats strip — MUST be horizontal row */
+    section.page-hero.blog-hero .blog-hero-stats {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: center !important;
+      align-items: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      width: fit-content !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -92,49 +149,64 @@
 
 
 <!-- HERO -->
-<section class="page-hero blog-hero" aria-label="Blog Hero">
+<section class="page-hero blog-hero" aria-label="Blog Hero" style="display:flex;align-items:center;justify-content:center;">
   <div class="page-hero-overlay" aria-hidden="true"></div>
   <div class="blog-hero-particles" aria-hidden="true" id="blogParticles"></div>
 
-  <div class="container page-hero-content">
-    <div data-aos="fade-up" data-aos-duration="700">
-      <div class="section-badge" style="margin-bottom:1.5rem;">
-        <i class="fa-solid fa-newspaper"></i> Adventure Journal
+  <div class="container" style="position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2.5rem;padding-top:2rem;padding-bottom:3rem;">
+
+    <!-- Main hero text block -->
+    <div style="width:100%;text-align:center;" data-aos="fade-up" data-aos-duration="700">
+
+      <!-- Badge -->
+      <div style="display:flex;justify-content:center;margin-bottom:1.5rem;">
+        <span class="section-badge">
+          <i class="fa-solid fa-newspaper"></i> Adventure Journal
+        </span>
       </div>
-      <h1 class="page-hero-title">
+
+      <!-- Title -->
+      <h1 class="page-hero-title" style="text-align:center;width:100%;margin-bottom:1.25rem;">
         Adventure <span class="text-gradient">Stories</span> &amp; Tips
       </h1>
-      <p class="page-hero-subtitle">
+
+      <!-- Subtitle -->
+      <p class="page-hero-subtitle" style="text-align:center;margin:0 auto 1.5rem auto;max-width:580px;">
         Real tales from the trails &mdash; guides, gear reviews, and inspiration for your next journey
       </p>
-      <nav class="blog-breadcrumb" aria-label="Breadcrumb">
-        <a href="404.html"><i class="fa-solid fa-house"></i> Home</a>
+
+      <!-- Breadcrumb -->
+      <nav class="blog-breadcrumb" aria-label="Breadcrumb" style="display:flex;justify-content:center;align-items:center;gap:0.5rem;">
+        <a href="404.html" style="display:flex;align-items:center;gap:0.35rem;"><i class="fa-solid fa-house"></i> Home</a>
         <span class="bc-sep"><i class="fa-solid fa-chevron-right"></i></span>
         <span class="bc-current">Blog</span>
       </nav>
-    </div>
+    </div><!-- end inner text wrapper -->
 
-    <div class="blog-hero-stats" data-aos="fade-up" data-aos-delay="200">
-      <div class="bhs-item">
+    <!-- Stats strip: no data-aos so AOS never interferes -->
+    <div class="blog-hero-stats" style="display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:center;align-items:center;margin:0 auto;gap:0;">
+      <div class="bhs-item" style="display:flex;flex-direction:column;align-items:center;">
         <span class="bhs-num">48+</span>
         <span class="bhs-lbl">Articles</span>
       </div>
       <div class="bhs-divider"></div>
-      <div class="bhs-item">
+      <div class="bhs-item" style="display:flex;flex-direction:column;align-items:center;">
         <span class="bhs-num">12</span>
         <span class="bhs-lbl">Authors</span>
       </div>
       <div class="bhs-divider"></div>
-      <div class="bhs-item">
+      <div class="bhs-item" style="display:flex;flex-direction:column;align-items:center;">
         <span class="bhs-num">5k+</span>
         <span class="bhs-lbl">Subscribers</span>
       </div>
       <div class="bhs-divider"></div>
-      <div class="bhs-item">
+      <div class="bhs-item" style="display:flex;flex-direction:column;align-items:center;">
         <span class="bhs-num">7</span>
         <span class="bhs-lbl">Categories</span>
       </div>
-    </div>
+    </div><!-- end stats strip -->
+
+
   </div>
 
   <div class="blog-hero-wave" aria-hidden="true">
@@ -143,6 +215,7 @@
     </svg>
   </div>
 </section>
+
 
 
 <!-- FEATURED POST -->

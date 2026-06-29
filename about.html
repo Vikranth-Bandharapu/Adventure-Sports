@@ -19,6 +19,52 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/loader.css" />
   <link rel="stylesheet" href="css/about.css" />
+  <style>
+    /* ── Force hero centering ── */
+    .page-hero {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .page-hero .container.page-hero-content {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      width: 100% !important;
+    }
+    .page-hero-text {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      width: 100% !important;
+    }
+    .page-hero-title, .page-hero h1 {
+      text-align: center !important;
+      width: 100%;
+    }
+    .page-hero-subtitle, .page-hero p {
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .page-hero .section-badge {
+      align-self: center !important;
+      display: inline-flex !important;
+    }
+    .page-hero .breadcrumb, .page-hero nav.breadcrumb {
+      justify-content: center !important;
+      align-self: center !important;
+    }
+    .hero-accent-line {
+      display: flex !important;
+      justify-content: center !important;
+    }
+    .hero-stat-pills {
+      justify-content: center !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -90,38 +136,52 @@
 </nav>
 
 <!-- SECTION 1: HERO -->
-<section class="page-hero" aria-label="About Us Hero">
+<section class="page-hero" aria-label="About Us Hero" style="display:flex;align-items:center;justify-content:center;">
   <div class="page-hero-bg">
     <img src="images/hero_bg.webp" alt="Mountain wilderness background" class="page-hero-img" />
     <div class="page-hero-overlay" aria-hidden="true"></div>
     <div class="hero-particles-about" id="heroParticlesAbout" aria-hidden="true"></div>
   </div>
 
-  <div class="container page-hero-content">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="404.html" class="breadcrumb-link">
+  <div class="container" style="position:relative;z-index:3;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2.5rem;padding-top:2rem;padding-bottom:3rem;">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="display:flex;justify-content:center;align-items:center;gap:0.5rem;">
+      <a href="404.html" class="breadcrumb-link" style="display:flex;align-items:center;gap:0.35rem;">
         <i class="fa-solid fa-house"></i> Home
       </a>
       <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
       <span class="breadcrumb-current">About Us</span>
     </nav>
 
-    <div class="page-hero-text" data-aos="fade-up">
-      <div class="section-badge" data-aos="fade-up" data-aos-delay="100">
-        <i class="fa-solid fa-mountain-sun"></i> Our Story
+    <!-- Main hero text -->
+    <div style="width:100%;text-align:center;" data-aos="fade-up">
+
+      <!-- Badge -->
+      <div style="display:flex;justify-content:center;margin-bottom:1.5rem;">
+        <span class="section-badge">
+          <i class="fa-solid fa-mountain-sun"></i> Our Story
+        </span>
       </div>
-      <h1 class="page-hero-title">
+
+      <!-- Title -->
+      <h1 class="page-hero-title" style="text-align:center;width:100%;margin-bottom:1.25rem;">
         About <span class="text-gradient">WildPeak</span>
       </h1>
-      <p class="page-hero-subtitle">
+
+      <!-- Subtitle -->
+      <p class="page-hero-subtitle" style="text-align:center;margin:0 auto 1.5rem auto;max-width:580px;">
         Where passion meets the peaks &mdash; discover the team behind India's boldest adventures
       </p>
-      <div class="hero-accent-line" aria-hidden="true">
+
+      <!-- Accent line -->
+      <div class="hero-accent-line" aria-hidden="true" style="display:flex;justify-content:center;gap:0.5rem;">
         <span></span><span></span><span></span>
       </div>
     </div>
 
-    <div class="hero-stat-pills" data-aos="fade-up" data-aos-delay="300">
+    <!-- Stat pills -->
+    <div class="hero-stat-pills" data-aos="fade-up" data-aos-delay="300" style="display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;">
       <div class="hero-pill">
         <i class="fa-solid fa-route"></i>
         <span>500+ Expeditions</span>
@@ -135,6 +195,7 @@
         <span>15+ Awards</span>
       </div>
     </div>
+
   </div>
 
   <div class="page-hero-wave" aria-hidden="true">
@@ -143,6 +204,7 @@
     </svg>
   </div>
 </section>
+
 
 <!-- SECTION 2: OUR STORY -->
 <section class="section about-story" id="our-story" aria-label="Our Story">
