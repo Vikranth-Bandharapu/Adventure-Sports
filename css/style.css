@@ -1044,3 +1044,64 @@ p  { color: var(--clr-text-muted); line-height: 1.7; }
   .topbar-book-text { display: none; }
 }
 
+/* ============================================================
+   GLOBAL HERO CENTERING OVERRIDE
+   Forces ALL page-hero content to be centered on every page.
+   These rules have highest specificity to override page CSS.
+   ============================================================ */
+.page-hero {
+  justify-content: center !important;
+}
+.page-hero-content,
+.container.page-hero-content {
+  text-align: center !important;
+  align-items: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+.page-hero h1,
+.page-hero-title {
+  text-align: center !important;
+  width: 100%;
+}
+.page-hero p,
+.page-hero-subtitle {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 640px;
+}
+.page-hero .breadcrumb,
+.page-hero .blog-breadcrumb,
+.page-hero nav.breadcrumb {
+  justify-content: center !important;
+  align-self: center !important;
+}
+.page-hero .section-badge {
+  align-self: center !important;
+  display: inline-flex !important;
+}
+.page-hero-text {
+  text-align: center !important;
+  align-items: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  margin-inline: auto !important;
+}
+.hero-cta {
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+}
+.hero-accent-line {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+}
+.blog-hero-stats {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
