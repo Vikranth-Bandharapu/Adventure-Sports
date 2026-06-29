@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About WildPeak Adventures — Meet the passionate team behind India's boldest adventures. Discover our story, mission, values, and 500+ expeditions since 2018." />
+  <title>About Us — WildPeak Adventures</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/logo.webp" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/loader.css" />
+  <link rel="stylesheet" href="css/about.css" />
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="scrollProgress"></div>
+
+<!-- PAGE LOADER -->
+<div id="pageLoader">
+  <div class="ldr-bg-grid"></div>
+  <div class="ldr-bg-radial"></div>
+  <div class="ldr-particles" id="ldrParticles"></div>
+  <div class="ldr-corner tl"></div>
+  <div class="ldr-corner tr"></div>
+  <div class="ldr-corner bl"></div>
+  <div class="ldr-corner br"></div>
+  <div class="ldr-center">
+    <div class="ldr-logo-ring">
+      <div class="ldr-logo-inner">
+        <img src="images/logo.webp" alt="WildPeak Adventures" class="ldr-logo-img" />
+      </div>
+    </div>
+    <p class="ldr-tagline">Explore &nbsp;&middot;&nbsp; Discover &nbsp;&middot;&nbsp; Conquer</p>
+    <div class="ldr-progress-wrap">
+      <div class="ldr-progress-track">
+        <div class="ldr-progress-fill"></div>
+      </div>
+      <div class="ldr-status-row">
+        <span class="ldr-status-text" id="ldrStatus">Loading adventure map...</span>
+        <span class="ldr-pct" id="ldrPct">0%</span>
+      </div>
+    </div>
+  </div>
+  <div class="ldr-mountains">
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,220 L0,160 L120,80 L200,130 L320,40 L420,110 L540,20 L660,100 L760,50 L860,120 L960,30 L1060,110 L1160,60 L1280,130 L1360,70 L1440,120 L1440,220 Z" fill="rgba(13,43,26,0.6)"/>
+      <path d="M0,220 L0,180 L100,130 L200,160 L300,100 L400,150 L520,80 L620,140 L720,90 L820,150 L920,70 L1020,140 L1140,95 L1240,150 L1340,100 L1440,140 L1440,220 Z" fill="rgba(26,74,46,0.5)"/>
+      <path d="M0,220 L0,200 L180,160 L360,190 L540,150 L720,185 L900,155 L1080,185 L1260,160 L1440,180 L1440,220 Z" fill="rgba(45,106,71,0.4)"/>
+    </svg>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar" aria-label="Main Navigation">
+  <div class="container">
+    <a href="index.html" class="navbar-brand" aria-label="WildPeak Adventures Home">
+      <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img" />
+    </a>
+
+    <div class="navbar-center" id="navCenter">
+      <ul class="nav-links" role="list">
+        <li><a href="index.html"        class="nav-link">Home</a></li>
+        <li><a href="adventures.html"   class="nav-link">Adventures</a></li>
+        <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+        <li><a href="about.html"        class="nav-link active">About</a></li>
+        <li><a href="blog.html"          class="nav-link">Blog</a></li>
+        <li><a href="contact.html"      class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="navbar-right">
+      <a href="login.html"  class="btn btn-outline btn-sm">Login</a>
+      <a href="signup.html" class="btn btn-primary btn-sm ripple">Sign Up</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section class="page-hero" aria-label="About Us Hero">
+  <div class="page-hero-bg">
+    <img src="images/hero_bg.webp" alt="Mountain wilderness background" class="page-hero-img" />
+    <div class="page-hero-overlay" aria-hidden="true"></div>
+    <div class="hero-particles-about" id="heroParticlesAbout" aria-hidden="true"></div>
+  </div>
+
+  <div class="container page-hero-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="404.html" class="breadcrumb-link">
+        <i class="fa-solid fa-house"></i> Home
+      </a>
+      <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">About Us</span>
+    </nav>
+
+    <div class="page-hero-text" data-aos="fade-up">
+      <div class="section-badge" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-mountain-sun"></i> Our Story
+      </div>
+      <h1 class="page-hero-title">
+        About <span class="text-gradient">WildPeak</span>
+      </h1>
+      <p class="page-hero-subtitle">
+        Where passion meets the peaks &mdash; discover the team behind India's boldest adventures
+      </p>
+      <div class="hero-accent-line" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="hero-stat-pills" data-aos="fade-up" data-aos-delay="300">
+      <div class="hero-pill">
+        <i class="fa-solid fa-route"></i>
+        <span>500+ Expeditions</span>
+      </div>
+      <div class="hero-pill">
+        <i class="fa-solid fa-users"></i>
+        <span>10K+ Adventurers</span>
+      </div>
+      <div class="hero-pill">
+        <i class="fa-solid fa-trophy"></i>
+        <span>15+ Awards</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="#060d08"/>
+    </svg>
+  </div>
+</section>
+
+<!-- SECTION 2: OUR STORY -->
+<section class="section about-story" id="our-story" aria-label="Our Story">
+  <div class="container">
+    <div class="story-grid">
+
+      <div class="story-text-col" data-aos="fade-right" data-aos-duration="800">
+        <div class="section-badge">
+          <i class="fa-solid fa-book-open"></i> Our Story
+        </div>
+        <h2 class="section-title">
+          Born From a <span class="text-gradient">Love of the Wild</span>
+        </h2>
+        <p class="story-lead">
+          WildPeak Adventures was founded in 2018 in the adventure capital of India &mdash; Rishikesh &mdash; by a passionate group of mountaineers, naturalists, and storytellers who believed that the mountains had more to teach us than any classroom ever could.
+        </p>
+        <p class="story-body">
+          What started as a small team of 5 certified guides leading weekend treks has evolved into one of India's most trusted adventure tour operators. Today, we operate across 8 Indian states, offering more than 50 meticulously crafted routes through the Himalayas, Western Ghats, Northeast India, and beyond.
+        </p>
+        <p class="story-body">
+          Our mission is simple: <strong>to create transformative experiences</strong> that push personal limits, forge deep connections with nature, and leave our adventurers forever changed. Every expedition we run is built on three pillars &mdash; absolute safety, environmental respect, and unforgettable moments.
+        </p>
+        <p class="story-body">
+          With 500+ successful expeditions completed and over 10,000 adventurers who have trusted us with their wildest dreams, we remain as committed as ever to the mountains that inspired us to begin.
+        </p>
+        <div class="story-cta-row">
+          <a href="404.html" class="btn btn-primary ripple">
+            <i class="fa-solid fa-compass"></i> View Adventures
+          </a>
+          <a href="404.html" class="btn btn-accent-outline">
+            <i class="fa-solid fa-phone"></i> Talk to Us
+          </a>
+        </div>
+      </div>
+
+      <div class="story-stats-col" data-aos="fade-left" data-aos-duration="800" data-aos-delay="150">
+        <div class="stats-grid" id="statsGrid">
+          <div class="stat-box glass" data-aos="zoom-in" data-aos-delay="200">
+            <div class="stat-icon">
+              <i class="fa-solid fa-route"></i>
+            </div>
+            <div class="stat-number">
+              <span class="count-up" data-target="500" data-suffix="+">0</span>
+            </div>
+            <div class="stat-label">Expeditions</div>
+            <div class="stat-sub">Completed successfully</div>
+          </div>
+
+          <div class="stat-box glass" data-aos="zoom-in" data-aos-delay="300">
+            <div class="stat-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="stat-number">
+              <span class="count-up" data-target="10000" data-suffix="+">0</span>
+            </div>
+            <div class="stat-label">Adventurers</div>
+            <div class="stat-sub">Lives transformed</div>
+          </div>
+
+          <div class="stat-box glass" data-aos="zoom-in" data-aos-delay="400">
+            <div class="stat-icon">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <div class="stat-number">
+              <span class="count-up" data-target="8" data-suffix="">0</span>
+            </div>
+            <div class="stat-label">States</div>
+            <div class="stat-sub">Across incredible India</div>
+          </div>
+
+          <div class="stat-box glass" data-aos="zoom-in" data-aos-delay="500">
+            <div class="stat-icon">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div class="stat-number">
+              <span class="count-up" data-target="15" data-suffix="+">0</span>
+            </div>
+            <div class="stat-label">Awards</div>
+            <div class="stat-sub">Industry recognition</div>
+          </div>
+        </div>
+
+        <div class="story-img-card glass" data-aos="fade-up" data-aos-delay="400">
+          <img src="images/himalayas.webp" alt="Himalayan expedition by WildPeak Adventures" class="story-img" />
+          <div class="story-img-caption">
+            <i class="fa-solid fa-mountain"></i>
+            <span>Himalayan base camp expedition</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: VALUES -->
+<section class="section section-alt about-values" id="values" aria-label="Our Core Values">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-badge">
+        <i class="fa-solid fa-heart"></i> What We Stand For
+      </div>
+      <h2 class="section-title">Our Core <span class="text-gradient">Values</span></h2>
+      <p class="section-subtitle">
+        Every adventure we curate is guided by these four principles that define who we are and what we stand for.
+      </p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card glass" data-aos="fade-up" data-aos-delay="100">
+        <div class="value-icon-wrap value-icon-safety">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3 class="value-title">Safety First</h3>
+        <p class="value-desc">
+          Every expedition is planned with rigorous risk assessments, certified guides, and industry-leading emergency protocols. Your safety is never negotiable.
+        </p>
+        <div class="value-accent-line" aria-hidden="true"></div>
+      </div>
+
+      <div class="value-card glass" data-aos="fade-up" data-aos-delay="200">
+        <div class="value-icon-wrap value-icon-sustain">
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+        <h3 class="value-title">Sustainability</h3>
+        <p class="value-desc">
+          We operate with a zero-waste philosophy, support local communities, and actively participate in trail conservation efforts to preserve India's natural heritage.
+        </p>
+        <div class="value-accent-line" aria-hidden="true"></div>
+      </div>
+
+      <div class="value-card glass" data-aos="fade-up" data-aos-delay="300">
+        <div class="value-icon-wrap value-icon-excel">
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <h3 class="value-title">Excellence</h3>
+        <p class="value-desc">
+          From hand-picked accommodations to gourmet trail meals, we obsess over every detail so that your experience exceeds every expectation, every time.
+        </p>
+        <div class="value-accent-line" aria-hidden="true"></div>
+      </div>
+
+      <div class="value-card glass" data-aos="fade-up" data-aos-delay="400">
+        <div class="value-icon-wrap value-icon-community">
+          <i class="fa-solid fa-users-between-lines"></i>
+        </div>
+        <h3 class="value-title">Community</h3>
+        <p class="value-desc">
+          We build bonds &mdash; between adventurers, with local guides, and within the villages we visit. Every journey strengthens the broader WildPeak community.
+        </p>
+        <div class="value-accent-line" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: TEAM -->
+<section class="section about-team" id="team" aria-label="Meet The Team">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-badge">
+        <i class="fa-solid fa-people-group"></i> The Humans Behind the Mountains
+      </div>
+      <h2 class="section-title">Meet the <span class="text-gradient">Team</span></h2>
+      <p class="section-subtitle">
+        Certified, passionate, and deeply experienced &mdash; our team has climbed thousands of meters so you can focus on the view.
+      </p>
+    </div>
+
+    <div class="team-grid">
+
+      <div class="team-card glass" data-aos="fade-up" data-aos-delay="100">
+        <div class="team-avatar-wrap">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #2d7a4f, #4ade80);">
+            <span>AM</span>
+          </div>
+          <div class="team-avatar-glow" aria-hidden="true"></div>
+        </div>
+        <div class="team-info">
+          <h4 class="team-name">Arjun Mehta</h4>
+          <p class="team-role">
+            <i class="fa-solid fa-crown"></i> Founder &amp; CEO
+          </p>
+          <p class="team-bio">
+            A visionary mountaineer with 15 years of Himalayan expedition experience who turned a passion for the peaks into India's boldest adventure brand.
+          </p>
+          <div class="team-socials">
+            <a href="404.html" class="team-social-btn" aria-label="Arjun on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="404.html" class="team-social-btn" aria-label="Arjun on Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="team-social-btn" aria-label="Arjun on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card glass" data-aos="fade-up" data-aos-delay="200">
+        <div class="team-avatar-wrap">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #1a4a2e, #3d9b65);">
+            <span>PS</span>
+          </div>
+          <div class="team-avatar-glow" aria-hidden="true"></div>
+        </div>
+        <div class="team-info">
+          <h4 class="team-name">Priya Sharma</h4>
+          <p class="team-role">
+            <i class="fa-solid fa-gear"></i> Head of Operations
+          </p>
+          <p class="team-bio">
+            A certified mountaineer and logistics maestro, Priya ensures every expedition runs like clockwork &mdash; from gear audits to guide briefings and guest care.
+          </p>
+          <div class="team-socials">
+            <a href="404.html" class="team-social-btn" aria-label="Priya on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="404.html" class="team-social-btn" aria-label="Priya on Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="team-social-btn" aria-label="Priya on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card glass" data-aos="fade-up" data-aos-delay="300">
+        <div class="team-avatar-wrap">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #2d6a47, #86efac);">
+            <span>RD</span>
+          </div>
+          <div class="team-avatar-glow" aria-hidden="true"></div>
+        </div>
+        <div class="team-info">
+          <h4 class="team-name">Rohan Das</h4>
+          <p class="team-role">
+            <i class="fa-solid fa-person-hiking"></i> Lead Trek Guide
+          </p>
+          <p class="team-bio">
+            With 300+ expeditions led across the Himalayas and Northeast, Rohan reads the mountains like a book and leads teams with calm authority and warmth.
+          </p>
+          <div class="team-socials">
+            <a href="404.html" class="team-social-btn" aria-label="Rohan on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="404.html" class="team-social-btn" aria-label="Rohan on Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="team-social-btn" aria-label="Rohan on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card glass" data-aos="fade-up" data-aos-delay="400">
+        <div class="team-avatar-wrap">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #0d2b1a, #2d7a4f);">
+            <span>NK</span>
+          </div>
+          <div class="team-avatar-glow" aria-hidden="true"></div>
+        </div>
+        <div class="team-info">
+          <h4 class="team-name">Neha Kapoor</h4>
+          <p class="team-role">
+            <i class="fa-solid fa-kit-medical"></i> Safety Officer
+          </p>
+          <p class="team-bio">
+            A Wilderness First Responder and certified rescue specialist, Neha architects all emergency protocols and safety training that keeps our adventurers safe.
+          </p>
+          <div class="team-socials">
+            <a href="404.html" class="team-social-btn" aria-label="Neha on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="404.html" class="team-social-btn" aria-label="Neha on Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" class="team-social-btn" aria-label="Neha on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: TIMELINE -->
+<section class="section section-alt about-timeline" id="journey" aria-label="Our Journey">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-badge">
+        <i class="fa-solid fa-timeline"></i> From Rishikesh to the World
+      </div>
+      <h2 class="section-title">Our <span class="text-gradient">Journey</span></h2>
+      <p class="section-subtitle">
+        Eight years of summits, milestones, and memories that shaped who WildPeak is today.
+      </p>
+    </div>
+
+    <div class="timeline" id="timeline">
+
+      <div class="timeline-item timeline-left" data-aos="fade-right">
+        <div class="timeline-content glass">
+          <div class="timeline-year-badge">2018</div>
+          <h4 class="timeline-event-title">The Beginning</h4>
+          <p class="timeline-event-desc">
+            Founded in Rishikesh with a small but mighty team of 5 certified guides and one shared dream &mdash; to show India the beauty of her own wilderness.
+          </p>
+          <div class="timeline-tag">
+            <i class="fa-solid fa-flag"></i> Founded
+          </div>
+        </div>
+        <div class="timeline-dot" aria-hidden="true"><span></span></div>
+      </div>
+
+      <div class="timeline-item timeline-right" data-aos="fade-left">
+        <div class="timeline-dot" aria-hidden="true"><span></span></div>
+        <div class="timeline-content glass">
+          <div class="timeline-year-badge">2019</div>
+          <h4 class="timeline-event-title">Himalayan Base Camp Package</h4>
+          <p class="timeline-event-desc">
+            Launched our flagship Himalayan base camp package &mdash; a 14-day journey to the roof of the world that instantly became our bestseller.
+          </p>
+          <div class="timeline-tag">
+            <i class="fa-solid fa-mountain"></i> Launch
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item timeline-left" data-aos="fade-right">
+        <div class="timeline-content glass">
+          <div class="timeline-year-badge">2020</div>
+          <h4 class="timeline-event-title">Expanding the Map</h4>
+          <p class="timeline-event-desc">
+            Despite global challenges, we expanded our footprint to the lush Western Ghats and the mystical caves and valleys of Meghalaya.
+          </p>
+          <div class="timeline-tag">
+            <i class="fa-solid fa-map-location-dot"></i> Expansion
+          </div>
+        </div>
+        <div class="timeline-dot" aria-hidden="true"><span></span></div>
+      </div>
+
+      <div class="timeline-item timeline-right" data-aos="fade-left">
+        <div class="timeline-dot" aria-hidden="true"><span></span></div>
+        <div class="timeline-content glass">
+          <div class="timeline-year-badge">2021</div>
+          <h4 class="timeline-event-title">India Tourism Awards</h4>
+          <p class="timeline-event-desc">
+            Won the prestigious 'Best Adventure Operator' award at the India Tourism Awards &mdash; a validation of our commitment to excellence and safety.
+          </p>
+          <div class="timeline-tag">
+            <i class="fa-solid fa-trophy"></i> Award
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item timeline-left" data-aos="fade-right">
+        <div class="timeline-content glass">
+          <div class="timeline-year-badge">2022</div>
+          <h4 class="timeline-event-title">5,000 Happy Adventurers</h4>
+          <p class="timeline-event-desc">
+            A landmark milestone &mdash; crossing 5,000 happy adventurers, each one a story of courage, transformation, and unforgettable memories in the wild.
+          </p>
+          <div class="timeline-tag">
+            <i class="fa-solid fa-users"></i> Milestone
+          </div>
+        </div>
+        <div class="timeline-dot" aria-hidden="true"><span></span></div>
+      </div>
+
+      <div class="timeline-item timeline-right" data-aos="fade-left">
+        <div class="timeline-dot" aria-hidden="true"><span></span></div>
+        <div class="timeline-content glass">
+          <div class="timeline-year-badge">2023</div>
+          <h4 class="timeline-event-title">Elite &amp; Custom Packages</h4>
+          <p class="timeline-event-desc">
+            Launched our premium Elite tier with fully custom itineraries, private guides, and luxury base camp accommodations for discerning adventurers.
+          </p>
+          <div class="timeline-tag">
+            <i class="fa-solid fa-gem"></i> Premium
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item timeline-left" data-aos="fade-right">
+        <div class="timeline-content glass">
+          <div class="timeline-year-badge">2024</div>
+          <h4 class="timeline-event-title">8 States, 50+ Routes</h4>
+          <p class="timeline-event-desc">
+            Expanded our operations to cover 8 Indian states with 50+ unique routes &mdash; from Kashmir's alpine meadows to Kerala's jungle trails.
+          </p>
+          <div class="timeline-tag">
+            <i class="fa-solid fa-route"></i> Expansion
+          </div>
+        </div>
+        <div class="timeline-dot" aria-hidden="true"><span></span></div>
+      </div>
+
+      <div class="timeline-item timeline-right" data-aos="fade-left">
+        <div class="timeline-dot" aria-hidden="true"><span></span></div>
+        <div class="timeline-content glass">
+          <div class="timeline-year-badge">2025</div>
+          <h4 class="timeline-event-title">10,000+ &amp; 15 Awards</h4>
+          <p class="timeline-event-desc">
+            Celebrating 10,000+ adventurers served and 15 industry awards &mdash; proof that our mountains never disappoint and our team never settles for less.
+          </p>
+          <div class="timeline-tag timeline-tag-accent">
+            <i class="fa-solid fa-star"></i> Today
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: PARTNERS -->
+<section class="section about-partners" id="certifications" aria-label="Partners and Certifications">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-badge">
+        <i class="fa-solid fa-certificate"></i> Verified &amp; Accredited
+      </div>
+      <h2 class="section-title">Trusted &amp; <span class="text-gradient">Certified</span></h2>
+      <p class="section-subtitle">
+        Our credentials are not just badges &mdash; they are promises we keep on every trail, every summit, every expedition.
+      </p>
+    </div>
+
+    <div class="partners-flex">
+
+      <div class="partner-card glass" data-aos="fade-up" data-aos-delay="100">
+        <div class="partner-icon partner-icon-1">
+          <i class="fa-solid fa-landmark-flag"></i>
+        </div>
+        <div class="partner-info">
+          <span class="partner-name">India Tourism</span>
+          <span class="partner-type">Government Certified</span>
+        </div>
+      </div>
+
+      <div class="partner-card glass" data-aos="fade-up" data-aos-delay="150">
+        <div class="partner-icon partner-icon-2">
+          <i class="fa-solid fa-mountain-city"></i>
+        </div>
+        <div class="partner-info">
+          <span class="partner-name">ATOA</span>
+          <span class="partner-type">Adventure Tour Operators Assoc.</span>
+        </div>
+      </div>
+
+      <div class="partner-card glass" data-aos="fade-up" data-aos-delay="200">
+        <div class="partner-icon partner-icon-3">
+          <i class="fa-solid fa-medal"></i>
+        </div>
+        <div class="partner-info">
+          <span class="partner-name">ISO 9001:2015</span>
+          <span class="partner-type">Quality Management Certified</span>
+        </div>
+      </div>
+
+      <div class="partner-card glass" data-aos="fade-up" data-aos-delay="250">
+        <div class="partner-icon partner-icon-4">
+          <i class="fa-solid fa-person-falling-burst"></i>
+        </div>
+        <div class="partner-info">
+          <span class="partner-name">UIAGM</span>
+          <span class="partner-type">Intl. Mountain Guides Assoc.</span>
+        </div>
+      </div>
+
+      <div class="partner-card glass" data-aos="fade-up" data-aos-delay="300">
+        <div class="partner-icon partner-icon-5">
+          <i class="fa-solid fa-kit-medical"></i>
+        </div>
+        <div class="partner-info">
+          <span class="partner-name">Wilderness First Aid</span>
+          <span class="partner-type">Emergency Response Certified</span>
+        </div>
+      </div>
+
+      <div class="partner-card glass" data-aos="fade-up" data-aos-delay="350">
+        <div class="partner-icon partner-icon-6">
+          <i class="fa-solid fa-building-columns"></i>
+        </div>
+        <div class="partner-info">
+          <span class="partner-name">Ministry of Tourism</span>
+          <span class="partner-type">Govt. of India Recognised</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: CTA -->
+<section class="about-cta" aria-label="Call To Action">
+  <div class="about-cta-bg" aria-hidden="true">
+    <img src="images/gallery_mtn.webp" alt="" class="cta-bg-img" />
+    <div class="about-cta-overlay"></div>
+    <div class="cta-grid-decor"></div>
+  </div>
+
+  <div class="container about-cta-content">
+    <div class="cta-inner" data-aos="fade-up">
+      <div class="section-badge cta-badge">
+        <i class="fa-solid fa-bolt-lightning"></i> Start Your Adventure
+      </div>
+      <h2 class="cta-title">
+        Ready to Write Your<br />
+        <span class="text-gradient">Adventure Story?</span>
+      </h2>
+      <p class="cta-subtitle">
+        Join 10,000+ adventurers who have trusted WildPeak with their greatest expeditions. The mountains are calling &mdash; answer them with us.
+      </p>
+      <div class="cta-buttons">
+        <a href="404.html" class="btn btn-primary btn-lg ripple">
+          <i class="fa-solid fa-compass"></i> Start Your Journey
+        </a>
+        <a href="404.html" class="btn btn-outline btn-lg">
+          <i class="fa-solid fa-users"></i> Meet Our Guides
+        </a>
+      </div>
+    </div>
+    <div class="cta-deco-dots" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="navbar-brand" style="margin-bottom:1rem;display:inline-flex;">
+          <img src="images/logo.webp" alt="WildPeak Adventures" class="brand-logo-img brand-logo-sm" />
+        </a>
+        <p class="footer-brand-desc">We craft transformative adventure experiences across India's most spectacular landscapes. Safety, passion, and authenticity in every journey.</p>
+        <div class="social-links">
+          <a href="404.html" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="404.html" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="404.html" class="social-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="404.html" class="social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Quick Links</h5>
+        <div class="footer-links">
+          <a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a>
+          <a href="adventures.html"><i class="fa-solid fa-chevron-right"></i> Adventures</a>
+          <a href="destinations.html"><i class="fa-solid fa-chevron-right"></i> Destinations</a>
+          <a href="contact.html"><i class="fa-solid fa-chevron-right"></i> Contact Us</a>
+           <a href="about.html"><i class="fa-solid fa-chevron-right"></i> About Us</a>
+          <a href="blog.html"><i class="fa-solid fa-chevron-right"></i> Blog</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Adventures</h5>
+        <div class="footer-links">
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Trekking</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Mountain Climbing</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Camping</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> River Rafting</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Paragliding</a>
+          <a href="404.html"><i class="fa-solid fa-chevron-right"></i> Ziplining</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Contact Us</h5>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>42 Forest Trail, Green Valley, Rishikesh 249201</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 98765 43210</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>hello@wildpeakadventures.in</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon&ndash;Sat: 9AM &ndash; 7PM IST</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 <strong style="color:var(--clr-accent)">WildPeak Adventures</strong>. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms of Service</a>
+        <a href="404.html">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top -->
+<button id="scrollTop" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="js/main.js"></script>
+<script src="js/about.js"></script>
+
+</body>
+</html>

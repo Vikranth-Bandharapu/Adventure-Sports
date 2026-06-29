@@ -97,25 +97,25 @@
   <main class="dashboard-main" id="dashMain">
 
     <!-- Topbar -->
-    <header class="dashboard-topbar">
-      <div class="topbar-left">
+    <header class="dashboard-topbar" style="flex-wrap:wrap;">
+      <div class="topbar-left" style="flex:1;min-width:0;overflow:hidden;">
         <button class="sidebar-mobile-toggle" id="mobileSidebarToggle" aria-label="Open sidebar">
           <i class="fa-solid fa-bars"></i>
         </button>
-        <div class="topbar-greeting">
-          Welcome back, <strong class="dash-user-email">Admin</strong> 👋
+        <div class="topbar-greeting" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px;">
+          Welcome back, <strong class="dash-user-email">Admin</strong> <span class="topbar-greeting-sub">👋</span>
         </div>
       </div>
-      <div class="topbar-right">
+      <div class="topbar-right" style="flex-shrink:0;">
         <div class="topbar-date">
           <i class="fa-regular fa-calendar"></i>
           <span id="topbarDate"></span>
         </div>
-        <a href="404.html" class="topbar-notification" id="notifBtn" title="Notifications" aria-label="View notifications" style="text-decoration:none;">
+        <a href="404.html" class="topbar-notification" id="notifBtn" title="Notifications" aria-label="View notifications" style="text-decoration:none;flex-shrink:0;">
           <i class="fa-solid fa-bell"></i>
           <div class="notif-badge">3</div>
         </a>
-        <div style="width:40px;height:40px;background:var(--grad-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#060d08;font-size:0.95rem;" class="dash-user-avatar-letter">A</div>
+        <div style="width:40px;height:40px;background:var(--grad-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#060d08;font-size:0.95rem;flex-shrink:0;" class="dash-user-avatar-letter">A</div>
       </div>
     </header>
 
@@ -320,46 +320,425 @@
 
       <!-- ── SECTION: Users ── -->
       <div class="dash-section" id="sec-users" style="display:none;">
-        <div style="padding:3rem;text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);">
-          <div style="font-size:3rem;margin-bottom:1rem;">👥</div>
-          <h3>Users Management</h3>
-          <p style="margin-top:0.5rem;">Full user management panel with search, filter, edit and deactivate capabilities. Showing all registered adventure seekers.</p>
+        <div class="dash-page-title"><h1>Users <span class="text-gradient">Management</span></h1></div>
+
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;">
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;">
+            <div style="font-size:1.75rem;font-weight:800;color:var(--clr-accent);">1,284</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Total Users</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;">
+            <div style="font-size:1.75rem;font-weight:800;color:#4ade80;">1,102</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Active</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;">
+            <div style="font-size:1.75rem;font-weight:800;color:#60a5fa;">47</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">New This Month</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;">
+            <div style="font-size:1.75rem;font-weight:800;color:#f87171;">182</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Deactivated</div></div>
+        </div>
+
+        <!-- Toolbar -->
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem;">
+          <div style="flex:1;min-width:200px;position:relative;">
+            <i class="fa-solid fa-search" style="position:absolute;left:0.9rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);font-size:0.8rem;"></i>
+            <input type="text" placeholder="Search users..." style="width:100%;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.6rem 0.9rem 0.6rem 2.2rem;color:var(--clr-white);font-size:0.88rem;outline:none;">
+          </div>
+          <select style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.6rem 1rem;color:var(--clr-white);font-size:0.88rem;outline:none;">
+            <option>All Users</option><option>Active</option><option>Inactive</option>
+          </select>
+          <a href="404.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Add User</a>
+        </div>
+
+        <!-- Table -->
+        <div class="dash-table-card">
+          <div style="overflow-x:auto;">
+            <table class="dash-table">
+              <thead><tr><th>User</th><th>Email</th><th>Phone</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:0.75rem;"><div class="dash-user-avatar-letter" style="width:36px;height:36px;font-size:0.85rem;flex-shrink:0;">A</div><strong>Arjun Mehta</strong></div></td>
+                  <td style="color:var(--clr-text-muted);">arjun@email.com</td><td style="color:var(--clr-text-muted);">+91 98765 43210</td><td style="color:var(--clr-text-muted);">Jan 2025</td>
+                  <td><span class="status-badge status-confirmed"><span class="status-dot"></span>Active</span></td>
+                  <td><a href="404.html" class="btn btn-ghost btn-sm">Edit</a> <a href="404.html" class="btn btn-ghost btn-sm">View</a></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:0.75rem;"><div class="dash-user-avatar-letter" style="width:36px;height:36px;font-size:0.85rem;flex-shrink:0;background:linear-gradient(135deg,#7c3aed,#a855f7);">P</div><strong>Priya Sharma</strong></div></td>
+                  <td style="color:var(--clr-text-muted);">priya@email.com</td><td style="color:var(--clr-text-muted);">+91 87654 32109</td><td style="color:var(--clr-text-muted);">Feb 2025</td>
+                  <td><span class="status-badge status-confirmed"><span class="status-dot"></span>Active</span></td>
+                  <td><a href="404.html" class="btn btn-ghost btn-sm">Edit</a> <a href="404.html" class="btn btn-ghost btn-sm">View</a></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:0.75rem;"><div class="dash-user-avatar-letter" style="width:36px;height:36px;font-size:0.85rem;flex-shrink:0;background:linear-gradient(135deg,#0891b2,#06b6d4);">R</div><strong>Rohan Das</strong></div></td>
+                  <td style="color:var(--clr-text-muted);">rohan@email.com</td><td style="color:var(--clr-text-muted);">+91 76543 21098</td><td style="color:var(--clr-text-muted);">Mar 2025</td>
+                  <td><span class="status-badge status-cancelled"><span class="status-dot"></span>Inactive</span></td>
+                  <td><a href="404.html" class="btn btn-ghost btn-sm">Edit</a> <a href="404.html" class="btn btn-primary btn-sm">Activate</a></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:0.75rem;"><div class="dash-user-avatar-letter" style="width:36px;height:36px;font-size:0.85rem;flex-shrink:0;background:linear-gradient(135deg,#b45309,#f59e0b);">N</div><strong>Neha Kapoor</strong></div></td>
+                  <td style="color:var(--clr-text-muted);">neha@email.com</td><td style="color:var(--clr-text-muted);">+91 65432 10987</td><td style="color:var(--clr-text-muted);">Apr 2025</td>
+                  <td><span class="status-badge status-confirmed"><span class="status-dot"></span>Active</span></td>
+                  <td><a href="404.html" class="btn btn-ghost btn-sm">Edit</a> <a href="404.html" class="btn btn-ghost btn-sm">View</a></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:0.75rem;"><div class="dash-user-avatar-letter" style="width:36px;height:36px;font-size:0.85rem;flex-shrink:0;background:linear-gradient(135deg,#0f766e,#14b8a6);">V</div><strong>Vikram Singh</strong></div></td>
+                  <td style="color:var(--clr-text-muted);">vikram@email.com</td><td style="color:var(--clr-text-muted);">+91 54321 09876</td><td style="color:var(--clr-text-muted);">May 2025</td>
+                  <td><span class="status-badge status-confirmed"><span class="status-dot"></span>Active</span></td>
+                  <td><a href="404.html" class="btn btn-ghost btn-sm">Edit</a> <a href="404.html" class="btn btn-ghost btn-sm">View</a></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:0.75rem;"><div class="dash-user-avatar-letter" style="width:36px;height:36px;font-size:0.85rem;flex-shrink:0;background:linear-gradient(135deg,#be185d,#ec4899);">M</div><strong>Meera Nair</strong></div></td>
+                  <td style="color:var(--clr-text-muted);">meera@email.com</td><td style="color:var(--clr-text-muted);">+91 43210 98765</td><td style="color:var(--clr-text-muted);">Jun 2025</td>
+                  <td><span class="status-badge status-cancelled"><span class="status-dot"></span>Inactive</span></td>
+                  <td><a href="404.html" class="btn btn-ghost btn-sm">Edit</a> <a href="404.html" class="btn btn-primary btn-sm">Activate</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 0 0;flex-wrap:wrap;gap:0.75rem;">
+            <span style="font-size:0.82rem;color:var(--clr-text-muted);">Showing 1–6 of 1,284 users</span>
+            <div style="display:flex;gap:0.4rem;">
+              <a href="404.html" class="btn btn-ghost btn-sm">‹ Prev</a>
+              <a href="404.html" class="btn btn-primary btn-sm">1</a>
+              <a href="404.html" class="btn btn-ghost btn-sm">2</a>
+              <a href="404.html" class="btn btn-ghost btn-sm">3</a>
+              <span style="padding:0.4rem 0.5rem;color:var(--clr-text-muted);">...</span>
+              <a href="404.html" class="btn btn-ghost btn-sm">Next ›</a>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- ── SECTION: Bookings ── -->
       <div class="dash-section" id="sec-bookings" style="display:none;">
-        <div style="padding:3rem;text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);">
-          <div style="font-size:3rem;margin-bottom:1rem;">📋</div>
-          <h3>Bookings Management</h3>
-          <p style="margin-top:0.5rem;">View, confirm, reschedule or cancel all adventure bookings. Filter by date, status, or package type.</p>
+        <div class="dash-page-title"><h1>Bookings <span class="text-gradient">Management</span></h1></div>
+
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;">
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;">
+            <div style="font-size:1.75rem;font-weight:800;color:var(--clr-accent);">3,847</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Total Bookings</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;">
+            <div style="font-size:1.75rem;font-weight:800;color:#4ade80;">2,901</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Confirmed</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;">
+            <div style="font-size:1.75rem;font-weight:800;color:#fbbf24;">312</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Pending</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;">
+            <div style="font-size:1.75rem;font-weight:800;color:#f87171;">634</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Cancelled</div></div>
+        </div>
+
+        <!-- Toolbar -->
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem;">
+          <div style="display:flex;gap:0.5rem;align-items:center;">
+            <input type="date" style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.6rem 0.85rem;color:var(--clr-white);font-size:0.82rem;outline:none;">
+            <span style="color:var(--clr-text-muted);font-size:0.82rem;">to</span>
+            <input type="date" style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.6rem 0.85rem;color:var(--clr-white);font-size:0.82rem;outline:none;">
+          </div>
+          <select style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.6rem 1rem;color:var(--clr-white);font-size:0.88rem;outline:none;">
+            <option>All Status</option><option>Confirmed</option><option>Pending</option><option>Cancelled</option>
+          </select>
+          <a href="404.html" class="btn btn-ghost btn-sm" style="margin-left:auto;"><i class="fa-solid fa-download"></i> Export CSV</a>
+        </div>
+
+        <div class="dash-table-card">
+          <div style="overflow-x:auto;">
+            <table class="dash-table">
+              <thead><tr><th>Booking ID</th><th>Customer</th><th>Package</th><th>Travel Date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.78rem;">#WP-2026-1042</code></td><td>Arjun Mehta</td><td>Himalayan Trek 6D</td><td>15 Jul 2026</td><td style="color:var(--clr-accent);font-weight:700;">₹8,999</td><td><span class="status-badge status-confirmed"><span class="status-dot"></span>Confirmed</span></td><td><a href="404.html" class="btn btn-ghost btn-sm">View</a> <a href="404.html" class="btn btn-ghost btn-sm" style="color:#f87171;">Cancel</a></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.78rem;">#WP-2026-1039</code></td><td>Priya Sharma</td><td>Rishikesh Rafting 3D</td><td>20 Jul 2026</td><td style="color:var(--clr-accent);font-weight:700;">₹4,499</td><td><span class="status-badge status-pending"><span class="status-dot"></span>Pending</span></td><td><a href="404.html" class="btn btn-primary btn-sm">Confirm</a> <a href="404.html" class="btn btn-ghost btn-sm" style="color:#f87171;">Cancel</a></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.78rem;">#WP-2026-1028</code></td><td>Rohan Das</td><td>Coorg Forest Escape 4D</td><td>1 Aug 2026</td><td style="color:var(--clr-accent);font-weight:700;">₹6,999</td><td><span class="status-badge status-confirmed"><span class="status-dot"></span>Confirmed</span></td><td><a href="404.html" class="btn btn-ghost btn-sm">View</a> <a href="404.html" class="btn btn-ghost btn-sm" style="color:#f87171;">Cancel</a></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.78rem;">#WP-2026-1015</code></td><td>Neha Kapoor</td><td>Paragliding Bir Billing</td><td>10 Aug 2026</td><td style="color:var(--clr-accent);font-weight:700;">₹5,499</td><td><span class="status-badge status-pending"><span class="status-dot"></span>Pending</span></td><td><a href="404.html" class="btn btn-primary btn-sm">Confirm</a> <a href="404.html" class="btn btn-ghost btn-sm" style="color:#f87171;">Cancel</a></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.78rem;">#WP-2026-0998</code></td><td>Vikram Singh</td><td>Kashmir Meadows 7D</td><td>5 Sep 2026</td><td style="color:var(--clr-accent);font-weight:700;">₹14,999</td><td><span class="status-badge status-confirmed"><span class="status-dot"></span>Confirmed</span></td><td><a href="404.html" class="btn btn-ghost btn-sm">View</a> <a href="404.html" class="btn btn-ghost btn-sm" style="color:#f87171;">Cancel</a></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.78rem;">#WP-2026-0985</code></td><td>Meera Nair</td><td>Western Ghats Trek 3D</td><td>15 Sep 2026</td><td style="color:var(--clr-accent);font-weight:700;">₹3,999</td><td><span class="status-badge status-cancelled"><span class="status-dot"></span>Cancelled</span></td><td><a href="404.html" class="btn btn-ghost btn-sm">View</a> <a href="404.html" class="btn btn-ghost btn-sm">Refund</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 0 0;flex-wrap:wrap;gap:0.75rem;">
+            <span style="font-size:0.82rem;color:var(--clr-text-muted);">Showing 1–6 of 3,847 bookings</span>
+            <div style="display:flex;gap:0.4rem;">
+              <a href="404.html" class="btn btn-ghost btn-sm">‹ Prev</a>
+              <a href="404.html" class="btn btn-primary btn-sm">1</a>
+              <a href="404.html" class="btn btn-ghost btn-sm">2</a>
+              <a href="404.html" class="btn btn-ghost btn-sm">3</a>
+              <a href="404.html" class="btn btn-ghost btn-sm">Next ›</a>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- ── SECTION: Packages ── -->
       <div class="dash-section" id="sec-packages" style="display:none;">
-        <div style="padding:3rem;text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);">
-          <div style="font-size:3rem;margin-bottom:1rem;">🏕️</div>
-          <h3>Adventure Packages</h3>
-          <p style="margin-top:0.5rem;">Create, edit, and manage all adventure packages. Set pricing, availability, inclusions and publish to website.</p>
+        <div class="dash-page-title"><h1>Adventure <span class="text-gradient">Packages</span></h1></div>
+
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;">
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;"><div style="font-size:1.75rem;font-weight:800;color:var(--clr-accent);">24</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Total Packages</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;"><div style="font-size:1.75rem;font-weight:800;color:#4ade80;">18</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Active</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;"><div style="font-size:1.75rem;font-weight:800;color:#fbbf24;">4</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Draft</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;"><div style="font-size:1.75rem;font-weight:800;color:var(--clr-text-muted);">2</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Archived</div></div>
+        </div>
+
+        <!-- Toolbar -->
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem;">
+          <div style="flex:1;min-width:200px;position:relative;">
+            <i class="fa-solid fa-search" style="position:absolute;left:0.9rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);font-size:0.8rem;"></i>
+            <input type="text" placeholder="Search packages..." style="width:100%;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.6rem 0.9rem 0.6rem 2.2rem;color:var(--clr-white);font-size:0.88rem;outline:none;">
+          </div>
+          <a href="404.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Add Package</a>
+        </div>
+
+        <!-- Package Cards Grid -->
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;">
+          <!-- Card 1 -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <span style="background:rgba(74,222,128,0.15);color:var(--clr-accent);font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid rgba(74,222,128,0.3);">🥾 Trekking</span>
+              <span style="background:rgba(74,222,128,0.1);color:var(--clr-accent);font-size:0.72rem;padding:3px 10px;border-radius:999px;">● Active</span>
+            </div>
+            <div><div style="font-size:1.05rem;font-weight:700;color:var(--clr-white);margin-bottom:0.35rem;">Himalayan Base Camp Trek</div>
+              <div style="display:flex;gap:1rem;font-size:0.8rem;color:var(--clr-text-muted);flex-wrap:wrap;">
+                <span><i class="fa-solid fa-clock" style="color:var(--clr-accent);"></i> 10 Days</span>
+                <span><i class="fa-solid fa-signal" style="color:#f97316;"></i> Hard</span>
+                <span><i class="fa-solid fa-indian-rupee-sign" style="color:var(--clr-accent);"></i> 18,999</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.5rem;"><a href="404.html" class="btn btn-ghost btn-sm">Edit</a><a href="404.html" class="btn btn-ghost btn-sm">View</a><a href="404.html" class="btn btn-ghost btn-sm" style="margin-left:auto;color:var(--clr-text-muted);">Archive</a></div>
+          </div>
+          <!-- Card 2 -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <span style="background:rgba(96,165,250,0.15);color:#60a5fa;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid rgba(96,165,250,0.3);">🚣 Rafting</span>
+              <span style="background:rgba(74,222,128,0.1);color:var(--clr-accent);font-size:0.72rem;padding:3px 10px;border-radius:999px;">● Active</span>
+            </div>
+            <div><div style="font-size:1.05rem;font-weight:700;color:var(--clr-white);margin-bottom:0.35rem;">Rishikesh Adventure Rush</div>
+              <div style="display:flex;gap:1rem;font-size:0.8rem;color:var(--clr-text-muted);flex-wrap:wrap;">
+                <span><i class="fa-solid fa-clock" style="color:var(--clr-accent);"></i> 5 Days</span>
+                <span><i class="fa-solid fa-signal" style="color:#fbbf24;"></i> Moderate</span>
+                <span><i class="fa-solid fa-indian-rupee-sign" style="color:var(--clr-accent);"></i> 8,499</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.5rem;"><a href="404.html" class="btn btn-ghost btn-sm">Edit</a><a href="404.html" class="btn btn-ghost btn-sm">View</a><a href="404.html" class="btn btn-ghost btn-sm" style="margin-left:auto;color:var(--clr-text-muted);">Archive</a></div>
+          </div>
+          <!-- Card 3 -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <span style="background:rgba(167,243,208,0.15);color:#6ee7b7;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid rgba(167,243,208,0.3);">🏕️ Camping</span>
+              <span style="background:rgba(74,222,128,0.1);color:var(--clr-accent);font-size:0.72rem;padding:3px 10px;border-radius:999px;">● Active</span>
+            </div>
+            <div><div style="font-size:1.05rem;font-weight:700;color:var(--clr-white);margin-bottom:0.35rem;">Coorg Forest Escape</div>
+              <div style="display:flex;gap:1rem;font-size:0.8rem;color:var(--clr-text-muted);flex-wrap:wrap;">
+                <span><i class="fa-solid fa-clock" style="color:var(--clr-accent);"></i> 4 Days</span>
+                <span><i class="fa-solid fa-signal" style="color:#4ade80;"></i> Easy</span>
+                <span><i class="fa-solid fa-indian-rupee-sign" style="color:var(--clr-accent);"></i> 6,999</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.5rem;"><a href="404.html" class="btn btn-ghost btn-sm">Edit</a><a href="404.html" class="btn btn-ghost btn-sm">View</a><a href="404.html" class="btn btn-ghost btn-sm" style="margin-left:auto;color:var(--clr-text-muted);">Archive</a></div>
+          </div>
+          <!-- Card 4 -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <span style="background:rgba(167,243,208,0.15);color:#34d399;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid rgba(52,211,153,0.3);">🏔️ Trekking</span>
+              <span style="background:rgba(74,222,128,0.1);color:var(--clr-accent);font-size:0.72rem;padding:3px 10px;border-radius:999px;">● Active</span>
+            </div>
+            <div><div style="font-size:1.05rem;font-weight:700;color:var(--clr-white);margin-bottom:0.35rem;">Kashmir Meadows Tour</div>
+              <div style="display:flex;gap:1rem;font-size:0.8rem;color:var(--clr-text-muted);flex-wrap:wrap;">
+                <span><i class="fa-solid fa-clock" style="color:var(--clr-accent);"></i> 7 Days</span>
+                <span><i class="fa-solid fa-signal" style="color:#fbbf24;"></i> Moderate</span>
+                <span><i class="fa-solid fa-indian-rupee-sign" style="color:var(--clr-accent);"></i> 14,999</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.5rem;"><a href="404.html" class="btn btn-ghost btn-sm">Edit</a><a href="404.html" class="btn btn-ghost btn-sm">View</a><a href="404.html" class="btn btn-ghost btn-sm" style="margin-left:auto;color:var(--clr-text-muted);">Archive</a></div>
+          </div>
+          <!-- Card 5 -->
+          <div style="background:var(--glass-bg);border:1px solid rgba(251,191,36,0.2);border-radius:var(--r-xl);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <span style="background:rgba(74,222,128,0.15);color:var(--clr-accent);font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid rgba(74,222,128,0.3);">🌿 Trekking</span>
+              <span style="background:rgba(251,191,36,0.1);color:#fbbf24;font-size:0.72rem;padding:3px 10px;border-radius:999px;">◐ Draft</span>
+            </div>
+            <div><div style="font-size:1.05rem;font-weight:700;color:var(--clr-white);margin-bottom:0.35rem;">Meghalaya Root Bridge Trek</div>
+              <div style="display:flex;gap:1rem;font-size:0.8rem;color:var(--clr-text-muted);flex-wrap:wrap;">
+                <span><i class="fa-solid fa-clock" style="color:var(--clr-accent);"></i> 6 Days</span>
+                <span><i class="fa-solid fa-signal" style="color:#f97316;"></i> Hard</span>
+                <span><i class="fa-solid fa-indian-rupee-sign" style="color:var(--clr-accent);"></i> 12,999</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.5rem;"><a href="404.html" class="btn btn-ghost btn-sm">Edit</a><a href="404.html" class="btn btn-primary btn-sm">Publish</a></div>
+          </div>
+          <!-- Card 6 -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <span style="background:rgba(167,243,208,0.15);color:#6ee7b7;font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid rgba(167,243,208,0.3);">🌄 Camping</span>
+              <span style="background:rgba(74,222,128,0.1);color:var(--clr-accent);font-size:0.72rem;padding:3px 10px;border-radius:999px;">● Active</span>
+            </div>
+            <div><div style="font-size:1.05rem;font-weight:700;color:var(--clr-white);margin-bottom:0.35rem;">Western Ghats Camping</div>
+              <div style="display:flex;gap:1rem;font-size:0.8rem;color:var(--clr-text-muted);flex-wrap:wrap;">
+                <span><i class="fa-solid fa-clock" style="color:var(--clr-accent);"></i> 3 Days</span>
+                <span><i class="fa-solid fa-signal" style="color:#4ade80;"></i> Easy</span>
+                <span><i class="fa-solid fa-indian-rupee-sign" style="color:var(--clr-accent);"></i> 3,999</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.5rem;"><a href="404.html" class="btn btn-ghost btn-sm">Edit</a><a href="404.html" class="btn btn-ghost btn-sm">View</a><a href="404.html" class="btn btn-ghost btn-sm" style="margin-left:auto;color:var(--clr-text-muted);">Archive</a></div>
+          </div>
         </div>
       </div>
 
       <!-- ── SECTION: Messages ── -->
       <div class="dash-section" id="sec-messages" style="display:none;">
-        <div style="padding:3rem;text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);">
-          <div style="font-size:3rem;margin-bottom:1rem;">✉️</div>
-          <h3>Messages (3 Unread)</h3>
-          <p style="margin-top:0.5rem;">View and reply to customer enquiries, group booking requests and feedback from the contact form.</p>
+        <div class="dash-page-title"><h1>Customer <span class="text-gradient">Messages</span></h1></div>
+
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;">
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;"><div style="font-size:1.75rem;font-weight:800;color:var(--clr-accent);">47</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Total Messages</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;"><div style="font-size:1.75rem;font-weight:800;color:#f87171;">3</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Unread</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;"><div style="font-size:1.75rem;font-weight:800;color:#4ade80;">38</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Replied</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;text-align:center;"><div style="font-size:1.75rem;font-weight:800;color:#fbbf24;">6</div><div style="font-size:0.78rem;color:var(--clr-text-muted);margin-top:0.25rem;">Pending Reply</div></div>
+        </div>
+
+        <!-- Toolbar -->
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem;">
+          <div style="flex:1;min-width:200px;position:relative;">
+            <i class="fa-solid fa-search" style="position:absolute;left:0.9rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);font-size:0.8rem;"></i>
+            <input type="text" placeholder="Search messages..." style="width:100%;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.6rem 0.9rem 0.6rem 2.2rem;color:var(--clr-white);font-size:0.88rem;outline:none;">
+          </div>
+          <select style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.6rem 1rem;color:var(--clr-white);font-size:0.88rem;outline:none;">
+            <option>All</option><option>Unread</option><option>Read</option>
+          </select>
+          <a href="404.html" class="btn btn-ghost btn-sm">Mark All Read</a>
+        </div>
+
+        <!-- Messages List -->
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <!-- Unread messages -->
+          <div style="background:rgba(74,222,128,0.04);border:1px solid rgba(74,222,128,0.15);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:center;">
+            <div class="dash-user-avatar-letter" style="width:42px;height:42px;font-size:0.9rem;flex-shrink:0;">A</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.2rem;">
+                <strong style="color:var(--clr-white);">Arjun Mehta</strong>
+                <span style="font-size:0.75rem;color:var(--clr-text-muted);">2 min ago</span>
+              </div>
+              <div style="font-size:0.85rem;color:var(--clr-accent);margin-bottom:0.15rem;">Group Booking Request</div>
+              <div style="font-size:0.8rem;color:var(--clr-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">We are a group of 15 people interested in the Himalayan Trek package...</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;flex-shrink:0;">
+              <div style="width:8px;height:8px;background:#f87171;border-radius:50%;"></div>
+              <a href="404.html" class="btn btn-primary btn-sm">Reply</a>
+            </div>
+          </div>
+          <div style="background:rgba(74,222,128,0.04);border:1px solid rgba(74,222,128,0.15);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:center;">
+            <div class="dash-user-avatar-letter" style="width:42px;height:42px;font-size:0.9rem;flex-shrink:0;background:linear-gradient(135deg,#be185d,#ec4899);">M</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.2rem;">
+                <strong style="color:var(--clr-white);">Meera Nair</strong>
+                <span style="font-size:0.75rem;color:var(--clr-text-muted);">1 hour ago</span>
+              </div>
+              <div style="font-size:0.85rem;color:var(--clr-accent);margin-bottom:0.15rem;">Cancellation Query</div>
+              <div style="font-size:0.8rem;color:var(--clr-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">I need to cancel my booking #WP-2026-0985 due to an emergency and...</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;flex-shrink:0;">
+              <div style="width:8px;height:8px;background:#f87171;border-radius:50%;"></div>
+              <a href="404.html" class="btn btn-primary btn-sm">Reply</a>
+            </div>
+          </div>
+          <div style="background:rgba(74,222,128,0.04);border:1px solid rgba(74,222,128,0.15);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:center;">
+            <div class="dash-user-avatar-letter" style="width:42px;height:42px;font-size:0.9rem;flex-shrink:0;background:linear-gradient(135deg,#0891b2,#06b6d4);">R</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.2rem;">
+                <strong style="color:var(--clr-white);">Rohit Kumar</strong>
+                <span style="font-size:0.75rem;color:var(--clr-text-muted);">3 hours ago</span>
+              </div>
+              <div style="font-size:0.85rem;color:var(--clr-accent);margin-bottom:0.15rem;">Custom Itinerary Request</div>
+              <div style="font-size:0.8rem;color:var(--clr-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Can you create a custom 10-day adventure package for our honeymoon trip...</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;flex-shrink:0;">
+              <div style="width:8px;height:8px;background:#f87171;border-radius:50%;"></div>
+              <a href="404.html" class="btn btn-primary btn-sm">Reply</a>
+            </div>
+          </div>
+          <!-- Read messages -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:center;">
+            <div class="dash-user-avatar-letter" style="width:42px;height:42px;font-size:0.9rem;flex-shrink:0;background:linear-gradient(135deg,#7c3aed,#a855f7);opacity:0.7;">P</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.2rem;">
+                <strong style="color:var(--clr-text-muted);">Priya Sharma</strong>
+                <span style="font-size:0.75rem;color:var(--clr-text-muted);">1 day ago</span>
+              </div>
+              <div style="font-size:0.85rem;color:var(--clr-text-muted);margin-bottom:0.15rem;">Feedback — Rishikesh Trip</div>
+              <div style="font-size:0.8rem;color:var(--clr-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">The trip was absolutely amazing! Our guide Rohan was fantastic...</div>
+            </div>
+            <div style="flex-shrink:0;"><a href="404.html" class="btn btn-ghost btn-sm">View</a></div>
+          </div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:center;">
+            <div class="dash-user-avatar-letter" style="width:42px;height:42px;font-size:0.9rem;flex-shrink:0;background:linear-gradient(135deg,#0f766e,#14b8a6);opacity:0.7;">V</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.2rem;">
+                <strong style="color:var(--clr-text-muted);">Vikram Singh</strong>
+                <span style="font-size:0.75rem;color:var(--clr-text-muted);">2 days ago</span>
+              </div>
+              <div style="font-size:0.85rem;color:var(--clr-text-muted);margin-bottom:0.15rem;">Invoice Request</div>
+              <div style="font-size:0.8rem;color:var(--clr-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Could you please send me the GST invoice for my last booking...</div>
+            </div>
+            <div style="flex-shrink:0;"><a href="404.html" class="btn btn-ghost btn-sm">View</a></div>
+          </div>
         </div>
       </div>
 
       <!-- ── SECTION: Settings ── -->
       <div class="dash-section" id="sec-settings" style="display:none;">
-        <div style="padding:3rem;text-align:center;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);">
-          <div style="font-size:3rem;margin-bottom:1rem;">⚙️</div>
-          <h3>System Settings</h3>
-          <p style="margin-top:0.5rem;">Configure website settings, payment gateways, email templates, notification preferences and more.</p>
+        <div class="dash-page-title"><h1>System <span class="text-gradient">Settings</span></h1></div>
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+          <!-- General Settings -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:2rem;">
+            <h3 style="margin-bottom:1.5rem;font-size:1rem;display:flex;align-items:center;gap:0.6rem;"><i class="fa-solid fa-sliders" style="color:var(--clr-accent);"></i> General Settings</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+              <div><label style="display:block;font-size:0.8rem;color:var(--clr-text-muted);margin-bottom:0.4rem;">Site Name</label>
+                <input type="text" value="WildPeak Adventures" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.65rem 1rem;color:var(--clr-white);font-size:0.88rem;outline:none;"></div>
+              <div><label style="display:block;font-size:0.8rem;color:var(--clr-text-muted);margin-bottom:0.4rem;">Contact Email</label>
+                <input type="email" value="admin@wildpeakadventures.in" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.65rem 1rem;color:var(--clr-white);font-size:0.88rem;outline:none;"></div>
+              <div><label style="display:block;font-size:0.8rem;color:var(--clr-text-muted);margin-bottom:0.4rem;">Support Phone</label>
+                <input type="tel" value="+91 98765 43210" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.65rem 1rem;color:var(--clr-white);font-size:0.88rem;outline:none;"></div>
+              <div><label style="display:block;font-size:0.8rem;color:var(--clr-text-muted);margin-bottom:0.4rem;">Timezone</label>
+                <select style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.65rem 1rem;color:var(--clr-white);font-size:0.88rem;outline:none;"><option>Asia/Kolkata (IST +5:30)</option><option>UTC</option></select></div>
+            </div>
+            <a href="404.html" class="btn btn-primary btn-sm">Save Changes</a>
+          </div>
+
+          <!-- Notification Settings -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:2rem;">
+            <h3 style="margin-bottom:1.5rem;font-size:1rem;display:flex;align-items:center;gap:0.6rem;"><i class="fa-solid fa-bell" style="color:var(--clr-accent);"></i> Notification Preferences</h3>
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">New Booking Alerts</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Email notification when a new booking is placed</p></div>
+                <div style="width:44px;height:24px;background:var(--grad-accent);border-radius:var(--r-full);position:relative;cursor:pointer;flex-shrink:0;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;"></div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">Cancellation Alerts</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">SMS alert when a booking is cancelled</p></div>
+                <div style="width:44px;height:24px;background:var(--grad-accent);border-radius:var(--r-full);position:relative;cursor:pointer;flex-shrink:0;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;"></div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">Weekly Revenue Report</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Email digest every Monday with revenue summary</p></div>
+                <div style="width:44px;height:24px;background:rgba(255,255,255,0.1);border-radius:var(--r-full);position:relative;cursor:pointer;flex-shrink:0;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;left:2px;top:2px;"></div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">New User Registrations</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Alert when a new user signs up on the platform</p></div>
+                <div style="width:44px;height:24px;background:var(--grad-accent);border-radius:var(--r-full);position:relative;cursor:pointer;flex-shrink:0;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Danger Zone -->
+          <div style="background:rgba(248,113,113,0.04);border:1px solid rgba(248,113,113,0.25);border-radius:var(--r-xl);padding:2rem;">
+            <h3 style="margin-bottom:1.5rem;font-size:1rem;color:#f87171;display:flex;align-items:center;gap:0.6rem;"><i class="fa-solid fa-triangle-exclamation"></i> Danger Zone</h3>
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1rem;background:rgba(255,255,255,0.02);border-radius:var(--r-md);flex-wrap:wrap;gap:0.75rem;">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">Clear All Cache</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Remove cached data to refresh site content</p></div>
+                <a href="404.html" class="btn btn-sm" style="background:rgba(248,113,113,0.1);color:#f87171;border:1px solid rgba(248,113,113,0.3);">Clear Cache</a>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1rem;background:rgba(255,255,255,0.02);border-radius:var(--r-md);flex-wrap:wrap;gap:0.75rem;">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">Export All Data</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Download full backup of all users and bookings</p></div>
+                <a href="404.html" class="btn btn-sm" style="background:rgba(248,113,113,0.1);color:#f87171;border:1px solid rgba(248,113,113,0.3);">Export</a>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1rem;background:rgba(255,255,255,0.02);border-radius:var(--r-md);flex-wrap:wrap;gap:0.75rem;">
+                <div><strong style="color:#f87171;font-size:0.9rem;">Reset to Defaults</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">⚠️ This will wipe all custom settings permanently</p></div>
+                <a href="404.html" class="btn btn-sm" style="background:#f87171;color:#fff;border:none;">Reset</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

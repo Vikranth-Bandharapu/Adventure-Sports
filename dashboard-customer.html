@@ -87,24 +87,24 @@
   <main class="dashboard-main" id="dashMain">
 
     <!-- Topbar -->
-    <header class="dashboard-topbar">
-      <div class="topbar-left">
+    <header class="dashboard-topbar" style="flex-wrap:wrap;">
+      <div class="topbar-left" style="flex:1;min-width:0;overflow:hidden;">
         <button class="sidebar-mobile-toggle" id="mobileSidebarToggle" aria-label="Open sidebar">
           <i class="fa-solid fa-bars"></i>
         </button>
-        <div class="topbar-greeting">
-          Hey, <strong class="dash-user-name">Explorer</strong> 🌿 Ready for your next adventure?
+        <div class="topbar-greeting" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;">
+          Hey, <strong class="dash-user-name">Explorer</strong> <span class="topbar-greeting-sub">🌿 Ready for your next adventure?</span>
         </div>
       </div>
-      <div class="topbar-right">
+      <div class="topbar-right" style="flex-shrink:0;">
         <div class="topbar-date">
           <i class="fa-regular fa-calendar"></i>
           <span id="topbarDate"></span>
         </div>
-        <a href="404.html" class="btn btn-primary btn-sm ripple">
-          <i class="fa-solid fa-plus"></i> Book Adventure
+        <a href="404.html" class="btn btn-primary btn-sm ripple topbar-book-btn">
+          <i class="fa-solid fa-plus"></i> <span class="topbar-book-text">Book Adventure</span>
         </a>
-        <div style="width:40px;height:40px;background:var(--grad-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#060d08;font-size:0.95rem;" class="dash-user-avatar-letter">E</div>
+        <div style="width:40px;height:40px;background:var(--grad-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#060d08;font-size:0.95rem;flex-shrink:0;" class="dash-user-avatar-letter">E</div>
       </div>
     </header>
 
@@ -244,24 +244,104 @@
       <!-- ── SECTION: My Adventures ── -->
       <div class="dash-section" id="sec-adventures" style="display:none;">
         <div class="dash-page-title"><h1>My <span class="text-gradient">Adventures</span></h1></div>
-        <div class="adventure-cards-grid">
-          <div class="adv-mini-card">
-            <span class="adv-mini-icon">🏔️</span>
-            <div class="adv-mini-title">Himalayan Trek — 6D</div>
-            <div class="adv-mini-date">15 Jul 2026 · Uttarakhand</div>
-            <div class="adv-mini-status"><span class="status-badge status-confirmed"><span class="status-dot"></span>Upcoming</span><a href="404.html" class="btn btn-ghost btn-sm">View</a></div>
+
+        <!-- Filter tabs -->
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+          <button onclick="filterAdv(this,'all')" class="adv-filter-btn active-filter" style="background:var(--grad-accent);color:#060d08;border:none;padding:0.45rem 1.1rem;border-radius:999px;font-size:0.82rem;font-weight:700;cursor:pointer;">All</button>
+          <button onclick="filterAdv(this,'upcoming')" class="adv-filter-btn" style="background:var(--glass-bg);color:var(--clr-text-muted);border:1px solid var(--glass-border);padding:0.45rem 1.1rem;border-radius:999px;font-size:0.82rem;cursor:pointer;">Upcoming</button>
+          <button onclick="filterAdv(this,'completed')" class="adv-filter-btn" style="background:var(--glass-bg);color:var(--clr-text-muted);border:1px solid var(--glass-border);padding:0.45rem 1.1rem;border-radius:999px;font-size:0.82rem;cursor:pointer;">Completed</button>
+          <button onclick="filterAdv(this,'cancelled')" class="adv-filter-btn" style="background:var(--glass-bg);color:var(--clr-text-muted);border:1px solid var(--glass-border);padding:0.45rem 1.1rem;border-radius:999px;font-size:0.82rem;cursor:pointer;">Cancelled</button>
+        </div>
+
+        <!-- Adventure cards -->
+        <div style="display:flex;flex-direction:column;gap:1.25rem;" id="advCardList">
+
+          <!-- Card 1: Upcoming -->
+          <div class="adv-full-card" data-status="upcoming" style="background:var(--glass-bg);border:1px solid rgba(74,222,128,0.2);border-radius:var(--r-xl);padding:1.5rem;display:flex;gap:1.25rem;align-items:flex-start;flex-wrap:wrap;">
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,#1a4731,#2d7a4f);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">🏔️</div>
+            <div style="flex:1;min-width:200px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
+                <strong style="color:var(--clr-white);font-size:1.05rem;">Himalayan Base Camp Trek</strong>
+                <span class="status-badge status-confirmed"><span class="status-dot"></span>Upcoming</span>
+              </div>
+              <div style="display:flex;gap:1rem;font-size:0.8rem;color:var(--clr-text-muted);flex-wrap:wrap;margin-bottom:0.75rem;">
+                <span>📍 Uttarakhand</span><span>📅 15–21 Jul 2026</span><span>⏱ 6 Days</span><span>👤 Guide: Rohan Das</span>
+              </div>
+              <div style="margin-bottom:0.6rem;">
+                <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--clr-text-muted);margin-bottom:0.3rem;"><span>Pre-trip checklist</span><span style="color:var(--clr-accent);">60%</span></div>
+                <div style="height:5px;background:rgba(255,255,255,0.08);border-radius:999px;overflow:hidden;"><div style="width:60%;height:100%;background:var(--grad-accent);border-radius:999px;"></div></div>
+              </div>
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;"><a href="404.html" class="btn btn-primary btn-sm">View Details</a><a href="404.html" class="btn btn-ghost btn-sm">Download Itinerary</a></div>
+            </div>
           </div>
-          <div class="adv-mini-card">
-            <span class="adv-mini-icon">🚣</span>
-            <div class="adv-mini-title">Rishikesh Rafting</div>
-            <div class="adv-mini-date">Mar 2026 · Rishikesh</div>
-            <div class="adv-mini-status"><span class="status-badge status-confirmed"><span class="status-dot"></span>Done ★★★★★</span><a href="404.html" class="btn btn-ghost btn-sm">Review</a></div>
+
+          <!-- Card 2: Completed -->
+          <div class="adv-full-card" data-status="completed" style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;gap:1.25rem;align-items:flex-start;flex-wrap:wrap;">
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">🚣</div>
+            <div style="flex:1;min-width:200px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
+                <strong style="color:var(--clr-white);font-size:1.05rem;">Rishikesh Rafting Adventure</strong>
+                <span class="status-badge" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:#60a5fa;"><span class="status-dot" style="background:#60a5fa;"></span>Completed</span>
+              </div>
+              <div style="display:flex;gap:1rem;font-size:0.8rem;color:var(--clr-text-muted);flex-wrap:wrap;margin-bottom:0.75rem;">
+                <span>📍 Rishikesh</span><span>📅 Mar 12–14, 2026</span><span>⏱ 3 Days</span><span>👤 Guide: Arjun Mehta</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+                <span style="color:#fbbf24;font-size:1rem;">★★★★★</span><span style="font-size:0.78rem;color:var(--clr-text-muted);">5.0 — Excellent</span>
+              </div>
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;"><a href="404.html" class="btn btn-ghost btn-sm">View Details</a><a href="404.html" class="btn btn-primary btn-sm">Download Certificate</a></div>
+            </div>
           </div>
-          <div class="adv-mini-card">
-            <span class="adv-mini-icon">🪂</span>
-            <div class="adv-mini-title">Paragliding Bir Billing</div>
-            <div class="adv-mini-date">Jan 2026 · Himachal</div>
-            <div class="adv-mini-status"><span class="status-badge status-confirmed"><span class="status-dot"></span>Done ★★★★★</span><a href="404.html" class="btn btn-ghost btn-sm">Review</a></div>
+
+          <!-- Card 3: Completed -->
+          <div class="adv-full-card" data-status="completed" style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;gap:1.25rem;align-items:flex-start;flex-wrap:wrap;">
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">🪂</div>
+            <div style="flex:1;min-width:200px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
+                <strong style="color:var(--clr-white);font-size:1.05rem;">Paragliding Bir Billing</strong>
+                <span class="status-badge" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:#60a5fa;"><span class="status-dot" style="background:#60a5fa;"></span>Completed</span>
+              </div>
+              <div style="display:flex;gap:1rem;font-size:0.8rem;color:var(--clr-text-muted);flex-wrap:wrap;margin-bottom:0.75rem;">
+                <span>📍 Himachal Pradesh</span><span>📅 Jan 8, 2026</span><span>⏱ 1 Day</span><span>👤 Guide: Vikram Singh</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+                <span style="color:#fbbf24;font-size:1rem;">★★★★★</span><span style="font-size:0.78rem;color:var(--clr-text-muted);">5.0 — Excellent</span>
+              </div>
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;"><a href="404.html" class="btn btn-ghost btn-sm">View Details</a><a href="404.html" class="btn btn-primary btn-sm">Download Certificate</a></div>
+            </div>
+          </div>
+
+          <!-- Card 4: Completed -->
+          <div class="adv-full-card" data-status="completed" style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;gap:1.25rem;align-items:flex-start;flex-wrap:wrap;">
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,#065f46,#10b981);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">🏕️</div>
+            <div style="flex:1;min-width:200px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
+                <strong style="color:var(--clr-white);font-size:1.05rem;">Coorg Forest Camping</strong>
+                <span class="status-badge" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:#60a5fa;"><span class="status-dot" style="background:#60a5fa;"></span>Completed</span>
+              </div>
+              <div style="display:flex;gap:1rem;font-size:0.8rem;color:var(--clr-text-muted);flex-wrap:wrap;margin-bottom:0.75rem;">
+                <span>📍 Karnataka</span><span>📅 Dec 20–22, 2025</span><span>⏱ 3 Days</span><span>👤 Guide: Priya Sharma</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+                <span style="color:#fbbf24;font-size:1rem;">★★★★☆</span><span style="font-size:0.78rem;color:var(--clr-text-muted);">4.0 — Great</span>
+              </div>
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;"><a href="404.html" class="btn btn-ghost btn-sm">View Details</a><a href="404.html" class="btn btn-primary btn-sm">Download Certificate</a></div>
+            </div>
+          </div>
+
+          <!-- Card 5: Cancelled -->
+          <div class="adv-full-card" data-status="cancelled" style="background:rgba(248,113,113,0.03);border:1px solid rgba(248,113,113,0.15);border-radius:var(--r-xl);padding:1.5rem;display:flex;gap:1.25rem;align-items:flex-start;flex-wrap:wrap;">
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,#1e3a5f,#2563eb);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;opacity:0.6;">❄️</div>
+            <div style="flex:1;min-width:200px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
+                <strong style="color:var(--clr-text-muted);font-size:1.05rem;">Kashmir Winter Trek</strong>
+                <span class="status-badge status-cancelled"><span class="status-dot"></span>Cancelled</span>
+              </div>
+              <div style="display:flex;gap:1rem;font-size:0.8rem;color:var(--clr-text-muted);flex-wrap:wrap;margin-bottom:0.75rem;">
+                <span>📍 J&amp;K</span><span>📅 Nov 5–10, 2025</span><span>⏱ 5 Days</span><span>👤 Guide: Neha Kapoor</span>
+              </div>
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;"><a href="404.html" class="btn btn-ghost btn-sm">View Details</a><a href="404.html" class="btn btn-ghost btn-sm">View Refund Status</a></div>
+            </div>
           </div>
         </div>
       </div>
@@ -269,15 +349,38 @@
       <!-- ── SECTION: Bookings ── -->
       <div class="dash-section" id="sec-bookings" style="display:none;">
         <div class="dash-page-title"><h1>Booking <span class="text-gradient">History</span></h1></div>
+
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-bottom:1.5rem;">
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:800;color:var(--clr-accent);">5</div><div style="font-size:0.72rem;color:var(--clr-text-muted);margin-top:0.2rem;">Total</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:800;color:#4ade80;">1</div><div style="font-size:0.72rem;color:var(--clr-text-muted);margin-top:0.2rem;">Upcoming</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:800;color:#60a5fa;">3</div><div style="font-size:0.72rem;color:var(--clr-text-muted);margin-top:0.2rem;">Completed</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.1rem;text-align:center;"><div style="font-size:1.5rem;font-weight:800;color:#f87171;">1</div><div style="font-size:0.72rem;color:var(--clr-text-muted);margin-top:0.2rem;">Cancelled</div></div>
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.1rem;text-align:center;"><div style="font-size:1.2rem;font-weight:800;color:var(--clr-accent);">₹30,495</div><div style="font-size:0.72rem;color:var(--clr-text-muted);margin-top:0.2rem;">Total Spent</div></div>
+        </div>
+
+        <!-- Toolbar -->
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem;">
+          <div style="flex:1;min-width:180px;position:relative;">
+            <i class="fa-solid fa-search" style="position:absolute;left:0.9rem;top:50%;transform:translateY(-50%);color:var(--clr-text-muted);font-size:0.8rem;"></i>
+            <input type="text" placeholder="Search bookings..." style="width:100%;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.6rem 0.9rem 0.6rem 2.2rem;color:var(--clr-white);font-size:0.88rem;outline:none;">
+          </div>
+          <select style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:0.6rem 1rem;color:var(--clr-white);font-size:0.88rem;outline:none;">
+            <option>All Status</option><option>Confirmed</option><option>Completed</option><option>Cancelled</option>
+          </select>
+          <a href="404.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-download"></i> Download All</a>
+        </div>
+
         <div class="dash-table-card">
-          <div class="dash-table-header"><div class="dash-table-title">All Bookings</div></div>
           <div style="overflow-x:auto;">
             <table class="dash-table">
-              <thead><tr><th>Booking ID</th><th>Package</th><th>Date</th><th>Paid</th><th>Status</th></tr></thead>
+              <thead><tr><th>Booking ID</th><th>Package</th><th>Travel Date</th><th>Duration</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead>
               <tbody>
-                <tr><td><code style="color:var(--clr-accent);font-size:0.8rem;">#WP-2026-0891</code></td><td>Himalayan Trek 6D</td><td>15 Jul 2026</td><td style="color:var(--clr-accent);font-weight:600;">₹8,999</td><td><span class="status-badge status-confirmed"><span class="status-dot"></span>Confirmed</span></td></tr>
-                <tr><td><code style="color:var(--clr-accent);font-size:0.8rem;">#WP-2026-0345</code></td><td>Rishikesh Rafting 3D</td><td>Mar 2026</td><td style="color:var(--clr-accent);font-weight:600;">₹4,499</td><td><span class="status-badge status-confirmed"><span class="status-dot"></span>Completed</span></td></tr>
-                <tr><td><code style="color:var(--clr-accent);font-size:0.8rem;">#WP-2026-0112</code></td><td>Paragliding Bir Billing</td><td>Jan 2026</td><td style="color:var(--clr-accent);font-weight:600;">₹6,999</td><td><span class="status-badge status-confirmed"><span class="status-dot"></span>Completed</span></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.78rem;">#WP-2026-0891</code></td><td>Himalayan Trek 6D</td><td>15 Jul 2026</td><td>6 Days</td><td style="color:var(--clr-accent);font-weight:700;">₹8,999</td><td><span class="status-badge status-confirmed"><span class="status-dot"></span>Confirmed</span></td><td><a href="404.html" class="btn btn-ghost btn-sm">View Invoice</a></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.78rem;">#WP-2026-0345</code></td><td>Rishikesh Rafting 3D</td><td>Mar 12, 2026</td><td>3 Days</td><td style="color:var(--clr-accent);font-weight:700;">₹4,499</td><td><span class="status-badge" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:#60a5fa;"><span class="status-dot" style="background:#60a5fa;"></span>Completed</span></td><td><a href="404.html" class="btn btn-ghost btn-sm">Download Receipt</a></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.78rem;">#WP-2026-0112</code></td><td>Paragliding Bir Billing</td><td>Jan 8, 2026</td><td>1 Day</td><td style="color:var(--clr-accent);font-weight:700;">₹6,999</td><td><span class="status-badge" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:#60a5fa;"><span class="status-dot" style="background:#60a5fa;"></span>Completed</span></td><td><a href="404.html" class="btn btn-ghost btn-sm">Download Receipt</a></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.78rem;">#WP-2025-0889</code></td><td>Coorg Forest Escape 3D</td><td>Dec 20, 2025</td><td>3 Days</td><td style="color:var(--clr-accent);font-weight:700;">₹5,999</td><td><span class="status-badge" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.25);color:#60a5fa;"><span class="status-dot" style="background:#60a5fa;"></span>Completed</span></td><td><a href="404.html" class="btn btn-ghost btn-sm">Download Receipt</a></td></tr>
+                <tr><td><code style="color:var(--clr-accent);font-size:0.78rem;">#WP-2025-0654</code></td><td>Kashmir Winter Trek 5D</td><td>Nov 5, 2025</td><td>5 Days</td><td style="color:var(--clr-text-muted);font-weight:700;text-decoration:line-through;">₹13,999</td><td><span class="status-badge status-cancelled"><span class="status-dot"></span>Cancelled</span></td><td><a href="404.html" class="btn btn-ghost btn-sm">View Refund</a></td></tr>
               </tbody>
             </table>
           </div>
@@ -286,25 +389,154 @@
 
       <!-- ── SECTION: Wishlist ── -->
       <div class="dash-section" id="sec-wishlist" style="display:none;">
-        <div class="dash-page-title"><h1>My <span class="text-gradient">Wishlist</span></h1></div>
-        <div class="adventure-cards-grid">
-          <div class="adv-mini-card"><span class="adv-mini-icon">🏕️</span><div class="adv-mini-title">Meghalaya Root Bridge Trek</div><div class="adv-mini-date">4–8 Days · Northeast India</div><div class="adv-mini-status"><span class="badge badge-green">From ₹11,999</span><a href="404.html" class="btn btn-primary btn-sm">Book</a></div></div>
-          <div class="adv-mini-card"><span class="adv-mini-icon">❄️</span><div class="adv-mini-title">Kashmir Winter Sports</div><div class="adv-mini-date">5 Days · J&amp;K</div><div class="adv-mini-status"><span class="badge badge-green">From ₹16,999</span><a href="404.html" class="btn btn-primary btn-sm">Book</a></div></div>
-          <div class="adv-mini-card"><span class="adv-mini-icon">🌿</span><div class="adv-mini-title">Western Ghats Camping</div><div class="adv-mini-date">3 Days · Kerala</div><div class="adv-mini-status"><span class="badge badge-green">From ₹5,999</span><a href="404.html" class="btn btn-primary btn-sm">Book</a></div></div>
+        <div class="dash-page-title"><h1>My <span class="text-gradient">Wishlist</span></h1><p style="color:var(--clr-text-muted);font-size:0.88rem;margin-top:0.25rem;">5 adventures saved</p></div>
+
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;">
+          <!-- Wishlist 1 -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;align-items:center;gap:1rem;">
+              <div style="width:56px;height:56px;background:linear-gradient(135deg,#065f46,#10b981);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">🏕️</div>
+              <div><div style="font-weight:700;color:var(--clr-white);">Meghalaya Root Bridge Trek</div><div style="font-size:0.8rem;color:var(--clr-text-muted);">Northeast India</div></div>
+            </div>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;font-size:0.78rem;">
+              <span style="color:var(--clr-text-muted);">⏱ 6 Days</span>
+              <span style="background:rgba(249,115,22,0.12);color:#f97316;padding:2px 8px;border-radius:999px;">Hard</span>
+              <span style="color:var(--clr-accent);font-weight:700;">From ₹11,999</span>
+            </div>
+            <p style="font-size:0.82rem;color:var(--clr-text-muted);margin:0;">Explore the stunning living root bridges deep in Meghalaya's rain forests.</p>
+            <div style="display:flex;gap:0.5rem;"><a href="404.html" class="btn btn-primary btn-sm" style="flex:1;justify-content:center;">Book Now</a><a href="404.html" class="btn btn-ghost btn-sm" style="color:#f87171;">♡ Remove</a></div>
+          </div>
+          <!-- Wishlist 2 -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;align-items:center;gap:1rem;">
+              <div style="width:56px;height:56px;background:linear-gradient(135deg,#1e3a5f,#2563eb);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">❄️</div>
+              <div><div style="font-weight:700;color:var(--clr-white);">Kashmir Winter Sports</div><div style="font-size:0.8rem;color:var(--clr-text-muted);">J&amp;K, India</div></div>
+            </div>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;font-size:0.78rem;">
+              <span style="color:var(--clr-text-muted);">⏱ 5 Days</span>
+              <span style="background:rgba(251,191,36,0.12);color:#fbbf24;padding:2px 8px;border-radius:999px;">Moderate</span>
+              <span style="color:var(--clr-accent);font-weight:700;">From ₹16,999</span>
+            </div>
+            <p style="font-size:0.82rem;color:var(--clr-text-muted);margin:0;">Skiing, snowboarding and sled rides in the snowy paradise of Gulmarg.</p>
+            <div style="display:flex;gap:0.5rem;"><a href="404.html" class="btn btn-primary btn-sm" style="flex:1;justify-content:center;">Book Now</a><a href="404.html" class="btn btn-ghost btn-sm" style="color:#f87171;">♡ Remove</a></div>
+          </div>
+          <!-- Wishlist 3 -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;align-items:center;gap:1rem;">
+              <div style="width:56px;height:56px;background:linear-gradient(135deg,#166534,#4ade80);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">🌿</div>
+              <div><div style="font-weight:700;color:var(--clr-white);">Western Ghats Camping</div><div style="font-size:0.8rem;color:var(--clr-text-muted);">Kerala, India</div></div>
+            </div>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;font-size:0.78rem;">
+              <span style="color:var(--clr-text-muted);">⏱ 3 Days</span>
+              <span style="background:rgba(74,222,128,0.12);color:var(--clr-accent);padding:2px 8px;border-radius:999px;">Easy</span>
+              <span style="color:var(--clr-accent);font-weight:700;">From ₹5,999</span>
+            </div>
+            <p style="font-size:0.82rem;color:var(--clr-text-muted);margin:0;">Immerse in lush rainforest nights, tea gardens and misty mornings.</p>
+            <div style="display:flex;gap:0.5rem;"><a href="404.html" class="btn btn-primary btn-sm" style="flex:1;justify-content:center;">Book Now</a><a href="404.html" class="btn btn-ghost btn-sm" style="color:#f87171;">♡ Remove</a></div>
+          </div>
+          <!-- Wishlist 4 -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;align-items:center;gap:1rem;">
+              <div style="width:56px;height:56px;background:linear-gradient(135deg,#7c2d12,#f97316);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">🏔️</div>
+              <div><div style="font-weight:700;color:var(--clr-white);">Spiti Valley Expedition</div><div style="font-size:0.8rem;color:var(--clr-text-muted);">Himachal Pradesh</div></div>
+            </div>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;font-size:0.78rem;">
+              <span style="color:var(--clr-text-muted);">⏱ 8 Days</span>
+              <span style="background:rgba(248,113,113,0.12);color:#f87171;padding:2px 8px;border-radius:999px;">Extreme</span>
+              <span style="color:var(--clr-accent);font-weight:700;">From ₹22,999</span>
+            </div>
+            <p style="font-size:0.82rem;color:var(--clr-text-muted);margin:0;">High-altitude desert adventure through ancient monasteries and stark landscapes.</p>
+            <div style="display:flex;gap:0.5rem;"><a href="404.html" class="btn btn-primary btn-sm" style="flex:1;justify-content:center;">Book Now</a><a href="404.html" class="btn btn-ghost btn-sm" style="color:#f87171;">♡ Remove</a></div>
+          </div>
+          <!-- Wishlist 5 -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;align-items:center;gap:1rem;">
+              <div style="width:56px;height:56px;background:linear-gradient(135deg,#713f12,#d97706);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">🦁</div>
+              <div><div style="font-weight:700;color:var(--clr-white);">Jim Corbett Wildlife Safari</div><div style="font-size:0.8rem;color:var(--clr-text-muted);">Uttarakhand</div></div>
+            </div>
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;font-size:0.78rem;">
+              <span style="color:var(--clr-text-muted);">⏱ 3 Days</span>
+              <span style="background:rgba(74,222,128,0.12);color:var(--clr-accent);padding:2px 8px;border-radius:999px;">Easy</span>
+              <span style="color:var(--clr-accent);font-weight:700;">From ₹7,499</span>
+            </div>
+            <p style="font-size:0.82rem;color:var(--clr-text-muted);margin:0;">Spot tigers, elephants and leopards in India's oldest national park.</p>
+            <div style="display:flex;gap:0.5rem;"><a href="404.html" class="btn btn-primary btn-sm" style="flex:1;justify-content:center;">Book Now</a><a href="404.html" class="btn btn-ghost btn-sm" style="color:#f87171;">♡ Remove</a></div>
+          </div>
         </div>
       </div>
 
       <!-- ── SECTION: Notifications ── -->
       <div class="dash-section" id="sec-notifications" style="display:none;">
-        <div class="dash-page-title"><h1><span class="text-gradient">Notifications</span></h1></div>
-        <div style="display:flex;flex-direction:column;gap:1rem;">
-          <div style="background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;">
-            <div style="width:40px;height:40px;background:var(--grad-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">✅</div>
-            <div><div style="font-weight:600;color:var(--clr-white);margin-bottom:0.25rem;">Booking Confirmed!</div><div style="font-size:var(--fs-sm);color:var(--clr-text-muted);">Your Himalayan Trek (15 Jul 2026) has been confirmed. Check your email for full itinerary details.</div><div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:0.5rem;">2 hours ago</div></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
+          <div class="dash-page-title" style="margin:0;"><h1><span class="text-gradient">Notifications</span></h1></div>
+          <a href="404.html" class="btn btn-ghost btn-sm">Mark All Read</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.85rem;">
+          <!-- 1 Unread -->
+          <div style="background:rgba(74,222,128,0.05);border:1px solid rgba(74,222,128,0.2);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:44px;height:44px;background:linear-gradient(135deg,#14532d,#4ade80);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;">✅</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.25rem;margin-bottom:0.25rem;">
+                <strong style="color:var(--clr-white);font-size:0.92rem;">Booking Confirmed!</strong>
+                <div style="display:flex;align-items:center;gap:0.5rem;"><span style="font-size:0.72rem;color:var(--clr-text-muted);">2 hours ago</span><div style="width:7px;height:7px;background:#f87171;border-radius:50%;"></div></div>
+              </div>
+              <p style="font-size:0.82rem;color:var(--clr-text-muted);margin:0;">Your Himalayan Trek (15 Jul 2026) has been confirmed. Check your email for full itinerary details.</p>
+            </div>
           </div>
+          <!-- 2 Unread -->
+          <div style="background:rgba(251,191,36,0.04);border:1px solid rgba(251,191,36,0.18);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:44px;height:44px;background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;">🎉</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.25rem;margin-bottom:0.25rem;">
+                <strong style="color:var(--clr-white);font-size:0.92rem;">Special Offer — 20% Off!</strong>
+                <div style="display:flex;align-items:center;gap:0.5rem;"><span style="font-size:0.72rem;color:var(--clr-text-muted);">1 day ago</span><div style="width:7px;height:7px;background:#f87171;border-radius:50%;"></div></div>
+              </div>
+              <p style="font-size:0.82rem;color:var(--clr-text-muted);margin:0;">Use code <strong style="color:var(--clr-accent);">WILD20</strong> at checkout for 20% off your next booking. Valid till 30 Jul 2026.</p>
+            </div>
+          </div>
+          <!-- 3 Read -->
           <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;">
-            <div style="width:40px;height:40px;background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">🎉</div>
-            <div><div style="font-weight:600;color:var(--clr-white);margin-bottom:0.25rem;">Special Offer — 20% Off!</div><div style="font-size:var(--fs-sm);color:var(--clr-text-muted);">As a loyal explorer, enjoy 20% off your next booking. Use code WILD20 at checkout. Valid till 30 Jul 2026.</div><div style="font-size:var(--fs-xs);color:var(--clr-text-muted);margin-top:0.5rem;">1 day ago</div></div>
+            <div style="width:44px;height:44px;background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;">📄</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.25rem;margin-bottom:0.25rem;">
+                <strong style="color:var(--clr-text-muted);font-size:0.92rem;">Invoice Ready</strong>
+                <span style="font-size:0.72rem;color:var(--clr-text-muted);">3 days ago</span>
+              </div>
+              <p style="font-size:0.82rem;color:var(--clr-text-muted);margin:0;">Your invoice for Rishikesh Rafting (#WP-2026-0345) is ready to <a href="404.html" style="color:var(--clr-accent);">download</a>.</p>
+            </div>
+          </div>
+          <!-- 4 Read -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:44px;height:44px;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;">⭐</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.25rem;margin-bottom:0.25rem;">
+                <strong style="color:var(--clr-text-muted);font-size:0.92rem;">Rate Your Experience</strong>
+                <span style="font-size:0.72rem;color:var(--clr-text-muted);">5 days ago</span>
+              </div>
+              <p style="font-size:0.82rem;color:var(--clr-text-muted);margin:0;">How was the Paragliding Bir Billing trip? Share your feedback and earn <strong style="color:var(--clr-accent);">50 WildPoints</strong>.</p>
+            </div>
+          </div>
+          <!-- 5 Read -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:44px;height:44px;background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;">🚨</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.25rem;margin-bottom:0.25rem;">
+                <strong style="color:var(--clr-text-muted);font-size:0.92rem;">Trip Reminder</strong>
+                <span style="font-size:0.72rem;color:var(--clr-text-muted);">1 week ago</span>
+              </div>
+              <p style="font-size:0.82rem;color:var(--clr-text-muted);margin:0;">Your Himalayan Trek starts in 20 days. Complete your pre-trip checklist now.</p>
+            </div>
+          </div>
+          <!-- 6 Read -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;">
+            <div style="width:44px;height:44px;background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;">🎁</div>
+            <div style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.25rem;margin-bottom:0.25rem;">
+                <strong style="color:var(--clr-text-muted);font-size:0.92rem;">WildPoints Earned</strong>
+                <span style="font-size:0.72rem;color:var(--clr-text-muted);">2 weeks ago</span>
+              </div>
+              <p style="font-size:0.82rem;color:var(--clr-text-muted);margin:0;">You earned <strong style="color:var(--clr-accent);">450 WildPoints</strong> from your Coorg Camping trip. Redeem on your next booking!</p>
+            </div>
           </div>
         </div>
       </div>
@@ -312,21 +544,90 @@
       <!-- ── SECTION: Settings ── -->
       <div class="dash-section" id="sec-settings" style="display:none;">
         <div class="dash-page-title"><h1>Account <span class="text-gradient">Settings</span></h1></div>
-        <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:2rem;">
-          <p style="margin-bottom:1.5rem;">Manage your account preferences, notification settings and privacy options.</p>
-          <div style="display:flex;flex-direction:column;gap:1rem;">
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
-              <div><strong style="color:var(--clr-white);">Email Notifications</strong><p style="font-size:var(--fs-sm);margin:0;">Receive booking updates and offers via email</p></div>
-              <div style="width:44px;height:24px;background:var(--grad-accent);border-radius:var(--r-full);position:relative;cursor:pointer;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;"></div></div>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
-              <div><strong style="color:var(--clr-white);">SMS Alerts</strong><p style="font-size:var(--fs-sm);margin:0;">Get SMS reminders for upcoming trips</p></div>
-              <div style="width:44px;height:24px;background:rgba(255,255,255,0.1);border-radius:var(--r-full);position:relative;cursor:pointer;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;left:2px;top:2px;"></div></div>
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+          <!-- Notification Prefs -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:2rem;">
+            <h3 style="margin-bottom:1.5rem;font-size:1rem;display:flex;align-items:center;gap:0.6rem;"><i class="fa-solid fa-bell" style="color:var(--clr-accent);"></i> Notification Preferences</h3>
+            <div style="display:flex;flex-direction:column;gap:0.9rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.85rem 1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">Email Notifications</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Receive booking updates and offers via email</p></div>
+                <div style="width:44px;height:24px;background:var(--grad-accent);border-radius:var(--r-full);position:relative;cursor:pointer;flex-shrink:0;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;"></div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.85rem 1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">SMS Alerts</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Get SMS reminders for upcoming trips</p></div>
+                <div style="width:44px;height:24px;background:rgba(255,255,255,0.1);border-radius:var(--r-full);position:relative;cursor:pointer;flex-shrink:0;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;left:2px;top:2px;"></div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.85rem 1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">Push Notifications</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Browser push for real-time booking updates</p></div>
+                <div style="width:44px;height:24px;background:var(--grad-accent);border-radius:var(--r-full);position:relative;cursor:pointer;flex-shrink:0;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;"></div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.85rem 1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">Newsletter</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Weekly adventure stories and travel tips</p></div>
+                <div style="width:44px;height:24px;background:rgba(255,255,255,0.1);border-radius:var(--r-full);position:relative;cursor:pointer;flex-shrink:0;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;left:2px;top:2px;"></div></div>
+              </div>
             </div>
           </div>
-          <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.06);">
-            <a href="404.html" class="btn btn-accent-outline btn-sm" style="margin-right:0.75rem;">Change Password</a>
-            <a href="404.html" class="btn btn-sm" style="background:rgba(248,113,113,0.1);color:#f87171;border:1px solid rgba(248,113,113,0.3);">Delete Account</a>
+
+          <!-- Privacy & Security -->
+          <div style="background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--r-xl);padding:2rem;">
+            <h3 style="margin-bottom:1.5rem;font-size:1rem;display:flex;align-items:center;gap:0.6rem;"><i class="fa-solid fa-shield-halved" style="color:var(--clr-accent);"></i> Privacy &amp; Security</h3>
+            <div style="display:flex;flex-direction:column;gap:0.9rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.85rem 1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">Profile Visibility</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Show my profile to assigned trip guides</p></div>
+                <div style="width:44px;height:24px;background:var(--grad-accent);border-radius:var(--r-full);position:relative;cursor:pointer;flex-shrink:0;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;"></div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.85rem 1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);flex-wrap:wrap;gap:0.75rem;">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">Two-Factor Authentication</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Extra security for your account login</p></div>
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                  <div style="width:44px;height:24px;background:rgba(255,255,255,0.1);border-radius:var(--r-full);position:relative;flex-shrink:0;"><div style="width:20px;height:20px;background:white;border-radius:50%;position:absolute;left:2px;top:2px;"></div></div>
+                  <a href="404.html" class="btn btn-ghost btn-sm">Enable</a>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.85rem 1rem;background:rgba(255,255,255,0.03);border-radius:var(--r-md);flex-wrap:wrap;gap:0.75rem;">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">Active Sessions</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">2 devices currently signed in</p></div>
+                <a href="404.html" class="btn btn-ghost btn-sm">View Sessions</a>
+              </div>
+            </div>
+            <div style="margin-top:1.25rem;"><a href="404.html" class="btn btn-ghost btn-sm">Change Password</a></div>
+          </div>
+
+          <!-- WildPoints Loyalty -->
+          <div style="background:linear-gradient(135deg,rgba(13,43,26,0.7),rgba(74,222,128,0.06));border:1px solid rgba(74,222,128,0.2);border-radius:var(--r-xl);padding:2rem;">
+            <h3 style="margin-bottom:1.5rem;font-size:1rem;display:flex;align-items:center;gap:0.6rem;"><i class="fa-solid fa-star" style="color:var(--clr-accent);"></i> WildPoints &amp; Loyalty</h3>
+            <div style="text-align:center;margin-bottom:1.5rem;">
+              <div style="font-size:3rem;font-weight:900;color:var(--clr-accent);line-height:1;">1,250</div>
+              <div style="font-size:0.82rem;color:var(--clr-text-muted);margin-top:0.25rem;">WildPoints Balance</div>
+            </div>
+            <div style="margin-bottom:1.25rem;">
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;color:var(--clr-text-muted);margin-bottom:0.4rem;"><span>1,250 / 2,000 pts to Gold</span><span style="color:var(--clr-accent);">62%</span></div>
+              <div style="height:8px;background:rgba(255,255,255,0.08);border-radius:999px;overflow:hidden;"><div style="width:62%;height:100%;background:var(--grad-accent);border-radius:999px;"></div></div>
+            </div>
+            <div style="display:flex;gap:0.5rem;justify-content:center;margin-bottom:1.25rem;flex-wrap:wrap;">
+              <span style="background:rgba(251,191,36,0.15);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);font-size:0.75rem;font-weight:700;padding:4px 14px;border-radius:999px;">🥉 Bronze (Current)</span>
+              <span style="background:rgba(255,255,255,0.06);color:var(--clr-text-muted);font-size:0.75rem;padding:4px 14px;border-radius:999px;">Silver</span>
+              <span style="background:rgba(255,255,255,0.06);color:var(--clr-text-muted);font-size:0.75rem;padding:4px 14px;border-radius:999px;">Gold</span>
+              <span style="background:rgba(255,255,255,0.06);color:var(--clr-text-muted);font-size:0.75rem;padding:4px 14px;border-radius:999px;">Platinum</span>
+            </div>
+            <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+              <a href="404.html" class="btn btn-primary btn-sm">Redeem Points</a>
+              <a href="404.html" class="btn btn-ghost btn-sm">View History</a>
+            </div>
+          </div>
+
+          <!-- Danger Zone -->
+          <div style="background:rgba(248,113,113,0.04);border:1px solid rgba(248,113,113,0.25);border-radius:var(--r-xl);padding:2rem;">
+            <h3 style="margin-bottom:1.5rem;font-size:1rem;color:#f87171;display:flex;align-items:center;gap:0.6rem;"><i class="fa-solid fa-triangle-exclamation"></i> Danger Zone</h3>
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1rem;background:rgba(255,255,255,0.02);border-radius:var(--r-md);flex-wrap:wrap;gap:0.75rem;">
+                <div><strong style="color:var(--clr-white);font-size:0.9rem;">Download My Data</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">Export all your personal data and booking history</p></div>
+                <a href="404.html" class="btn btn-sm" style="background:rgba(248,113,113,0.1);color:#f87171;border:1px solid rgba(248,113,113,0.3);">Download</a>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1rem;background:rgba(255,255,255,0.02);border-radius:var(--r-md);flex-wrap:wrap;gap:0.75rem;">
+                <div><strong style="color:#f87171;font-size:0.9rem;">Delete Account</strong><p style="font-size:0.78rem;margin:0;color:var(--clr-text-muted);">⚠️ This permanently removes your account and all data</p></div>
+                <a href="404.html" class="btn btn-sm" style="background:#f87171;color:#fff;border:none;">Delete</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -396,6 +697,31 @@
       // If all valid → redirect
       if (valid) {
         window.location.href = '404.html';
+      }
+    });
+  }
+
+  /* ── My Adventures Filter ── */
+  function filterAdv(btn, status) {
+    // Update button styles
+    document.querySelectorAll('.adv-filter-btn').forEach(b => {
+      b.style.background = 'var(--glass-bg)';
+      b.style.color = 'var(--clr-text-muted)';
+      b.style.border = '1px solid var(--glass-border)';
+      b.style.fontWeight = '400';
+    });
+    btn.style.background = 'var(--grad-accent)';
+    btn.style.color = '#060d08';
+    btn.style.border = 'none';
+    btn.style.fontWeight = '700';
+
+    // Filter cards
+    document.querySelectorAll('.adv-full-card').forEach(card => {
+      if (status === 'all' || card.dataset.status === status) {
+        card.style.display = 'flex';
+        card.style.animation = 'fadeInUp 0.3s ease forwards';
+      } else {
+        card.style.display = 'none';
       }
     });
   }
