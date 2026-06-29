@@ -1097,3 +1097,35 @@ textarea.form-control {
     min-width: 80px;
   }
 }
+
+/* ── Extra mobile fixes (≤ 639px) ── */
+@media (max-width: 639px) {
+  .page-hero {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .page-hero-content {
+    text-align: center !important;
+    width: 100%;
+    padding-inline: 1.25rem;
+  }
+  .page-hero-title { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+  .page-hero-subtitle { font-size: 0.95rem; }
+  /* Contact form: single col */
+  .contact-form-grid { grid-template-columns: 1fr !important; }
+  .contact-info-right { display: none; }
+  /* Cards: single col */
+  .contact-cards-grid,
+  .contact-cards-top { grid-template-columns: 1fr !important; }
+  /* Map: smaller */
+  .map-placeholder { height: 260px; }
+  /* Section: no overflow */
+  .section { overflow-x: hidden; }
+  .container { padding-inline: 1rem; }
+  /* Footer middle */
+  .footer-bottom { text-align: center; flex-direction: column; align-items: center; }
+}
+

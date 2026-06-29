@@ -530,10 +530,13 @@
 @media (max-width:1023px) {
   .sidebar { transform: translateX(-100%); }
   .sidebar.mobile-open { transform: translateX(0); }
-  .dashboard-main { margin-left:0; }
-  .dashboard-main.collapsed { margin-left:0; }
+  .dashboard-main { margin-left:0 !important; }
+  .dashboard-main.collapsed { margin-left:0 !important; }
   .sidebar-mobile-toggle { display:flex; }
   .dashboard-content { padding: var(--sp-5); }
+  /* Topbar: wrap on tablet */
+  .dashboard-topbar { flex-wrap: wrap; padding: var(--sp-4) var(--sp-5); gap: var(--sp-3); }
+  .topbar-right { gap: var(--sp-3); }
 }
 @media (max-width:767px) {
   .kpi-grid { grid-template-columns: 1fr 1fr; }
@@ -541,8 +544,37 @@
   .profile-info-meta { justify-content:center; }
   .adventure-cards-grid { grid-template-columns: 1fr; }
   .topbar-date { display:none; }
+  /* Topbar: hide greeting sub-text on mobile, keep toggle visible */
+  .dashboard-topbar { padding: var(--sp-3) var(--sp-4); gap: var(--sp-2); }
+  .topbar-greeting-sub { display: none; }
+  .topbar-right { gap: var(--sp-2); }
+  /* Package grid: 1 col on mobile */
+  [style*="grid-template-columns:repeat(2,1fr)"] { grid-template-columns: 1fr !important; }
+  /* Inline stat grids: 2-col on mobile */
+  [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2,1fr) !important; }
+  [style*="grid-template-columns:repeat(5,1fr)"] { grid-template-columns: repeat(2,1fr) !important; }
+  /* Settings form grid */
+  [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+  /* Adventure full cards: stack icon and content */
+  .adv-full-card { flex-direction: column !important; }
+  /* Dash table scroll */
+  .dash-table-card { overflow-x: auto; }
 }
 @media (max-width:479px) {
   .kpi-grid { grid-template-columns: 1fr; }
-  .dashboard-content { padding: var(--sp-4); }
+  .dashboard-content { padding: var(--sp-3); }
+  /* All stat grids: single column on very small */
+  [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: 1fr 1fr !important; }
+  [style*="grid-template-columns:repeat(5,1fr)"] { grid-template-columns: 1fr 1fr !important; }
+  /* Topbar: compact */
+  .dashboard-topbar { padding: var(--sp-3); }
+  .topbar-left .topbar-greeting { max-width: 140px !important; }
+  .topbar-book-text { display: none; }
+  /* Package cards: fully single col */
+  [style*="grid-template-columns:repeat(2,1fr)"] { grid-template-columns: 1fr !important; }
+  /* WildPoints tier badges */
+  .wildpoints-tiers { flex-direction: column; align-items:center; }
+  /* Buttons that flex: stack */
+  [style*="display:flex;gap:0.5rem;"] { flex-wrap: wrap !important; }
 }
+
